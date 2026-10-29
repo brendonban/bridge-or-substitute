@@ -202,17 +202,25 @@
   },
   "team": [
     {
-      "name": "Brendon Ban Ren Jie",
+      "name": "Brendon Ban",
       "badge": "PI",
+      "icon": "megaphone",
       "sub": "Master of Professional Counseling, Universiti Malaya",
       "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all three studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
-      "works": "Chong, K. Y. L., Ng, J. H., Ban, R. J., et al. (2022). Paper presented at MAPSA 2022.\nBan, B. R. J., & Lau, P. L. (in preparation). Bridge or substitute? Protocol for a feasibility randomized controlled trial of an AI companion for Malaysian men.",
+      "works": "",
       "email": "22059169@siswa.um.edu.my",
-      "link": "",
-      "linkLabel": "",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://brendonban.me"
+        },
+        {
+          "type": "linkedin",
+          "url": "https://my.linkedin.com/in/brendonban"
+        }
+      ],
       "open": false,
-      "photo": "",
-      "icon": "megaphone"
+      "photo": ""
     },
     {
       "name": "Assoc. Prof. Dr. Lau Poh Li",
