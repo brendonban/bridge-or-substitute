@@ -1,0 +1,348 @@
+{
+  "recruit": {
+    "open": true,
+    "deadline": "October 30, 2026",
+    "pill": "Apply by Oct 30",
+    "closedNote": "Applications for this round have closed. Thank you to everyone who applied."
+  },
+  "posts": [
+    {
+      "slug": "sol-safety",
+      "date": "2026-10-28",
+      "title": "Meet Sol, and the safety net behind it",
+      "tags": [
+        "Sol",
+        "AI-companion",
+        "safety",
+        "study-2"
+      ],
+      "dek": "Why the AI companion in our trials was built with a person in the loop from day one.",
+      "body": "Studies 2 and 3 test Sol, an AI companion inside a study app called Ora. Men in the trial can talk to Sol whenever they like, write in a private diary, complete a one-minute weekly check-in, and open a get-help page that points to real services.\n\nBuilding an AI that men will confide in carries responsibility. So Sol was never designed to work alone.\n\n## A person in the loop\n\n- A safety escalation protocol flags messages and check-ins that suggest risk.\n- Every flag is followed up by a person within 24 hours.\n- Distress is monitored with the PHQ-9 at baseline and the PHQ-4 plus item 9 after that.\n- A researcher console lets the team see engagement and safety events.\n\nSafety is also one of the progression criteria for Study 2. If every flag is followed up within 24 hours, that criterion is green. Any delay is amber. Any serious harm related to Sol stops the program before Study 3.\n\n> The aim is a companion that hands men over to people, not one that keeps them talking to an app."
+    },
+    {
+      "slug": "why-scoping-review",
+      "date": "2026-10-22",
+      "title": "Why start with a scoping review?",
+      "tags": [
+        "scoping-review",
+        "study-1",
+        "methods"
+      ],
+      "dek": "Before testing an AI companion, we need a map of what is already known in Asia.",
+      "body": "Research on AI and mental health help-seeking is spread across psychology, psychiatry, public health, education and computer science. Each field defines AI and help-seeking differently, and most of the samples come from Western countries.\n\nA systematic review asks a narrow question and estimates an effect. A scoping review does something earlier and broader: it maps the extent, range and nature of the evidence and shows where the gaps are (Munn et al., 2018). That is what this field needs first.\n\n## What we will map\n\n- The types of AI studied, the populations and the countries.\n- Which stages of help-seeking each study addresses, and how help-seeking is measured.\n- Whether AI is positioned as a bridge to human support, or a substitute for it.\n\nWe follow JBI guidance (Peters et al., 2020) and will report with PRISMA-ScR (Tricco et al., 2018). The protocol is registered on OSF before we search. The gaps we find will shape Sol's design and the outcomes we measure in Studies 2 and 3."
+    },
+    {
+      "slug": "ra-recruiting",
+      "date": "2026-10-15",
+      "title": "We're recruiting two research assistants",
+      "tags": [
+        "get-involved",
+        "study-1",
+        "scoping-review"
+      ],
+      "dek": "Unpaid and remote, 10 hours a week, October 2026 to January 2027. Applications close October 30.",
+      "body": "We are looking for two unpaid, volunteer Research Assistant Interns to work as second reviewers on Study 1, our scoping review of AI and mental health help-seeking in Asia.\n\nYou will screen titles, abstracts and full texts against set criteria, record reasons for exclusion, chart key details from included studies in a shared Excel form, and meet the principal investigator once a week.\n\n## Who we are looking for\n\n- Students or recent graduates in Psychology, Counseling or a related program.\n- Comfortable reading academic papers in English, with excellent attention to detail.\n- Able to work independently and meet weekly targets.\n\nYou will be trained in JBI and PRISMA-ScR methods, named in the published article, and offered co-authorship if you meet the authorship criteria. Full details and how to apply are on the [Get involved](#get-involved) page."
+    },
+    {
+      "slug": "bridge-or-substitute",
+      "date": "2026-10-12",
+      "title": "Bridge or substitute? Why we are asking",
+      "tags": [
+        "program",
+        "help-seeking",
+        "men",
+        "Malaysia",
+        "self-compassion"
+      ],
+      "dek": "Many young Malaysian men now talk to a chatbot before anyone else. We want to know where that leads.",
+      "body": "Malaysian men are less likely than women to seek help for psychological distress, and many wait until they reach a crisis. Conformity to masculine norms, especially self-reliance, is consistently linked to poorer mental health and more negative attitudes toward seeking help. In Malaysia, concern for face adds to the pressure. For many men, admitting they are struggling feels like failing.\n\nAI chatbots now offer these men something they have rarely had: a private, judgment-free place to talk at any hour. The evidence on whether that helps points both ways. Chatbots can reduce depressive symptoms and increase self-compassion, but heavier use has also been linked to loneliness and less contact with other people.\n\n> Does an AI companion help men take the first step toward friends, family and counselors, or does it become the only place they go?\n\n## Our hunch: self-compassion\n\nWe think self-compassion is the key. By buffering the shame that masculine norms attach to asking for help, it may make men more willing to reach out to people. Earlier research found exactly this buffering effect among men.\n\nOver the next three years we will test that idea in three linked studies: a scoping review, a feasibility trial with 80 men, and, if the feasibility trial says go, a full multi-site trial. You can read about each one on the [Studies](#studies) page."
+    }
+  ],
+  "pubs": [
+    {
+      "y": 2027,
+      "type": "Article",
+      "status": "Planned",
+      "title": "Artificial intelligence and mental health help-seeking in Asia: A scoping review",
+      "au": "Ban, B. R. J., & Lau, P. L.",
+      "venue": "Journal article, to be submitted before Chinese New Year 2027",
+      "tags": [
+        "scoping-review",
+        "study-1",
+        "AI",
+        "help-seeking",
+        "Asia",
+        "men"
+      ],
+      "id": "p1"
+    },
+    {
+      "y": 2027,
+      "type": "Talk",
+      "status": "Planned",
+      "title": "AI and mental health help-seeking in Asia: Preliminary findings from a scoping review",
+      "au": "Ban, B. R. J., & Lau, P. L.",
+      "venue": "UKM conference, early January 2027",
+      "tags": [
+        "scoping-review",
+        "study-1",
+        "AI",
+        "help-seeking",
+        "Asia"
+      ],
+      "id": "p2"
+    },
+    {
+      "y": 2027,
+      "type": "Article",
+      "status": "Planned",
+      "title": "Bridge or substitute? A feasibility randomized controlled trial of an AI companion for Malaysian men",
+      "au": "Ban, B. R. J., & Lau, P. L.",
+      "venue": "Journal article, July to August 2027",
+      "tags": [
+        "feasibility-trial",
+        "study-2",
+        "AI-companion",
+        "self-compassion",
+        "help-seeking",
+        "men",
+        "Malaysia"
+      ],
+      "id": "p3"
+    },
+    {
+      "y": 2027,
+      "type": "Talk",
+      "status": "Planned",
+      "title": "Bridge or substitute? Findings from a feasibility trial of an AI companion",
+      "au": "Ban, B. R. J.",
+      "venue": "Conference talk, May to July 2027",
+      "tags": [
+        "feasibility-trial",
+        "study-2",
+        "AI-companion",
+        "men",
+        "Malaysia"
+      ],
+      "id": "p4"
+    },
+    {
+      "y": 2026,
+      "type": "Protocol",
+      "status": "In preparation",
+      "title": "Artificial intelligence and mental health help-seeking in Asia: A scoping review protocol",
+      "au": "Ban, B. R. J., & Lau, P. L.",
+      "venue": "Open Science Framework registration",
+      "tags": [
+        "protocol",
+        "scoping-review",
+        "study-1",
+        "AI",
+        "Asia"
+      ],
+      "id": "p6"
+    },
+    {
+      "y": 2026,
+      "type": "Protocol",
+      "status": "In preparation",
+      "title": "Bridge or substitute? Protocol for a feasibility randomized controlled trial of an AI companion for Malaysian men",
+      "au": "Ban, B. R. J., & Lau, P. L.",
+      "venue": "Journal article",
+      "tags": [
+        "protocol",
+        "feasibility-trial",
+        "study-2",
+        "AI-companion",
+        "self-compassion",
+        "men",
+        "Malaysia"
+      ],
+      "id": "p7"
+    },
+    {
+      "y": 2026,
+      "type": "Talk",
+      "status": "Planned",
+      "title": "Bridge or substitute? Trial protocol for an AI companion for Malaysian men",
+      "au": "Ban, B. R. J.",
+      "venue": "Protocol talk, November to December 2026",
+      "tags": [
+        "protocol",
+        "feasibility-trial",
+        "study-2",
+        "AI-companion"
+      ],
+      "id": "p8"
+    },
+    {
+      "y": 2022,
+      "type": "Talk",
+      "status": "Presented",
+      "title": "[Title to add]",
+      "au": "Chong, K. Y. L., Ng, J. H., Ban, R. J., et al.",
+      "venue": "MAPSA 2022",
+      "note": "Survey of 210 undergraduates: social connection (r = .43) and empathy (r = .53) were linked to willingness to seek help.",
+      "tags": [
+        "help-seeking",
+        "survey",
+        "Malaysia",
+        "students"
+      ],
+      "id": "p9"
+    }
+  ],
+  "home": {
+    "typed": [
+      "“I talk to the chatbot more than I talk to anyone.”",
+      "“It said I should see someone. So I did.”",
+      "“I don’t want my family to know.”",
+      "“Is it okay to just ask the app?”"
+    ]
+  },
+  "team": [
+    {
+      "name": "Brendon Ban Ren Jie",
+      "badge": "PI",
+      "sub": "Master of Professional Counseling, Universiti Malaya",
+      "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all three studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
+      "works": "Chong, K. Y. L., Ng, J. H., Ban, R. J., et al. (2022). Paper presented at MAPSA 2022.\nBan, B. R. J., & Lau, P. L. (in preparation). Bridge or substitute? Protocol for a feasibility randomized controlled trial of an AI companion for Malaysian men.",
+      "email": "22059169@siswa.um.edu.my",
+      "link": "",
+      "linkLabel": "",
+      "open": false,
+      "photo": "",
+      "icon": "megaphone"
+    },
+    {
+      "name": "Assoc. Prof. Dr. Lau Poh Li",
+      "badge": "Supervisor",
+      "sub": "Department of Educational Psychology and Counseling",
+      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.",
+      "works": "",
+      "email": "janicepolly@um.edu.my",
+      "link": "",
+      "linkLabel": "",
+      "open": false,
+      "photo": "",
+      "icon": "cap"
+    },
+    {
+      "name": "Research Assistant Interns",
+      "badge": "RA",
+      "sub": "Study 1 · two unpaid positions",
+      "bio": "Two research assistants work as second reviewers on the scoping review. They share the screening of titles, abstracts and full texts, and chart the included studies in a shared Excel form. They are trained in JBI and PRISMA-ScR methods and named in the published article. This could be you.",
+      "works": "",
+      "email": "",
+      "link": "#get-involved",
+      "linkLabel": "get involved",
+      "open": true,
+      "photo": "",
+      "icon": "person"
+    },
+    {
+      "name": "Trial, tech and AI team",
+      "badge": "Team",
+      "sub": "Studies 2 and 3 · unpaid · rolling applications",
+      "bio": "Research assistants for the two trials, and people who code and work with AI to build and improve Ora and Sol. If you are interested in programming, AI or running a trial, we would like to hear from you. We are also open to collaboration.",
+      "works": "",
+      "email": "",
+      "link": "#get-involved",
+      "linkLabel": "get involved",
+      "open": true,
+      "photo": "",
+      "icon": "group"
+    }
+  ],
+  "timelines": {
+    "study1": [
+      {
+        "label": "Protocol and OSF registration",
+        "start": "2026-10-01",
+        "end": "2026-10-22",
+        "key": false
+      },
+      {
+        "label": "Database search",
+        "start": "2026-10-13",
+        "end": "2026-11-09",
+        "key": false
+      },
+      {
+        "label": "Title and abstract screening",
+        "start": "2026-11-01",
+        "end": "2026-11-27",
+        "key": false
+      },
+      {
+        "label": "Full-text screening",
+        "start": "2026-11-19",
+        "end": "2026-12-15",
+        "key": false
+      },
+      {
+        "label": "Data charting",
+        "start": "2026-12-07",
+        "end": "2027-01-02",
+        "key": false
+      },
+      {
+        "label": "Synthesis · UKM conference",
+        "start": "2026-12-25",
+        "end": "2027-01-13",
+        "key": true
+      },
+      {
+        "label": "Write-up · article submitted",
+        "start": "2027-01-10",
+        "end": "2027-02-06",
+        "key": true
+      }
+    ],
+    "program": [
+      {
+        "label": "Study 1 · scoping review",
+        "start": "2026-10-01",
+        "end": "2027-02-01",
+        "key": false
+      },
+      {
+        "label": "Study 2 · ethics and registration",
+        "start": "2026-10-01",
+        "end": "2027-01-01",
+        "key": false
+      },
+      {
+        "label": "Study 2 · trial, interviews, analysis",
+        "start": "2027-01-01",
+        "end": "2027-09-01",
+        "key": false
+      },
+      {
+        "label": "Go, amend or stop",
+        "start": "2027-08-10",
+        "end": "2027-09-01",
+        "key": true
+      },
+      {
+        "label": "Refine Sol · Study 3 set-up",
+        "start": "2027-09-01",
+        "end": "2028-01-01",
+        "key": false
+      },
+      {
+        "label": "Study 3 · recruitment and delivery",
+        "start": "2028-01-01",
+        "end": "2029-01-01",
+        "key": false
+      },
+      {
+        "label": "Follow-up, analysis, publication",
+        "start": "2029-01-01",
+        "end": "2029-10-01",
+        "key": true
+      }
+    ]
+  },
+  "texts": {}
+}
