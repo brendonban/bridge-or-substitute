@@ -202,10 +202,23 @@
   },
   "team": [
     {
+      "name": "Assoc. Prof. Dr. Lau Poh Li",
+      "badge": "Supervisor",
+      "sub": "Department of Educational Psychology and Counseling",
+      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.",
+      "works": "",
+      "email": "janicepolly@um.edu.my",
+      "link": "",
+      "linkLabel": "",
+      "open": false,
+      "photo": "",
+      "icon": "cap"
+    },
+    {
       "name": "Brendon Ban",
       "badge": "PI",
       "icon": "megaphone",
-      "sub": "Master of Professional Counseling, Universiti Malaya",
+      "sub": "Master student, Counseling",
       "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all three studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
       "works": "",
       "email": "22059169@siswa.um.edu.my",
@@ -223,17 +236,16 @@
       "photo": "/uploads/1793286962871-brendon.webp"
     },
     {
-      "name": "Assoc. Prof. Dr. Lau Poh Li",
-      "badge": "Supervisor",
-      "sub": "Department of Educational Psychology and Counseling",
-      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.",
+      "name": "Vincent Yuan",
+      "badge": "Lab Manager",
+      "icon": "group",
+      "sub": "",
+      "bio": "",
       "works": "",
-      "email": "janicepolly@um.edu.my",
-      "link": "",
-      "linkLabel": "",
+      "email": "",
+      "links": [],
       "open": false,
-      "photo": "",
-      "icon": "cap"
+      "photo": ""
     },
     {
       "name": "Research Assistant Interns",
