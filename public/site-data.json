@@ -248,6 +248,30 @@
       "photo": ""
     },
     {
+      "name": "Adrina",
+      "badge": "RA",
+      "icon": "person",
+      "sub": "",
+      "bio": "",
+      "works": "",
+      "email": "",
+      "links": [],
+      "open": false,
+      "photo": ""
+    },
+    {
+      "name": "John Lim",
+      "badge": "RA",
+      "icon": "person",
+      "sub": "",
+      "bio": "",
+      "works": "",
+      "email": "",
+      "links": [],
+      "open": false,
+      "photo": ""
+    },
+    {
       "name": "Veronika",
       "badge": "RA",
       "icon": "person",
@@ -265,17 +289,16 @@
       "photo": ""
     },
     {
-      "name": "Research Assistant Interns",
-      "badge": "RA",
-      "sub": "Study 1 · two unpaid positions",
-      "bio": "Two research assistants work as second reviewers on the scoping review. They share the screening of titles, abstracts and full texts, and chart the included studies in a shared Excel form. They are trained in JBI and PRISMA-ScR methods and named in the published article. This could be you.",
+      "name": "Celia",
+      "badge": "Intern",
+      "icon": "person",
+      "sub": "",
+      "bio": "",
       "works": "",
       "email": "",
-      "link": "#get-involved",
-      "linkLabel": "get involved",
-      "open": true,
-      "photo": "",
-      "icon": "person"
+      "links": [],
+      "open": false,
+      "photo": ""
     },
     {
       "name": "Trial, tech and AI team",
