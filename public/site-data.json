@@ -248,16 +248,21 @@
       "photo": ""
     },
     {
-      "name": "Adrina",
+      "name": "Adrina Ghasemi",
       "badge": "RA",
       "icon": "person",
-      "sub": "",
-      "bio": "",
+      "sub": "Bachelor of Psychology (Hons) Student",
+      "bio": "Adrina is a final-year Bachelor of Psychology student at Taylor’s University, Malaysia. Her research interests centre on topics that are often stigmatised or under-discussed in certain societies, and on building the evidence needed to open those conversations in culturally sensitive ways. She is also passionate about ethical, transparent and rigorous research. She has been working with the EPI Lab at the University of Southampton on evidence synthesis of non-pharmacological interventions for ADHD, collaborating with a multicultural team across the UK and Malaysia. She is particularly interested in how AI can complement, rather than replace, human support in mental health care. ",
       "works": "",
-      "email": "",
-      "links": [],
+      "email": "adrina.ghasemi0@gmail.com",
+      "links": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/adrinaghasemi"
+        }
+      ],
       "open": false,
-      "photo": ""
+      "photo": "/uploads/1793805014754-screenshot-2026-11-04-at-11.09.43-pm.png"
     },
     {
       "name": "John Lim",
