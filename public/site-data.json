@@ -276,12 +276,17 @@
       "badge": "RA",
       "icon": "person",
       "sub": "",
-      "bio": "",
+      "bio": "Hi there! My name is John Lim, and I am a recent MSc Psychological Research Methods graduate from Lancaster University.\n\nMy main research interest lies in investigating social relationships and the impact of digital technologies on psychological health. I am particularly interested in understanding how social connection and relationship processes contribute to positive wellbeing across diverse populations and cultural contexts.\n\nOutside of my academic work, I enjoy writing poems, playing online games, spending time with friends, and going on walks with my dog. ",
       "works": "",
       "email": "",
-      "links": [],
+      "links": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/john-lim-yue-han/"
+        }
+      ],
       "open": false,
-      "photo": ""
+      "photo": "/uploads/1793767843608-whatsapp-image-2026-07-17-at-14.53.45.jpeg"
     },
     {
       "name": "Veronika",
