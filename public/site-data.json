@@ -204,15 +204,27 @@
     {
       "name": "Assoc. Prof. Dr. Lau Poh Li",
       "badge": "Supervisor",
+      "icon": "cap",
       "sub": "Department of Educational Psychology and Counseling",
-      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.",
+      "bio": "Dr. Lau, Poh Li is an Associate Professor in the Department of Educational Psychology and Counselling at University of Malaya, Malaysia. She received her BA (2006) and PhD (2011) in Counselling from University of Malaya, Malaysia. She also completed a 2-year post-doctoral scholarship in Counseling Psychology at Indiana University Bloomington, USA. Her research interests include career counselling, positive psychology, resilience and well-being, special needs program, cross cultural, and psychological testing. She takes responsibility in teaching and learning, evaluation activities, research activities in undergrad and postgrad counselling program and consultation projects. She is also a registered counsellor in Malaysia.",
       "works": "",
       "email": "janicepolly@um.edu.my",
-      "link": "",
-      "linkLabel": "",
+      "links": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/poh-li-lau-a1064a374/"
+        },
+        {
+          "type": "scholar",
+          "url": "https://scholar.google.com/citations?user=beili20AAAAJ&hl=en"
+        },
+        {
+          "type": "cv",
+          "url": "https://umexpert.um.edu.my/janicepolly.html"
+        }
+      ],
       "open": false,
-      "photo": "",
-      "icon": "cap"
+      "photo": "/uploads/1793757422073-dr.-lau-photo.jpg"
     },
     {
       "name": "Brendon Ban",
