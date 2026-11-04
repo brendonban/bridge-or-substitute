@@ -1,6 +1,6 @@
 {
   "recruit": {
-    "open": false,
+    "open": true,
     "deadline": "October 30, 2026",
     "pill": "Apply by Oct 30",
     "closedNote": "Applications for this round have closed. Thank you to everyone who applied."
@@ -204,27 +204,15 @@
     {
       "name": "Assoc. Prof. Dr. Lau Poh Li",
       "badge": "Supervisor",
-      "icon": "cap",
       "sub": "Department of Educational Psychology and Counseling",
-      "bio": "Dr. Lau, Poh Li is an Associate Professor in the Department of Educational Psychology and Counselling at University of Malaya, Malaysia. She received her BA (2006) and PhD (2011) in Counselling from University of Malaya, Malaysia. She also completed a 2-year post-doctoral scholarship in Counseling Psychology at Indiana University Bloomington, USA. Her research interests include career counselling, positive psychology, resilience and well-being, special needs program, cross cultural, and psychological testing. She takes responsibility in teaching and learning, evaluation activities, research activities in undergrad and postgrad counselling program and consultation projects. She is also a registered counsellor in Malaysia.",
+      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.",
       "works": "",
       "email": "janicepolly@um.edu.my",
-      "links": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/poh-li-lau-a1064a374/"
-        },
-        {
-          "type": "scholar",
-          "url": "https://scholar.google.com/citations?user=beili20AAAAJ&hl=en"
-        },
-        {
-          "type": "cv",
-          "url": "https://umexpert.um.edu.my/janicepolly.html"
-        }
-      ],
+      "link": "",
+      "linkLabel": "",
       "open": false,
-      "photo": "/uploads/1793757422073-dr.-lau-photo.jpg"
+      "photo": "",
+      "icon": "cap"
     },
     {
       "name": "Brendon Ban",
@@ -260,57 +248,34 @@
       "photo": ""
     },
     {
-      "name": "Adrina",
-      "badge": "RA",
-      "icon": "person",
-      "sub": "",
-      "bio": "",
-      "works": "",
-      "email": "",
-      "links": [],
-      "open": false,
-      "photo": ""
-    },
-    {
-      "name": "John Lim",
-      "badge": "RA",
-      "icon": "person",
-      "sub": "",
-      "bio": "Hi there! My name is John Lim, and I am a recent MSc Psychological Research Methods graduate from Lancaster University.\n\nMy main research interest lies in investigating social relationships and the impact of digital technologies on psychological health. I am particularly interested in understanding how social connection and relationship processes contribute to positive wellbeing across diverse populations and cultural contexts.\n\nOutside of my academic work, I enjoy writing poems, playing online games, spending time with friends, and going on walks with my dog. ",
-      "works": "",
-      "email": "",
-      "links": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/john-lim-yue-han/"
-        }
-      ],
-      "open": false,
-      "photo": "/uploads/1793767843608-whatsapp-image-2026-07-17-at-14.53.45.jpeg"
-    },
-    {
       "name": "Veronika",
       "badge": "RA",
       "icon": "person",
       "sub": "",
-      "bio": "",
+      "bio": "Second year psychology student at Sunway University. Interested in research, participant-facing roles, cognitive psychology and neuropsychology. ",
       "works": "",
-      "email": "",
-      "links": [],
+      "email": "maruginaveronikamvm@gmail.com",
+      "links": [
+        {
+          "type": "linkedin",
+          "url": "https://www.linkedin.com/in/veronika-marugina/"
+        }
+      ],
       "open": false,
       "photo": ""
     },
     {
-      "name": "Phuong Linh Dinh Ha (Celia)",
-      "badge": "Intern",
-      "icon": "person",
-      "sub": "",
-      "bio": "",
+      "name": "Research Assistant Interns",
+      "badge": "RA",
+      "sub": "Study 1 · two unpaid positions",
+      "bio": "Two research assistants work as second reviewers on the scoping review. They share the screening of titles, abstracts and full texts, and chart the included studies in a shared Excel form. They are trained in JBI and PRISMA-ScR methods and named in the published article. This could be you.",
       "works": "",
       "email": "",
-      "links": [],
-      "open": false,
-      "photo": ""
+      "link": "#get-involved",
+      "linkLabel": "get involved",
+      "open": true,
+      "photo": "",
+      "icon": "person"
     },
     {
       "name": "Trial, tech and AI team",
