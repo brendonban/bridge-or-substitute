@@ -314,6 +314,20 @@ table.narrow{min-width:480px}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;background:var(--fg);color:var(--bg);padding:11px 18px;border-radius:10px;font-size:15px;max-width:calc(100% - 32px)}
 @media (max-width:560px){.fgrid{grid-template-columns:1fr}.arow{grid-template-columns:1fr}.arow .adm-act{justify-content:flex-start}}
 
+/* publication links + visibility switch */
+.plinks{display:flex;flex-wrap:wrap;gap:6px 14px}
+.pdoi{display:inline-flex;align-items:baseline;gap:7px;font-family:var(--mono);font-size:13px;color:var(--fg);text-decoration:none;overflow-wrap:anywhere}
+.pdoi span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);border-radius:4px;padding:1px 6px}
+.pdoi:hover{text-decoration:underline;text-decoration-color:var(--accent-line)}
+.vis{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:13.5px;background:none;border:0;color:var(--muted);cursor:pointer;padding:4px 6px}
+.vis .knob{position:relative;width:34px;height:20px;border-radius:999px;background:var(--line);transition:background .15s;flex:none}
+.vis .knob::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--bg);box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+.vis.on{color:var(--fg)}
+.vis.on .knob{background:var(--accent-line)}
+.vis.on .knob::after{transform:translateX(14px)}
+.vis .vl{min-width:46px;text-align:left}
+@media (prefers-reduced-motion:reduce){.vis .knob,.vis .knob::after{transition:none}}
+
 /* admin extras */
 .res-note{padding:12px 16px;border-radius:10px;background:var(--accent-soft);border:1px solid var(--accent);font-size:14.5px}
 .res-filter{display:flex;flex-direction:column;gap:10px}
@@ -1038,10 +1052,15 @@ function buildGantt(which,rows){
 document.querySelectorAll(".st[data-go]").forEach(b=>b.addEventListener("click",()=>{const el=document.getElementById(b.dataset.go);if(el)el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}));
 
 /* ---------- publications ---------- */
-window.initPubs=function(P){
+const DOI_RE=/^10\.\d{4,9}\/\S+$/;
+function normDoi(v){v=String(v||"").trim().replace(/^(https?:\/\/)?(dx\.)?doi\.org\//i,"").replace(/^doi:\s*/i,"");return v;}
+window.initPubs=function(ALL){
   if(!window.__pubState) window.__pubState={type:"All",status:"All",tag:null,q:""};
+  const P=(ALL||[]).filter(p=>!p.hidden);
 
-  const types=["All","Article","Protocol","Talk"], stats=["All","Presented","In preparation","Planned"];
+  const has=(k,v)=>P.some(p=>p[k]===v);
+  const types=["All",...["Article","Protocol","Talk"].filter(v=>has("type",v))], stats=["All",...["Published","Presented","In preparation","Planned"].filter(v=>has("status",v))];
+  if(!types.includes(window.__pubState.type))window.__pubState.type="All";if(!stats.includes(window.__pubState.status))window.__pubState.status="All";
   const st=window.__pubState;
   const $=id=>document.getElementById(id);
   const tagCounts={};P.forEach(p=>p.tags.forEach(t=>tagCounts[t]=(tagCounts[t]||0)+1));
@@ -1052,7 +1071,7 @@ window.initPubs=function(P){
       b.innerHTML='<span></span><span class="c"></span>';b.firstChild.textContent=o;b.lastChild.textContent=countFn(o);
       b.onclick=()=>{st[key]=o;render();};el.appendChild(b);});
   }
-  const match=(p,ex)=>(ex==="type"||st.type==="All"||p.type===st.type)&&(ex==="status"||st.status==="All"||p.status===st.status)&&(ex==="tag"||!st.tag||p.tags.includes(st.tag))&&(!st.q||(p.title+" "+p.au+" "+p.venue+" "+p.tags.join(" ")).toLowerCase().includes(st.q));
+  const match=(p,ex)=>(ex==="type"||st.type==="All"||p.type===st.type)&&(ex==="status"||st.status==="All"||p.status===st.status)&&(ex==="tag"||!st.tag||p.tags.includes(st.tag))&&(!st.q||(p.title+" "+p.au+" "+p.venue+" "+(p.doi||"")+" "+p.tags.join(" ")).toLowerCase().includes(st.q));
   function render(){
     seg($("f-type"),types,"type",o=>P.filter(p=>match(p,"type")&&(o==="All"||p.type===o)).length);
     seg($("f-status"),stats,"status",o=>P.filter(p=>match(p,"status")&&(o==="All"||p.status===o)).length);
@@ -1068,14 +1087,18 @@ window.initPubs=function(P){
       const h=document.createElement("h2");h.textContent=y;const ol=document.createElement("ol");
       list.filter(p=>+p.y===y).forEach(p=>{
         const li=document.createElement("li");li.className="pub";
-        const cls=p.status==="Presented"?"presented":p.status==="In preparation"?"prep":"";
-        li.innerHTML=`<div class="ptop"><span class="ptype"></span><span class="pst ${cls}"></span></div><h3></h3><p class="pau"></p><p class="pven"></p>${p.note?'<p class="pau pnote"></p>':""}<div class="ptags"></div>`;
+        const cls=p.status==="Presented"||p.status==="Published"?"presented":p.status==="In preparation"?"prep":"";
+        li.innerHTML=`<div class="ptop"><span class="ptype"></span><span class="pst ${cls}"></span></div><h3></h3><p class="pau"></p><p class="pven"></p>${p.note?'<p class="pau pnote"></p>':""}<div class="plinks"></div><div class="ptags"></div>`;
         li.querySelector(".ptype").textContent=p.type;li.querySelector(".pst").textContent=p.status;
         li.querySelector("h3").textContent=p.title;li.querySelector(".pven").textContent=p.venue;
         const au=li.querySelector(".pau");
         const parts=p.au.split(/(Ban, B\. R\. J\.|Ban, R\. J\.)/);
         parts.forEach(x=>{if(!x)return;if(/^Ban, /.test(x)){const b=document.createElement("b");b.textContent=x;au.appendChild(b);}else au.appendChild(document.createTextNode(x));});
         if(p.note)li.querySelector(".pnote").textContent=p.note;
+        const pl=li.querySelector(".plinks");
+        if(p.doi&&DOI_RE.test(p.doi)){const a=document.createElement("a");a.className="pdoi";a.href="https://doi.org/"+p.doi;a.target="_blank";a.rel="noopener";a.innerHTML="<span>DOI</span>";a.appendChild(document.createTextNode(p.doi));pl.appendChild(a);}
+        if(p.url&&/^https?:\/\//.test(p.url)){const a=document.createElement("a");a.className="pdoi";a.href=p.url;a.target="_blank";a.rel="noopener";a.innerHTML="<span>Link</span>";a.appendChild(document.createTextNode(p.url.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,"").slice(0,60)));pl.appendChild(a);}
+        if(!pl.children.length)pl.remove();
         const tg=li.querySelector(".ptags");
         p.tags.forEach(t=>{const b=document.createElement("button");b.className="ht";b.textContent="#"+t;b.setAttribute("aria-pressed",String(st.tag===t));b.onclick=()=>{st.tag=st.tag===t?null:t;render();$("f-tags").scrollIntoView({block:"nearest"});};tg.appendChild(b);});
         ol.appendChild(li);
@@ -1304,6 +1327,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
           act.append(up,dn);
         }
         if(opts.view){const v=document.createElement("a");v.className="abtn ghost";v.textContent="View";v.href=opts.view(x);act.appendChild(v);}
+        if(opts.toggle){const on=!x.hidden;const t=document.createElement("button");t.type="button";t.className="vis"+(on?" on":"");t.setAttribute("role","switch");t.setAttribute("aria-checked",String(on));t.setAttribute("aria-label",(on?"Shown on site: ":"Hidden from site: ")+opts.title(x));t.innerHTML='<span class="knob"></span><span class="vl"></span>';t.querySelector(".vl").textContent=on?"Shown":"Hidden";t.onclick=()=>{if(on)x.hidden=true;else delete x.hidden;bar();render();};act.appendChild(t);}
         act.append(btn("Edit","ghost",()=>{editing=i;render();}),btn("Delete","danger",()=>{confirmDel=i;render();}));
       }
       list.appendChild(row);
@@ -1337,7 +1361,8 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }
     if(tab==="pubs"){
       if(editing!==null)return pubForm(B,draft.pubs);
-      return listView(B,draft.pubs,{newLabel:"New publication",sort:(a,b)=>b.x.y-a.x.y,title:x=>x.title,meta:x=>x.y+" · "+x.type+" · "+x.status});
+      return listView(B,draft.pubs,{newLabel:"New publication",toggle:true,sort:(a,b)=>b.x.y-a.x.y,title:x=>x.title,meta:x=>[x.y,x.type,x.status,x.doi?"DOI":"",x.hidden?"Hidden from site":""].filter(Boolean).join(" · "),
+        extraTop:top=>{const n=draft.pubs.filter(x=>x.hidden).length;const s=document.createElement("span");s.className="aq";s.textContent=`${draft.pubs.length-n} shown on site${n?` · ${n} hidden`:""}`;top.appendChild(s);}});
     }
   }
   function recruitTab(B){
@@ -1441,14 +1466,23 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       `<div class="fgrid">${fld("Status",'<select id="u-status">'+opt(p.status,["Published","Presented","In preparation","Planned"])+'</select>')}${fld("Tags",'<input id="u-tags">',"Comma separated")}</div>`+
       fld("Authors",'<input id="u-au">',"Your name is bolded automatically")+
       fld("Venue",'<input id="u-venue">',"Journal, conference or registry")+
-      fld("Note",'<input id="u-note">',"Optional one-line summary"),
+      `<div class="fgrid">${fld("DOI",'<input id="u-doi" placeholder="10.1038/s41746-023-00979-5">',"Optional. Paste the DOI or its doi.org link")}${fld("Link",'<input id="u-url" placeholder="https://…">',"Optional, e.g. slides, preprint or OSF page")}</div>`+
+      fld("Note",'<input id="u-note">',"Optional one-line summary")+
+      `<label class="chk"><input type="checkbox" id="u-show"> Show on the public site</label>`,
       ()=>{
         const title=$("u-title").value.trim();if(!title){$("u-title").focus();return false;}
         const o={id:p.id,y:+$("u-y").value||p.y,type:$("u-type").value,status:$("u-status").value,title,au:$("u-au").value.trim(),venue:$("u-venue").value.trim(),tags:tagsOf($("u-tags").value)};
         const note=$("u-note").value.trim();if(note)o.note=note;
+        const di=$("u-doi"),doi=normDoi(di.value);
+        if(doi&&!DOI_RE.test(doi)){di.setCustomValidity("A DOI starts with 10. followed by a slash, e.g. 10.1037/cou0000176");di.reportValidity();di.oninput=()=>di.setCustomValidity("");return false;}
+        if(doi)o.doi=doi;
+        const ui=$("u-url"),url=$("u-url").value.trim()?normUrl("link",$("u-url").value):"";
+        if($("u-url").value.trim()&&!/^https?:\/\//.test(url)){ui.setCustomValidity("Enter a full web address starting with https://");ui.reportValidity();ui.oninput=()=>ui.setCustomValidity("");return false;}
+        if(url)o.url=url;
+        if(!$("u-show").checked)o.hidden=true;
         if(editing==="new")arr.push(o);else arr[editing]=o;
       });
-    $("u-title").value=p.title;$("u-y").value=p.y;$("u-tags").value=(p.tags||[]).join(", ");$("u-au").value=p.au;$("u-venue").value=p.venue;$("u-note").value=p.note||"";
+    $("u-title").value=p.title;$("u-y").value=p.y;$("u-tags").value=(p.tags||[]).join(", ");$("u-au").value=p.au;$("u-venue").value=p.venue;$("u-note").value=p.note||"";$("u-doi").value=p.doi||"";$("u-url").value=p.url||"";$("u-show").checked=!p.hidden;
   }
 
   /* ---- research resources (private, editors only, saved immediately) ---- */
