@@ -74,7 +74,8 @@
         "Asia",
         "men"
       ],
-      "id": "p1"
+      "id": "p1",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -90,7 +91,8 @@
         "help-seeking",
         "Asia"
       ],
-      "id": "p2"
+      "id": "p2",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -108,7 +110,8 @@
         "men",
         "Malaysia"
       ],
-      "id": "p3"
+      "id": "p3",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -124,13 +127,15 @@
         "men",
         "Malaysia"
       ],
-      "id": "p4"
+      "id": "p4",
+      "hidden": true
     },
     {
+      "id": "p6",
       "y": 2026,
       "type": "Protocol",
-      "status": "In preparation",
-      "title": "Artificial intelligence and mental health help-seeking in Asia: A scoping review protocol",
+      "status": "Published",
+      "title": "Bridge or Substitute? Artificial Intelligence and Mental Health Help-Seeking in Asia: A Scoping Review Protocol",
       "au": "Ban, B. R. J., & Lau, P. L.",
       "venue": "Open Science Framework registration",
       "tags": [
@@ -140,7 +145,7 @@
         "AI",
         "Asia"
       ],
-      "id": "p6"
+      "url": "https://osf.io/my79x"
     },
     {
       "y": 2026,
@@ -158,7 +163,8 @@
         "men",
         "Malaysia"
       ],
-      "id": "p7"
+      "id": "p7",
+      "hidden": true
     },
     {
       "y": 2026,
@@ -173,7 +179,8 @@
         "study-2",
         "AI-companion"
       ],
-      "id": "p8"
+      "id": "p8",
+      "hidden": true
     },
     {
       "y": 2022,
@@ -189,7 +196,8 @@
         "Malaysia",
         "students"
       ],
-      "id": "p9"
+      "id": "p9",
+      "hidden": true
     }
   ],
   "home": {
