@@ -1,6 +1,6 @@
 {
   "recruit": {
-    "open": true,
+    "open": false,
     "deadline": "October 30, 2026",
     "pill": "Apply by Oct 30",
     "closedNote": "Applications for this round have closed. Thank you to everyone who applied."
