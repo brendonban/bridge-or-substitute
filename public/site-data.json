@@ -220,6 +220,14 @@
       "email": "janicepolly@um.edu.my",
       "links": [
         {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/poh-li-lau-a1064a374"
+        },
+        {
+          "type": "scholar",
+          "url": "https://scholar.google.com/citations?user=beili20AAAAJ&hl=en"
+        },
+        {
           "type": "cv",
           "url": "https://umexpert.um.edu.my/janicepolly.html"
         }
