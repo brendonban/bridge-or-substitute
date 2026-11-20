@@ -245,6 +245,8 @@ function md(src){
   String(src||"").split(/\r?\n/).forEach(l=>{
     const t=l.trim();
     if(!t){flush();return;}
+    const im=t.match(/^!\[([^\]]*)\]\(([^\s)]+)\)$/);
+    if(im){flush();const u=safeUrl(im[2]);if(u)out.push(`<figure><img src="${esc(u)}" alt="${esc(im[1])}" loading="lazy">${im[1]?`<figcaption>${esc(im[1])}</figcaption>`:""}</figure>`);return;}
     if(t.startsWith("## ")){flush();out.push("<h2>"+inline(t.slice(3))+"</h2>");return;}
     if(t.startsWith("> ")){flush();out.push("<blockquote>"+inline(t.slice(2))+"</blockquote>");return;}
     if(/^[-*] /.test(t)){if(para.length){out.push("<p>"+inline(para.join(" "))+"</p>");para=[];} (list=list||[]).push(t.slice(2));return;}
@@ -261,9 +263,10 @@ function md(src){
   const mins=b=>Math.max(1,Math.round(String(b).split(/\s+/).length/200));
   const $=id=>document.getElementById(id);
   function tagBtn(t,onClick){const b=document.createElement("button");b.className="ht";b.textContent="#"+t;b.setAttribute("aria-pressed",String(tag===t));b.onclick=onClick;return b;}
-  function sorted(){return POSTS.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));}
+  function sorted(){return POSTS.filter(p=>!p.hidden).sort((a,b)=>String(b.date).localeCompare(String(a.date)));}
+  function cover(p,cls){const u=safeUrl(p.cover);if(!u)return null;const i=document.createElement("img");i.className=cls;i.src=u;i.alt="";i.loading="lazy";return i;}
   function renderIndex(){
-    const counts={};POSTS.forEach(p=>(p.tags||[]).forEach(t=>counts[t]=(counts[t]||0)+1));
+    const counts={};POSTS.filter(p=>!p.hidden).forEach(p=>(p.tags||[]).forEach(t=>counts[t]=(counts[t]||0)+1));
     if(tag&&!counts[tag])tag=null;
     const bt=$("blog-tags");bt.innerHTML="";
     Object.keys(counts).sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b)).forEach(t=>bt.appendChild(tagBtn(t,()=>{tag=tag===t?null:t;renderIndex();})));
@@ -277,17 +280,20 @@ function md(src){
       el.querySelector("p").textContent=p.dek||"";
       el.querySelector(".bmeta").textContent=`Brendon Ban · ${mins(p.body)} min read`;
       const tg=el.querySelector(".ptags");(p.tags||[]).forEach(t=>tg.appendChild(tagBtn(t,()=>{tag=tag===t?null:t;renderIndex();})));
+      const c=cover(p,"bcover");if(c){const ca=document.createElement("a");ca.href="#blog-"+p.slug;ca.tabIndex=-1;ca.setAttribute("aria-hidden","true");ca.appendChild(c);el.querySelector(".bb").prepend(ca);}
       list.appendChild(el);
     });
   }
   window.__blogShow=function(slug){
     current=slug||null;
-    const p=current&&POSTS.find(x=>x.slug===current);
+    const p=current&&POSTS.find(x=>x.slug===current&&(!x.hidden||window.__isEditor));
     $("blog-index").hidden=!!p;$("blog-post").hidden=!p;
     if(!p){renderIndex();return;}
     const a=$("blog-post");
     a.innerHTML=`<a class="back" href="#blog">← All posts</a><h1></h1><div class="pm"><span class="dot"></span><span>Brendon Ban</span><span>·</span><time></time><span>·</span><span class="rt"></span></div><div class="body">${md(p.body)}</div><div class="ptags"></div>`;
-    a.querySelector("h1").textContent=p.title;a.querySelector("time").textContent=fmt(p.date);a.querySelector(".rt").textContent=mins(p.body)+" min read";
+    a.querySelector("h1").textContent=p.title;a.querySelector("time").textContent=fmt(p.date);
+    const c=cover(p,"pcover");if(c)a.querySelector(".pm").after(c);
+    if(p.hidden){const n=document.createElement("p");n.className="hidden-note";n.textContent="Hidden post · only admins can see this";a.querySelector(".back").after(n);}a.querySelector(".rt").textContent=mins(p.body)+" min read";
     const tg=a.querySelector(".ptags");(p.tags||[]).forEach(t=>tg.appendChild(tagBtn(t,()=>{tag=t;location.hash="#blog";})));
   };
   window.initBlog=function(posts){POSTS=posts||[];window.__blogShow(current);};
@@ -295,20 +301,44 @@ function md(src){
 })();
 
 /* ---------- recruitment ---------- */
+function defaultRoles(r){
+  r=r||{};
+  return [
+    {title:"Research assistants",open:r.open!==false,status:r.open===false?(r.closedNote||"Closed for now"):`Open · closes ${r.deadline||"soon"}`,
+     points:["Screen and chart studies for our reviews","About 10 hours a week, with a weekly check-in","Psychology, counseling or related students and graduates"],
+     send:"CV and transcript",subject:"RA application—[Your Name]"},
+    {title:"AI and tech team",open:true,status:"Open · rolling",
+     points:["Help build the Ora app and Sol, its AI companion","Work with large language models, safety and privacy","Comfortable coding in JavaScript, TypeScript or Python"],
+     send:"CV and GitHub or portfolio link",subject:"AI and tech team—[Your Name]"}
+  ];
+}
+function renderRoles(roles){
+  const box=document.getElementById("roles");if(!box)return;
+  box.innerHTML="";
+  const shown=roles.filter(x=>!x.hidden);
+  if(!shown.length){box.innerHTML='<p class="empty">No open positions right now. You can still email us about collaborating.</p>';return;}
+  shown.forEach(x=>{
+    const a=document.createElement("article");a.className="role"+(x.open?"":" closed");
+    const h=document.createElement("h2");h.textContent=x.title;a.appendChild(h);
+    const st=document.createElement("p");st.className="rstat";st.textContent=x.status||(x.open?"Open":"Closed for now");a.appendChild(st);
+    const pts=(x.points||[]).filter(Boolean);
+    if(pts.length){const ul=document.createElement("ul");ul.className="list";pts.forEach(t=>{const li=document.createElement("li");li.textContent=t;ul.appendChild(li);});a.appendChild(ul);}
+    [["Send",x.send],["Subject",x.subject]].forEach(([k,v])=>{if(!v)return;const q=document.createElement("p");q.className="rsend";const b=document.createElement("b");b.textContent=k;q.append(b," "+v);a.appendChild(q);});
+    box.appendChild(a);
+  });
+}
 window.applyRecruit=function(r){
+  r=r||{};const roles=r.roles||defaultRoles(r);
+  renderRoles(roles);
   document.querySelectorAll('[data-s="deadline"]').forEach(e=>e.textContent=r.deadline);
   const ft=document.getElementById("float-text");if(ft)ft.textContent=r.pill;
   const h=(location.hash||"#home").slice(1);
-  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin"||navHidden("get-involved");
-  const card=document.getElementById("opp-ra"),body=document.getElementById("opp-ra-body");
-  if(card&&body){card.className="opp "+(r.open?"open":"wait");
-    body.innerHTML=r.open?`We're <b>recruiting</b> research assistants. Remote, about 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
-  const rs=document.getElementById("ra-state");if(rs)rs.textContent=r.open?"recruiting":"applications closed";
+  document.getElementById("float").hidden=!r.open||!r.pill||h==="get-involved"||h==="admin"||navHidden("get-involved");
+  const ra=roles.find(x=>/research assistant/i.test(x.title||""));
+  const rs=document.getElementById("ra-state");if(rs)rs.textContent=ra&&ra.open&&!ra.hidden?"recruiting":"applications closed";
 };
 
 /* ---------- site data ---------- */
-buildGantt("study1",[{"label": "Protocol and OSF registration", "start": "2026-10-01", "end": "2026-10-22", "key": false}, {"label": "Database search", "start": "2026-10-13", "end": "2026-11-09", "key": false}, {"label": "Title and abstract screening", "start": "2026-11-01", "end": "2026-11-27", "key": false}, {"label": "Full-text screening", "start": "2026-11-19", "end": "2026-12-15", "key": false}, {"label": "Data charting", "start": "2026-12-07", "end": "2027-01-02", "key": false}, {"label": "Synthesis · UKM conference", "start": "2026-12-25", "end": "2027-01-13", "key": true}, {"label": "Write-up · article submitted", "start": "2027-01-10", "end": "2027-02-06", "key": true}]);
-buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 3 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 3 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 4 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 4 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
 window.SITE=null;
 const ICONS={megaphone:'<path fill="currentColor" d="M3 10v4h3l5 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/>',cap:'<path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/>',person:'<path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>',group:'<path fill="currentColor" d="M8 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 14c-2.7 0-6 1.3-6 4v2h12v-2c0-2.7-3.3-4-6-4zm8 0c-.6 0-1.3.1-2 .2 1.2.9 2 2.1 2 3.8v2h6v-2c0-2.6-3.3-4-6-4z"/>'};
 const MAIL='<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 7 8-5H4l8 5zm0 2L4 8v10h16V8l-8 5z"/></svg>';
@@ -379,11 +409,118 @@ textEls().forEach(el=>ORIG[el.dataset.k]=el.innerHTML);
 function applyTexts(texts){
   textEls().forEach(el=>{const k=el.dataset.k;const v=texts&&texts[k];el.innerHTML=(v!=null)?cleanHTML(v):ORIG[k];});
 }
+/* ---------- alumni + collaborator network ---------- */
+const AUTH_RE=/([A-Z][A-Za-z'’\-]+(?:\s[A-Z][A-Za-z'’\-]+)*),\s*((?:[A-Z]\.\s?(?:-\s?)?)+)/g;
+function parseAuthors(str){
+  const out=[],seen=new Set();String(str||"").replace(/et al\.?/g,"").replace(/&/g,",").replace(AUTH_RE,(m,sur,ini)=>{
+    const i=ini.replace(/\s|-/g,"");const key=sur.toLowerCase()+"|"+i[0];
+    if(!seen.has(key)){seen.add(key);out.push({sur,ini:i.replace(/\./g,". ").trim(),key});}return m;});
+  return out;
+}
+const NAME_TITLES=/\b(Assoc|Asst|Prof|Dr|Mr|Ms|Mrs|Ir|Ts)\.?\s*/g;
+function personMatches(person,tok){
+  if(person.cite){if(parseAuthors(person.cite).some(t=>t.key===tok.key))return true;}
+  const w=String(person.name||"").replace(NAME_TITLES,"").split(/\s+/).filter(Boolean);
+  const si=w.findIndex(x=>x.toLowerCase()===tok.sur.toLowerCase());
+  return si>=0&&w.some((x,i)=>i!==si&&x[0]&&x[0].toUpperCase()===tok.key.split("|")[1]);
+}
+function renderAlumni(list){
+  const blk=document.getElementById("alumni-block"),ul=document.getElementById("alumni-list");if(!blk)return;
+  const items=(list||[]).filter(a=>a&&a.name);blk.hidden=!items.length;ul.innerHTML="";
+  items.forEach(a=>{const li=document.createElement("li");
+    const u=safeUrl(a.link);const n=document.createElement(u?"a":"b");n.textContent=a.name;if(u){n.className="an";n.href=u;if(u[0]!=="#"){n.target="_blank";n.rel="noopener";}}
+    li.appendChild(n);
+    let t=a.role||"";if(a.period)t+=(t?" ":"")+"("+a.period+")";if(a.now)t+=(t?", ":"")+a.now;
+    if(t)li.appendChild(document.createTextNode(" – "+t));ul.appendChild(li);});
+}
+function renderCollab(d){
+  const blk=document.getElementById("collab-block");if(!blk||!window.d3)return;
+  const pubs=(d.pubs||[]).filter(p=>!p.hidden);
+  const team=(d.team||[]).filter(m=>m&&m.name&&!m.open),alumni=(d.alumni||[]).filter(a=>a&&a.name);
+  const nodes=new Map(),edges=new Map();
+  const resolve=tok=>{
+    const m=team.find(x=>personMatches(x,tok));if(m)return {id:"m:"+m.name,label:m.name.replace(NAME_TITLES,""),kind:"member",badge:m.badge};
+    const a=alumni.find(x=>personMatches(x,tok));if(a)return {id:"a:"+a.name,label:a.name,kind:"alum"};
+    return {id:"c:"+tok.key,label:tok.ini+" "+tok.sur,kind:"collab"};
+  };
+  pubs.forEach(p=>{
+    const ppl=[...new Map(parseAuthors(p.au).map(t=>{const r=resolve(t);return [r.id,r];})).values()];
+    ppl.forEach(r=>{const n=nodes.get(r.id)||Object.assign(r,{papers:0,ids:new Set()});n.papers++;n.ids.add(p.id||p.title);nodes.set(r.id,n);});
+    for(let i=0;i<ppl.length;i++)for(let j=i+1;j<ppl.length;j++){const k=[ppl[i].id,ppl[j].id].sort().join("~");edges.set(k,(edges.get(k)||0)+1);}
+  });
+  const N=[...nodes.values()];blk.hidden=N.length<2;if(N.length<2)return;
+  const center=N.filter(n=>n.kind==="member").sort((a,b)=>b.papers-a.papers||(b.badge==="PI")-(a.badge==="PI"))[0]||N.sort((a,b)=>b.papers-a.papers)[0];
+  N.forEach(n=>{n.withC=n===center?n.papers:[...n.ids].filter(x=>center.ids.has(x)).length;});
+  const maxW=Math.max(1,...N.filter(n=>n!==center).map(n=>n.withC));
+  const L=[...edges.entries()].map(([k,w])=>{const [a,b]=k.split("~");return {source:a,target:b,w};});
+  const W=640,H=Math.max(300,Math.min(600,260+N.length*10)),R=Math.min(W,H)/2-36;
+  const rad=n=>n===center?0:R*(0.28+0.72*(1-n.withC/maxW)*(N.length>3?1:0.6));
+  const size=n=>n===center?11:3.5+3*Math.sqrt(n.papers);
+  N.forEach((n,i)=>{const a=i/N.length*2*Math.PI;n.x=W/2+Math.cos(a)*rad(n);n.y=H/2+Math.sin(a)*rad(n);});
+  center.fx=W/2;center.fy=H/2;
+  const sim=d3.forceSimulation(N).force("link",d3.forceLink(L).id(n=>n.id).strength(.015)).force("charge",d3.forceManyBody().strength(-90)).force("r",d3.forceRadial(rad,W/2,H/2).strength(1)).force("c",d3.forceCollide(n=>size(n)+12)).stop();
+  for(let i=0;i<400;i++)sim.tick();
+  const xs=N.map(n=>n.x),ys=N.map(n=>n.y),pad=90;const minX=Math.min(...xs)-30,maxX=Math.max(...xs)+pad+40,minY=Math.min(...ys)-24,maxY=Math.max(...ys)+24;
+  const vw=Math.max(640,maxX-minX),vh=Math.max(280,maxY-minY),vx=(minX+maxX)/2-vw/2,vy=(minY+maxY)/2-vh/2;
+  const svg=d3.select("#collab").attr("viewBox",`${vx} ${vy} ${vw} ${vh}`);svg.selectAll("*").remove();
+  const col=k=>k==="member"?"var(--violet)":k==="alum"?"var(--rose)":"var(--faint)";
+  svg.append("g").selectAll("line").data(L).join("line").attr("x1",l=>l.source.x).attr("y1",l=>l.source.y).attr("x2",l=>l.target.x).attr("y2",l=>l.target.y)
+    .attr("stroke","var(--faint)").attr("stroke-opacity",.55).attr("stroke-width",l=>Math.min(3,.8+.5*(l.w-1)));
+  const g=svg.append("g").selectAll("g").data(N).join("g").attr("transform",n=>`translate(${n.x},${n.y})`);
+  g.append("circle").attr("r",size).attr("fill",n=>n===center?"var(--fg)":col(n.kind));
+  g.append("title").text(n=>`${n.label} · ${n.papers} paper${n.papers===1?"":"s"}${n===center?"":`, ${n.withC} with ${center.label.split(" ")[0]}`}`);
+  g.filter(n=>N.length<=15||n===center||n.kind!=="collab"||n.papers>=2).append("text").attr("class",n=>n===center?"center":"").attr("x",n=>size(n)+4).attr("y",4).text(n=>n.label);
+  const cnt=k=>N.filter(n=>n.kind===k).length;
+  document.getElementById("collab-legend").innerHTML="";
+  [["member","Team members","var(--violet)"],["alum","Alumni","var(--rose)"],["collab","Collaborators","var(--faint)"]].forEach(([k,lab,c])=>{const n=cnt(k);if(!n&&k!=="member")return;const s=document.createElement("span");s.innerHTML=`<i style="background:${c}"></i>`;s.appendChild(document.createTextNode(`${lab} (${n})`));document.getElementById("collab-legend").appendChild(s);});
+  document.getElementById("collab-note").textContent=`Built from the Publications list. The closer to the middle and the larger the circle, the more papers with ${center.label.split(" ")[0]}; a line joins two people who wrote one together. ${N.length>15?"Names are shown for the team, alumni and anyone on two or more papers; point at a circle to see the rest.":"Point at a circle to see the number of papers."}`;
+}
+/* ---------- homepage: bridge/substitute slider ---------- */
+(function(){
+  const STOPS=[
+    ["Bridge","He tells the AI what's wrong, and it nudges him to talk to a friend. That week, he books a counseling session.","b"],
+    ["Leaning bridge","He vents to the AI most nights, and it keeps pointing him to people. He starts replying to his brother again.","b"],
+    ["Could go either way","Talking to the AI is a relief. Whether it leads anywhere depends on what it says next. This is what our studies test.",""],
+    ["Leaning substitute","Talking to the AI feels easier than talking to friends. He cancels dinner plans to stay in and chat.","s"],
+    ["Substitute","The AI becomes the only place he goes. Months later, no one in his life knows he's been struggling.","s"]];
+  const r=document.getElementById("tug");if(!r)return;
+  const card=document.getElementById("tug-out");
+  function upd(){const [t,p,c]=STOPS[+r.value];document.getElementById("tug-t").textContent=t;document.getElementById("tug-p").textContent=p;card.className="tug-card"+(c?" "+c:"");r.setAttribute("aria-valuetext",t);}
+  r.addEventListener("input",upd);upd();
+})();
+
+/* ---------- studies ---------- */
+const DEFAULT_STUDIES=[
+  {title:"Scoping review",desc:"Mapping what is already known about AI and mental health help-seeking in Asia, with particular attention to men.",status:"Underway · Oct 2026 to Jan 2027",tone:"on"},
+  {title:"Systematic review and meta-analysis",desc:"Pooling comparable results to estimate how AI tools relate to mental health help-seeking.",status:"Planned",tone:"next"},
+  {title:"Feasibility trial",desc:"A small randomized trial of Ora and Sol with young Malaysian men, testing whether a full trial is workable and safe.",status:"Ethics review",tone:"next"},
+  {title:"Full trial",desc:"A multi-site trial testing whether Sol helps men reach people, and why. It goes ahead only if the feasibility trial says go.",status:"From 2028",tone:"later"}
+];
+function renderStudies(list){
+  const ol=document.getElementById("study-list");if(!ol)return;ol.innerHTML="";
+  (list||DEFAULT_STUDIES).filter(x=>x&&x.title&&!x.hidden).forEach((x,i)=>{
+    const li=document.createElement("li");li.className="sitem";
+    li.innerHTML=`<span class="sn"></span><div><h2></h2><p></p></div><span class="stat"></span>`;
+    li.querySelector(".sn").textContent="Study "+(i+1);li.querySelector("h2").textContent=x.title;
+    const p=li.querySelector("p");if(x.desc)p.textContent=x.desc;else p.remove();
+    const st=li.querySelector(".stat");if(x.status){st.textContent=x.status;st.classList.add(x.tone==="on"?"on":x.tone==="later"?"later":"next");}else st.remove();
+    ol.appendChild(li);
+  });
+  const hs=document.getElementById("home-studies");
+  if(hs){hs.innerHTML="";(list||DEFAULT_STUDIES).filter(x=>x&&x.title&&!x.hidden).forEach((x,i)=>{
+    const li=document.createElement("li");const a=document.createElement("a");a.href="#studies";
+    a.innerHTML='<span class="sn"></span><b></b>'+(x.status?'<span class="stat"></span>':"");
+    a.querySelector(".sn").textContent="Study "+(i+1);a.querySelector("b").textContent=x.title;
+    if(x.status){const st=a.querySelector(".stat");st.textContent=x.status;st.classList.add(x.tone==="on"?"on":x.tone==="later"?"later":"next");}
+    li.appendChild(a);hs.appendChild(li);});}
+}
+renderStudies();
 function applySite(d){
   d.texts=d.texts||{};
   window.SITE=d;applyNav(d.nav);window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
   if(d.team)renderTeam(d.team);
-  if(d.timelines){buildGantt("study1",d.timelines.study1);buildGantt("program",d.timelines.program);}
+  renderAlumni(d.alumni);try{renderCollab(d);}catch(e){}
+  renderStudies(d.studies);
   if(!document.body.classList.contains("editing"))applyTexts(d.texts);
 }
 fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(applySite).catch(()=>{
@@ -468,16 +605,27 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     const B=$("adm-body");B.innerHTML="";
     if(tab==="recruit")return recruitTab(B);
     if(tab==="home")return homeTab(B);
-    if(tab==="timelines")return timelinesTab(B);
+    if(tab==="studies"){
+      if(!draft.studies)draft.studies=clone(DEFAULT_STUDIES);
+      if(editing!==null)return studyForm(B,draft.studies);
+      return listView(B,draft.studies,{newLabel:"Add study",order:true,toggle:true,title:x=>x.title,meta:x=>[x.status,x.hidden?"Hidden from site":""].filter(Boolean).join(" · "),
+        extraTop:top=>{const s=document.createElement("span");s.className="aq";s.textContent="Numbered on the site in this order.";top.appendChild(s);}});
+    }
     if(tab==="menu")return menuTab(B);
     if(tab==="resources")return resTab(B);
+    if(tab==="alumni"){
+      draft.alumni=draft.alumni||[];
+      if(editing!==null)return alumForm(B,draft.alumni);
+      return listView(B,draft.alumni,{newLabel:"Add alum",order:true,title:x=>x.name,meta:x=>[x.role,x.period,x.now].filter(Boolean).join(" · "),
+        extraTop:top=>{const s=document.createElement("span");s.className="aq";s.textContent="Listed on About in this order. The section appears once there is at least one.";top.appendChild(s);}});
+    }
     if(tab==="team"){
       if(editing!==null)return teamForm(B,draft.team);
       return listView(B,draft.team,{newLabel:"Add person",order:true,title:x=>x.name,meta:x=>[x.badge,x.sub].filter(Boolean).join(" · ")});
     }
     if(tab==="posts"){
       if(editing!==null)return postForm(B,draft.posts);
-      return listView(B,draft.posts,{newLabel:"New post",sort:(a,b)=>String(b.x.date).localeCompare(String(a.x.date)),title:x=>x.title,meta:x=>x.date+" · "+(x.tags||[]).map(t=>"#"+t).join(" "),view:x=>"#blog-"+x.slug});
+      return listView(B,draft.posts,{newLabel:"New post",sort:(a,b)=>String(b.x.date).localeCompare(String(a.x.date)),title:x=>x.title,meta:x=>x.date+" · "+(x.tags||[]).map(t=>"#"+t).join(" "),view:x=>"#blog-"+x.slug,toggle:true});
     }
     if(tab==="pubs"){
       if(editing!==null)return pubForm(B,draft.pubs);
@@ -486,14 +634,34 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }
   }
   function recruitTab(B){
-    const r=draft.recruit;
-    B.innerHTML=`<div class="aform"><h3>Study 1 research assistant recruitment</h3>
-      <label class="chk"><input type="checkbox" id="r-open" ${r.open?"checked":""}> Applications are open</label>
-      <div class="fgrid">${fld("Deadline",'<input id="r-deadline">',"Shown on Get involved, e.g. October 30, 2026")}${fld("Floating button text",'<input id="r-pill">',"The pill in the corner of every page")}</div>
-      ${fld("Message when closed",'<input id="r-closed">')}</div>`;
-    $("r-deadline").value=r.deadline;$("r-pill").value=r.pill;$("r-closed").value=r.closedNote;
+    const r=draft.recruit=draft.recruit||{};
+    if(!r.roles)r.roles=clone(defaultRoles(r));
+    if(editing!==null)return roleForm(B,r.roles);
+    const top=document.createElement("div");top.className="aform";
+    top.innerHTML=`<h3>Recruitment</h3><p class="note">The positions below appear as cards on Get involved, in this order. Switch one off to hide it, or edit its status to show it as closed.</p>
+      <label class="chk"><input type="checkbox" id="r-open"> Show the floating button on every page</label>
+      ${fld("Floating button text",'<input id="r-pill" placeholder="Apply by Oct 30">',"Links to Get involved")}`;
+    B.appendChild(top);
+    $("r-open").checked=!!r.open;$("r-pill").value=r.pill||"";
     $("r-open").onchange=e=>{r.open=e.target.checked;bar();};
-    [["r-deadline","deadline"],["r-pill","pill"],["r-closed","closedNote"]].forEach(([id,k])=>$(id).oninput=e=>{r[k]=e.target.value;bar();});
+    $("r-pill").oninput=e=>{r.pill=e.target.value;bar();};
+    listView(B,r.roles,{newLabel:"Add position",order:true,toggle:true,title:x=>x.title,meta:x=>[x.status||(x.open?"Open":"Closed"),x.hidden?"Hidden from site":""].filter(Boolean).join(" · ")});
+  }
+  function roleForm(B,arr){
+    const p=editing==="new"?{title:"",open:true,status:"Open · rolling",points:[],send:"CV",subject:"Application—[Your Name]"}:clone(arr[editing]);
+    formShell(B,editing==="new"?"Add position":"Edit position",
+      fld("Position",'<input id="ro-title" required placeholder="Research assistants">')+
+      `<div class="fgrid">${fld("Status",'<input id="ro-status" placeholder="Open · closes October 30, 2026">',"Shown in the badge, e.g. Open · rolling")}<label class="chk" style="align-self:end"><input type="checkbox" id="ro-open"> Open (green badge)</label></div>`+
+      fld("Points",'<textarea id="ro-points" class="short"></textarea>',"One per line: what they do, time, who should apply")+
+      `<div class="fgrid">${fld("Send",'<input id="ro-send">',"What to email, e.g. CV and transcript")}${fld("Email subject",'<input id="ro-subject">')}</div>`+
+      `<label class="chk"><input type="checkbox" id="ro-show"> Show on the public site</label>`,
+      ()=>{
+        const title=$("ro-title").value.trim();if(!title){$("ro-title").focus();return false;}
+        const o={title,open:$("ro-open").checked,status:$("ro-status").value.trim(),points:$("ro-points").value.split("\n").map(t=>t.trim()).filter(Boolean),send:$("ro-send").value.trim(),subject:$("ro-subject").value.trim()};
+        if(!$("ro-show").checked)o.hidden=true;
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+      });
+    $("ro-title").value=p.title;$("ro-status").value=p.status||"";$("ro-open").checked=!!p.open;$("ro-points").value=(p.points||[]).join("\n");$("ro-send").value=p.send||"";$("ro-subject").value=p.subject||"";$("ro-show").checked=!p.hidden;
   }
   function homeTab(B){
     draft.home=draft.home||{typed:[]};
@@ -552,6 +720,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       fld("Subtitle",'<input id="t-sub">',"Shown in italics under the name")+
       fld("Bio",'<textarea id="t-bio" class="short"></textarea>',"Blank line between paragraphs · **bold** · [link](https://…)")+
       fld("Selected work",'<textarea id="t-works" class="short"></textarea>',"One item per line (optional)")+
+      fld("Name in citations",'<input id="t-cite" placeholder="Ban, B. R. J.; Ban, R. J.">',"Optional. How their name appears in author lists, so the collaborator network links them. Usually matched automatically.")+
       `<div class="fgrid">${fld("Email",'<input id="t-email" type="email">')}<label class="chk"><input type="checkbox" id="t-open"> Open position (dashed outline)</label></div>`+
       `<h4 class="fsub">Links</h4><p class="note">Fill in any that apply. Empty ones are hidden. Each shows as a chip under the bio.</p>`+
       `<div class="fgrid">${LINK_TYPES.map(([k,l,,ph])=>fld(l,`<input id="t-l-${k}" placeholder="${ph}">`)).join("")}</div>`+
@@ -561,10 +730,10 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
         const links=[];LINK_TYPES.forEach(([k])=>{const u=normUrl(k,$("t-l-"+k).value);if(u)links.push({type:k,url:u});});
         const xu=normUrl("link",$("t-xurl").value);if(xu)links.push({type:"link",url:xu,label:$("t-xlabel").value.trim()||"link"});
         const bad=LINK_TYPES.find(([k])=>$("t-l-"+k).value.trim()&&!normUrl(k,$("t-l-"+k).value));if(bad){const el=$("t-l-"+bad[0]);el.setCustomValidity("Enter a full web address starting with https://");el.reportValidity();el.oninput=()=>el.setCustomValidity("");return false;}
-        const o={name,badge:$("t-badge").value.trim(),icon:$("t-icon").value,sub:$("t-sub").value.trim(),bio:$("t-bio").value,works:$("t-works").value,email:$("t-email").value.trim(),links,open:$("t-open").checked,photo:p.photo||""};
+        const o={name,badge:$("t-badge").value.trim(),icon:$("t-icon").value,sub:$("t-sub").value.trim(),bio:$("t-bio").value,works:$("t-works").value,email:$("t-email").value.trim(),links,open:$("t-open").checked,photo:p.photo||"",cite:$("t-cite").value.trim()};
         if(editing==="new")arr.push(o);else arr[editing]=o;
       });
-    $("t-name").value=p.name;$("t-badge").value=p.badge;$("t-sub").value=p.sub;$("t-bio").value=p.bio;$("t-works").value=p.works;$("t-email").value=p.email;$("t-open").checked=!!p.open;
+    $("t-name").value=p.name;$("t-badge").value=p.badge;$("t-sub").value=p.sub;$("t-bio").value=p.bio;$("t-works").value=p.works;$("t-email").value=p.email;$("t-open").checked=!!p.open;$("t-cite").value=p.cite||"";
     memberLinks(p).forEach(lk=>{if(lk.type!=="link"&&$("t-l-"+lk.type)&&!$("t-l-"+lk.type).value)$("t-l-"+lk.type).value=lk.url;else{$("t-xlabel").value=lk.label||"";$("t-xurl").value=lk.url;}});
     const showPh=()=>{const ph=$("t-ph");ph.innerHTML="";ph.className="photo"+(p.photo?"":" open");if(p.photo){const i=document.createElement("img");i.src=p.photo;i.alt="";ph.appendChild(i);}else{const sp=document.createElement("span");sp.textContent=initials($("t-name").value||p.name);ph.appendChild(sp);}$("t-rmph").disabled=!p.photo;};
     showPh();
@@ -580,19 +749,75 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       e.target.value="";
     };
   }
+  function studyForm(B,arr){
+    const p=editing==="new"?{title:"",desc:"",status:"",tone:"next"}:clone(arr[editing]);
+    const tones=[["on","Green · underway"],["next","Purple · planned or in preparation"],["later","Gray · later"]];
+    formShell(B,editing==="new"?"Add study":"Edit study",
+      fld("Title",'<input id="st-title" required placeholder="Systematic review and meta-analysis">')+
+      fld("Description",'<textarea id="st-desc" class="short"></textarea>',"One or two sentences")+
+      `<div class="fgrid">${fld("Status",'<input id="st-status" placeholder="Underway · Oct 2026 to Jan 2027">',"Shown as a small label")}${fld("Label color",'<select id="st-tone">'+tones.map(([v,l])=>`<option value="${v}"${v===(p.tone||"next")?" selected":""}>${l}</option>`).join("")+'</select>')}</div>`+
+      `<label class="chk"><input type="checkbox" id="st-show"> Show on the public site</label>`,
+      ()=>{
+        const title=$("st-title").value.trim();if(!title){$("st-title").focus();return false;}
+        const o={title,desc:$("st-desc").value.trim(),status:$("st-status").value.trim(),tone:$("st-tone").value};
+        if(!$("st-show").checked)o.hidden=true;
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+        renderStudies(arr);
+      });
+    $("st-title").value=p.title;$("st-desc").value=p.desc||"";$("st-status").value=p.status||"";$("st-show").checked=!p.hidden;
+  }
+  function alumForm(B,arr){
+    const p=editing==="new"?{name:"",role:"",period:"",now:"",link:"",cite:""}:clone(arr[editing]);
+    formShell(B,editing==="new"?"Add alum":"Edit alum",
+      fld("Name",'<input id="al-name" required>')+
+      fld("Role on the program",'<input id="al-role" placeholder="Research assistant, scoping review">')+
+      `<div class="fgrid">${fld("Period",'<input id="al-period" placeholder="2026–2027">')}${fld("Where they are now",'<input id="al-now" placeholder="now Master\'s student at …">',"Optional")}</div>`+
+      `<div class="fgrid">${fld("Link",'<input id="al-link" placeholder="https://…">',"Optional, e.g. LinkedIn or personal site")}${fld("Name in citations",'<input id="al-cite" placeholder="Tan, A. B.">',"Optional. Links them to their papers in the network; separate variants with ;")}</div>`,
+      ()=>{
+        const name=$("al-name").value.trim();if(!name){$("al-name").focus();return false;}
+        const li=$("al-link"),link=li.value.trim()?normUrl("link",li.value):"";
+        if(li.value.trim()&&!/^https?:\/\//.test(link)){li.setCustomValidity("Enter a full web address starting with https://");li.reportValidity();li.oninput=()=>li.setCustomValidity("");return false;}
+        const o={name,role:$("al-role").value.trim(),period:$("al-period").value.trim(),now:$("al-now").value.trim(),link,cite:$("al-cite").value.trim()};
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+      });
+    $("al-name").value=p.name;$("al-role").value=p.role||"";$("al-period").value=p.period||"";$("al-now").value=p.now||"";$("al-link").value=p.link||"";$("al-cite").value=p.cite||"";
+  }
   function postForm(B,arr){
-    const p=editing==="new"?{slug:"",date:new Date().toISOString().slice(0,10),title:"",dek:"",tags:[],body:""}:arr[editing];
+    const p=editing==="new"?{slug:"",date:new Date().toISOString().slice(0,10),title:"",dek:"",tags:[],body:""}:clone(arr[editing]);
     formShell(B,editing==="new"?"New post":"Edit post",
       fld("Title",'<input id="p-title" required>')+
       `<div class="fgrid">${fld("Date",'<input id="p-date" type="date" required>')}${fld("Tags",'<input id="p-tags">',"Comma separated, e.g. study-1, methods")}</div>`+
       fld("Summary",'<input id="p-dek">',"One sentence shown in the post list")+
-      fld("Post",'<textarea id="p-body"></textarea>',"Blank line between paragraphs · ## Heading · - list item · > quote · **bold** · [link](https://…)"),
+      `<div class="fld"><span class="fl">Cover image</span><div class="cover-edit"><div class="cv" id="p-cv"></div><div class="adm-act col"><label class="abtn ghost filebtn">Upload cover<input type="file" id="p-cfile" accept="image/*" hidden></label><button type="button" class="abtn ghost" id="p-crm">Remove</button><em class="hint" id="p-cnote">Optional. Wide images work best.</em></div></div></div>`+
+      fld("Post",'<textarea id="p-body"></textarea>',"Blank line between paragraphs · ## Heading · - list item · > quote · **bold** · [link](https://…) · ![caption](image link) on its own line")+
+      `<div class="adm-act"><label class="abtn ghost filebtn">Insert image in post<input type="file" id="p-ifile" accept="image/*" hidden></label><em class="hint" id="p-inote">Goes where the cursor is</em></div>`+
+      `<label class="chk"><input type="checkbox" id="p-show"> Show on the public site</label>`,
       ()=>{
         const title=$("p-title").value.trim();if(!title){$("p-title").focus();return false;}
         const o={slug:p.slug||slugify(title),date:$("p-date").value,title,dek:$("p-dek").value.trim(),tags:tagsOf($("p-tags").value),body:$("p-body").value};
+        if(p.cover)o.cover=p.cover;if(!$("p-show").checked)o.hidden=true;
         if(editing==="new"){const base=o.slug;let n=2;while(arr.some(x=>x.slug===o.slug))o.slug=base+"-"+n++;arr.push(o);}else arr[editing]=o;
       });
-    $("p-title").value=p.title;$("p-date").value=p.date;$("p-tags").value=(p.tags||[]).join(", ");$("p-dek").value=p.dek||"";$("p-body").value=p.body||"";
+    $("p-title").value=p.title;$("p-date").value=p.date;$("p-tags").value=(p.tags||[]).join(", ");$("p-dek").value=p.dek||"";$("p-body").value=p.body||"";$("p-show").checked=!p.hidden;
+    const showCv=()=>{const cv=$("p-cv");cv.innerHTML="";if(p.cover&&safeUrl(p.cover)){const i=document.createElement("img");i.src=p.cover;i.alt="";cv.appendChild(i);}else cv.textContent="No cover";$("p-crm").disabled=!p.cover;};
+    showCv();$("p-crm").onclick=()=>{delete p.cover;showCv();};
+    const upload=async(input,note,done)=>{
+      const file=input.files&&input.files[0];if(!file)return;note.textContent="Uploading…";
+      try{
+        const assets=window.claude&&await window.claude.use("assets");
+        if(!assets){note.textContent="Image upload isn't available in this view.";return;}
+        const up=await assets.upload(file);done(up.url,file);
+      }catch(err){note.textContent=err&&err.code==="too_large"?"That image is too large. Try one under 4 MB.":"Upload failed. Try another image.";}
+      input.value="";
+    };
+    $("p-cfile").onchange=e=>upload(e.target,$("p-cnote"),u=>{p.cover=u;showCv();$("p-cnote").textContent="Uploaded. Save to draft, then publish.";});
+    $("p-ifile").onchange=e=>upload(e.target,$("p-inote"),(u,f)=>{
+      const ta=$("p-body"),cap=f.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ").replace(/[\[\]()]/g,"");
+      const pos=ta.selectionStart??ta.value.length,before=ta.value.slice(0,pos),after=ta.value.slice(pos);
+      const snip=(before&&!before.endsWith("\n\n")?(before.endsWith("\n")?"\n":"\n\n"):"")+`![${cap}](${u})`+"\n\n";
+      ta.value=before+snip+after;ta.focus();ta.selectionStart=ta.selectionEnd=pos+snip.length;
+      $("p-inote").textContent="Image added. Edit the caption inside ![ ] if you like.";
+    });
   }
   function pubForm(B,arr){
     const p=editing==="new"?{id:"p"+Date.now().toString(36),y:new Date().getFullYear(),type:"Article",status:"In preparation",title:"",au:"Ban, B. R. J., & Lau, P. L.",venue:"",note:"",tags:[]}:arr[editing];
@@ -806,7 +1031,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }finally{bs.forEach(b=>b.textContent="Publish to site");bar();}
   }
   $("adm-publish").onclick=publish;$("eb-publish").onclick=publish;
-  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
+  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);renderStudies(draft.studies);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
   $("adm-edittext").onclick=()=>setEditMode(true);
   document.querySelectorAll(".adm-tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;editing=null;confirmDel=null;render();});
 
@@ -926,9 +1151,10 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
 
   // anchors: clusters arranged around the question
   const order=["studies","people","method","sources","outputs","context","stages","evidence","mechanism","ai"];
+  let rot=0,hovering=false,dragging=false;
   function anchor(g){
     if(g==="question") return [W/2,H/2];
-    const k=order.indexOf(g),a=-Math.PI/2+k*2*Math.PI/order.length;
+    const k=order.indexOf(g),a=-Math.PI/2+k*2*Math.PI/order.length+rot;
     const r=Math.min(W,H)*0.38;
     return [W/2+Math.cos(a)*r*(W>H?1.35:1),H/2+Math.sin(a)*r];
   }
@@ -995,9 +1221,9 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   function select(id){selected=id;update();renderPanel();}
   node.on("click",(e,d)=>select(d.id)).on("keydown",(e,d)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(d.id);}});
   node.call(d3.drag()
-    .on("start",(e,d)=>{if(!e.active)sim.alphaTarget(.25).restart();d.fx=d.x;d.fy=d.y;svg.style("cursor","grabbing")})
+    .on("start",(e,d)=>{dragging=true;if(!e.active)sim.alphaTarget(.25).restart();d.fx=d.x;d.fy=d.y;svg.style("cursor","grabbing")})
     .on("drag",(e,d)=>{d.fx=e.x;d.fy=e.y})
-    .on("end",(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;svg.style("cursor",null)}));
+    .on("end",(e,d)=>{dragging=false;if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;svg.style("cursor",null)}));
 
   function renderPanel(){
     const d=byId[selected],p=document.getElementById("panel");
@@ -1034,4 +1260,15 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   // settle quickly so the first frame is readable
   for(let i=0;i<180;i++) sim.tick();
   sim.alpha(.05).restart();
+  // gentle self-motion: the clusters slowly orbit the question
+  const box=document.querySelector(".graph-box");
+  box.addEventListener("pointerenter",()=>hovering=true);box.addEventListener("pointerleave",()=>hovering=false);
+  box.addEventListener("focusin",()=>hovering=true);box.addEventListener("focusout",()=>hovering=false);
+  const still=matchMedia("(prefers-reduced-motion: reduce)");
+  setInterval(()=>{
+    if(still.matches||hovering||dragging||document.hidden||document.getElementById("p-home").hidden)return;
+    rot+=0.003;
+    sim.force("x").x(d=>anchor(d.group)[0]);sim.force("y").y(d=>anchor(d.group)[1]);
+    if(sim.alpha()<0.035)sim.alpha(0.035).restart();
+  },60);
 })();
