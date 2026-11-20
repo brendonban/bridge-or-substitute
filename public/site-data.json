@@ -240,56 +240,64 @@
   },
   "team": [
     {
-      "name": "Brendon Ban Ren Jie",
-      "badge": "PI",
-      "sub": "Master of Professional Counseling, Universiti Malaya",
-      "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all four studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
-      "works": "Chong, K. Y. L., Ng, J. H., Ban, R. J., et al. (2022). Paper presented at MAPSA 2022.\nBan, B. R. J., & Lau, P. L. (in preparation). Bridge or substitute? Protocol for a feasibility randomized controlled trial of an AI companion for Malaysian men.",
-      "email": "22059169@siswa.um.edu.my",
-      "link": "",
-      "linkLabel": "",
-      "open": false,
-      "photo": "",
-      "icon": "megaphone"
-    },
-    {
-      "name": "Assoc. Prof. Dr. Lau Poh Li",
+      "name": "Dr. Lau Poh Li",
       "badge": "Supervisor",
-      "sub": "Department of Educational Psychology and Counseling",
-      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 3 and 4.",
+      "icon": "cap",
+      "sub": "Associate Professor, Universiti Malaya",
+      "bio": "Poh Li Lau, PhD, is an associate professor at Universiti Malaya, Malaysia. She has a Ph.D. in Counseling (UM). She completed a 2-year post-doctoral scholarship in counseling psychology at Indiana University Bloomington, USA. Her research interests include career counseling, positive psychology, resilience, cross-cultural and well-being. She is also President elected for APCDA.",
       "works": "",
       "email": "janicepolly@um.edu.my",
-      "link": "",
-      "linkLabel": "",
+      "links": [
+        {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/poh-li-lau-a1064a374"
+        },
+        {
+          "type": "scholar",
+          "url": "https://scholar.google.com/citations?user=beili20AAAAJ&hl=en"
+        },
+        {
+          "type": "cv",
+          "url": "https://umexpert.um.edu.my/janicepolly.html"
+        }
+      ],
       "open": false,
       "photo": "",
-      "icon": "cap"
+      "cite": "Lau, P. L."
     },
     {
-      "name": "Research assistants",
-      "badge": "RA",
-      "sub": "Unpaid · remote",
-      "bio": "Research assistants work as second reviewers on our evidence reviews. They screen titles, abstracts and full texts, and chart the included studies in a shared spreadsheet. They are trained in review methods and named in the published article. This could be you.",
+      "name": "Brendon Ban",
+      "badge": "PI",
+      "icon": "megaphone",
+      "sub": "Master's Student, Universiti Malaya",
+      "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all four studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
       "works": "",
-      "email": "",
-      "link": "#get-involved",
-      "linkLabel": "get involved",
-      "open": true,
+      "email": "22059169@siswa.um.edu.my",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://brendonban.io"
+        },
+        {
+          "type": "linkedin",
+          "url": "https://linkedin.com/in/brendonban"
+        },
+        {
+          "type": "scholar",
+          "url": "https://scholar.google.com/citations?user=MQlDVA0AAAAJ&hl=en"
+        },
+        {
+          "type": "orcid",
+          "url": "https://orcid.org/0000-0001-9555-1566"
+        },
+        {
+          "type": "researchgate",
+          "url": "https://researchgate.net/profile/Brendon-Ban"
+        }
+      ],
+      "open": false,
       "photo": "",
-      "icon": "person"
-    },
-    {
-      "name": "AI and tech team",
-      "badge": "Team",
-      "sub": "Unpaid · rolling applications",
-      "bio": "People who code and work with AI to build and improve Ora and Sol. If you are interested in programming, AI or mental health technology, we would like to hear from you.",
-      "works": "",
-      "email": "",
-      "link": "#get-involved",
-      "linkLabel": "get involved",
-      "open": true,
-      "photo": "",
-      "icon": "group"
+      "cite": "Ban, B. R. J."
     }
   ],
   "timelines": {
