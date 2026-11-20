@@ -101,12 +101,22 @@
 
 /* ---------- routing ---------- */
 const pages=["home","why","studies","get-involved","publications","blog","about","admin"];
+const NAV_ITEMS=[["studies","Studies"],["publications","Publications"],["blog","Blog"],["about","About"],["get-involved","Get involved"],["why","Why it matters"]];
+const navHidden=k=>!!(window.__nav&&window.__nav.includes(k));
+function applyNav(nav){
+  window.__nav=(nav&&Array.isArray(nav.hidden))?nav.hidden.slice():[];
+  NAV_ITEMS.forEach(([k])=>{const off=navHidden(k);
+    document.querySelectorAll(`#mainnav a[data-p="${k}"],.flinks a[href="#${k}"],#p-home .btns a[href="#${k}"]`).forEach(a=>a.hidden=off);});
+  const f=document.getElementById("float");if(f&&navHidden("get-involved"))f.hidden=true;
+  const h=(location.hash||"#home").slice(1).replace(/^blog-.*/,"blog");
+  if(navHidden(h)&&!window.__isEditor)location.hash="#home";
+}
 function route(){
-  let h=(location.hash||"#home").slice(1); if(h==="method") h="studies"; let post=null; if(h.startsWith("blog-")){post=h.slice(5);h="blog";} if(!pages.includes(h)) h="home"; if(h==="blog"&&window.__blogShow) window.__blogShow(post); if(h==="admin"&&window.__adminShow) window.__adminShow();
+  let h=(location.hash||"#home").slice(1); if(h==="method") h="studies"; let post=null; if(h.startsWith("blog-")){post=h.slice(5);h="blog";} if(!pages.includes(h)) h="home"; if(navHidden(h)&&!window.__isEditor) h="home"; if(h==="blog"&&window.__blogShow) window.__blogShow(post); if(h==="admin"&&window.__adminShow) window.__adminShow();
   pages.forEach(p=>document.getElementById("p-"+p).hidden=(p!==h));
   document.querySelectorAll("#hdr [data-p]").forEach(a=>{ if(a.dataset.p===h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   const hd=document.getElementById("hdr");if(hd){hd.classList.remove("open");const mb=document.getElementById("menu-btn");if(mb)mb.setAttribute("aria-expanded","false");}
-  document.getElementById("float").hidden=(h==="get-involved"||h==="admin"||(window.SITE&&!window.SITE.recruit.open));
+  document.getElementById("float").hidden=(h==="get-involved"||h==="admin"||navHidden("get-involved")||(window.SITE&&!window.SITE.recruit.open));
   window.scrollTo(0,0);
   if(h==="home" && window.__graphResize) requestAnimationFrame(window.__graphResize);
 }
@@ -289,16 +299,16 @@ window.applyRecruit=function(r){
   document.querySelectorAll('[data-s="deadline"]').forEach(e=>e.textContent=r.deadline);
   const ft=document.getElementById("float-text");if(ft)ft.textContent=r.pill;
   const h=(location.hash||"#home").slice(1);
-  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin";
+  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin"||navHidden("get-involved");
   const card=document.getElementById("opp-ra"),body=document.getElementById("opp-ra-body");
   if(card&&body){card.className="opp "+(r.open?"open":"wait");
-    body.innerHTML=r.open?`Unpaid. We are <b>recruiting</b> two RAs for Study 1, October 2026 to January 2027. Remote, 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
+    body.innerHTML=r.open?`We're <b>recruiting</b> research assistants. Remote, about 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
   const rs=document.getElementById("ra-state");if(rs)rs.textContent=r.open?"recruiting":"applications closed";
 };
 
 /* ---------- site data ---------- */
 buildGantt("study1",[{"label": "Protocol and OSF registration", "start": "2026-10-01", "end": "2026-10-22", "key": false}, {"label": "Database search", "start": "2026-10-13", "end": "2026-11-09", "key": false}, {"label": "Title and abstract screening", "start": "2026-11-01", "end": "2026-11-27", "key": false}, {"label": "Full-text screening", "start": "2026-11-19", "end": "2026-12-15", "key": false}, {"label": "Data charting", "start": "2026-12-07", "end": "2027-01-02", "key": false}, {"label": "Synthesis · UKM conference", "start": "2026-12-25", "end": "2027-01-13", "key": true}, {"label": "Write-up · article submitted", "start": "2027-01-10", "end": "2027-02-06", "key": true}]);
-buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 2 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 2 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 3 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 3 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
+buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 3 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 3 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 4 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 4 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
 window.SITE=null;
 const ICONS={megaphone:'<path fill="currentColor" d="M3 10v4h3l5 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/>',cap:'<path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/>',person:'<path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>',group:'<path fill="currentColor" d="M8 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 14c-2.7 0-6 1.3-6 4v2h12v-2c0-2.7-3.3-4-6-4zm8 0c-.6 0-1.3.1-2 .2 1.2.9 2 2.1 2 3.8v2h6v-2c0-2.6-3.3-4-6-4z"/>'};
 const MAIL='<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 7 8-5H4l8 5zm0 2L4 8v10h16V8l-8 5z"/></svg>';
@@ -371,7 +381,7 @@ function applyTexts(texts){
 }
 function applySite(d){
   d.texts=d.texts||{};
-  window.SITE=d;window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
+  window.SITE=d;applyNav(d.nav);window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
   if(d.team)renderTeam(d.team);
   if(d.timelines){buildGantt("study1",d.timelines.study1);buildGantt("program",d.timelines.program);}
   if(!document.body.classList.contains("editing"))applyTexts(d.texts);
@@ -459,6 +469,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     if(tab==="recruit")return recruitTab(B);
     if(tab==="home")return homeTab(B);
     if(tab==="timelines")return timelinesTab(B);
+    if(tab==="menu")return menuTab(B);
     if(tab==="resources")return resTab(B);
     if(tab==="team"){
       if(editing!==null)return teamForm(B,draft.team);
@@ -491,6 +502,23 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       <p class="note">To change any other text on the site, including headings, paragraphs and table cells, use <b>Edit page text</b> at the top.</p></div>`;
     $("h-typed").value=(draft.home.typed||[]).join("\n");
     $("h-typed").oninput=e=>{draft.home.typed=e.target.value.split("\n").map(t=>t.trim()).filter(Boolean);bar();};
+  }
+  function menuTab(B){
+    draft.nav=draft.nav||{hidden:[]};
+    const box=document.createElement("div");box.className="aform";
+    box.innerHTML=`<h3>Menu</h3><p class="note">Turn pages off to remove them from the menu, the footer and the home page buttons. Visitors who open a hidden page's link go to the home page. You can still open hidden pages while signed in.</p><div class="navlist"></div>`;
+    const L=box.querySelector(".navlist");
+    NAV_ITEMS.forEach(([k,label])=>{
+      const on=!draft.nav.hidden.includes(k);
+      const row=document.createElement("div");row.className="arow";
+      row.innerHTML=`<div><b></b><small></small></div><div class="adm-act"></div>`;
+      row.querySelector("b").textContent=label;row.querySelector("small").textContent=k==="why"?"Footer and home page button":"Top menu and footer";
+      const t=document.createElement("button");t.type="button";t.className="vis"+(on?" on":"");t.setAttribute("role","switch");t.setAttribute("aria-checked",String(on));t.setAttribute("aria-label",label+(on?" is shown":" is hidden"));
+      t.innerHTML='<span class="knob"></span><span class="vl"></span>';t.querySelector(".vl").textContent=on?"Shown":"Hidden";
+      t.onclick=()=>{const h=draft.nav.hidden;if(on)h.push(k);else h.splice(h.indexOf(k),1);applyNav(draft.nav);bar();render();};
+      row.querySelector(".adm-act").appendChild(t);L.appendChild(row);
+    });
+    B.appendChild(box);
   }
   function timelinesTab(B){
     draft.timelines=draft.timelines||{study1:[],program:[]};
@@ -778,7 +806,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }finally{bs.forEach(b=>b.textContent="Publish to site");bar();}
   }
   $("adm-publish").onclick=publish;$("eb-publish").onclick=publish;
-  $("adm-discard").onclick=()=>{draft=clone(window.SITE);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
+  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
   $("adm-edittext").onclick=()=>setEditMode(true);
   document.querySelectorAll(".adm-tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;editing=null;confirmDel=null;render();});
 
@@ -796,7 +824,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       if(canEdit)artifact=await window.claude.use("artifact");
     }catch(e){canEdit=false;}
     const host=window.claude&&window.claude.host;
-    if(canEdit&&artifact){$("nav-admin").hidden=false;if(host&&host.signOutUrl){const so=document.createElement("a");so.className="abtn ghost";so.href=host.signOutUrl;so.textContent="Sign out";$("adm-bar").querySelector(".adm-act").prepend(so);}}
+    if(canEdit&&artifact){window.__isEditor=true;$("nav-admin").hidden=false;if(host&&host.signOutUrl){const so=document.createElement("a");so.className="abtn ghost";so.href=host.signOutUrl;so.textContent="Sign out";$("adm-bar").querySelector(".adm-act").prepend(so);}}
     else{canEdit=false;
       if(host&&host.signInUrl){
         gate.innerHTML="";
@@ -816,7 +844,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   if(!window.d3){document.getElementById("panel").innerHTML="<p>The network could not load. The rest of the site works as normal.</p>";return;}
   const groups={
     question:{label:"The question",shape:"star"},
-    studies:{label:"Three studies",shape:"big"},
+    studies:{label:"Four studies",shape:"big"},
     people:{label:"People",shape:"circle"},
     ai:{label:"AI and Sol",shape:"square"},
     mechanism:{label:"Mechanism",shape:"tri"},
@@ -832,12 +860,13 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["bridge","Bridge","question","The AI companion helps men take the first step toward friends, family and counselors."],
     ["sub","Substitute","question","The AI companion becomes the only place men go."],
     ["st1","Study 1 · Scoping review","studies","Maps what is known about AI and mental health help-seeking in Asia. October 2026 to January 2027."],
-    ["st2","Study 2 · Feasibility RCT","studies","A small randomized trial of Ora and Sol with young Malaysian men. Tests whether a full trial is workable."],
-    ["st3","Study 3 · Full trial","studies","A larger multi-site trial to give a clear answer. From 2028, only if Study 2 says go."],
-    ["pi","Brendon Ban Ren Jie","people","Principal investigator. Counseling trainee who designed and built Ora and Sol, and leads all three studies."],
+    ["st2","Study 3 · Feasibility RCT","studies","A small randomized trial of Ora and Sol with young Malaysian men. Tests whether a full trial is workable."],
+    ["st3","Study 4 · Full trial","studies","A larger multi-site trial to give a clear answer. From 2028, only if Study 3 says go."],
+    ["sr","Study 2 · Systematic review","studies","A systematic review and meta-analysis that pools comparable results to estimate how AI tools relate to help-seeking."],
+    ["pi","Brendon Ban Ren Jie","people","Principal investigator. Counseling trainee who designed and built Ora and Sol, and leads all four studies."],
     ["sv","Assoc. Prof. Dr. Lau Poh Li","people","Supervisor of the program, Universiti Malaya."],
     ["ra","Research assistants","people","Two RAs share second screening and data charting for Study 1."],
-    ["team","Trial and tech team","people","Open now, unpaid: research assistants for Studies 2 and 3, and people who code and work with AI to build Ora and Sol. Collaborators welcome."],
+    ["team","Trial and tech team","people","Open now, unpaid: research assistants, and people who code and work with AI to build Ora and Sol. Collaborators welcome."],
     ["ora","Ora app","ai","The study app: weekly check-ins, diary and a get-help page."],
     ["sol","Sol","ai","The AI companion inside Ora, with a safety escalation protocol and a researcher console."],
     ["chat","Chatbots","ai","Conversational agents that people talk to about how they feel."],
@@ -853,13 +882,13 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["s2","Appraise","stages","Stage 2: judging that it warrants support."],
     ["s3","Select a source","stages","Stage 3: choosing who or what to turn to."],
     ["asia","Asia","context","Study 1 covers any Asian country and people of Asian background."],
-    ["my","Malaysian men","context","Rarely included in help-seeking research; the population for Studies 2 and 3."],
+    ["my","Malaysian men","context","Rarely included in help-seeking research; the population for Studies 3 and 4."],
     ["stigma","Stigma · face · family","context","Cultural pressures that shape help-seeking in Asia."],
     ["jbi","JBI · PRISMA-ScR","method","Scoping review methods (Peters et al., 2020; Tricco et al., 2018)."],
     ["screening","Dual screening","method","Independent screening of titles, abstracts and full texts."],
     ["rayyan","Rayyan · Covidence · Zotero","method","Screening and reference tools."],
     ["consort","CONSORT · SPIRIT","method","Reporting standards for the two trials."],
-    ["lights","Progression criteria","method","Pre-set criteria decide whether Study 3 goes ahead."],
+    ["lights","Progression criteria","method","Pre-set criteria decide whether Study 4 goes ahead."],
     ["pubmed","PubMed","sources","Biomedical database."],["psyc","PsycINFO","sources","Psychology database."],["scopus","Scopus","sources","Multidisciplinary database."],["wos","Web of Science","sources","Multidisciplinary database."],["acm","ACM","sources","Computing database."],["ieee","IEEE Xplore","sources","Engineering and computing database."],["mycite","MyCite","sources","Malaysian citation index."],["asean","ASEAN Citation Index","sources","Regional citation index."],
     ["rick","Rickwood 2005","evidence","Help-seeking as a staged process."],
     ["wong","Wong 2017","evidence","Masculine norms linked to poorer mental health and help-seeking attitudes."],
@@ -871,11 +900,11 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["heath","Heath 2017","evidence","Self-compassion weakened the link between masculine norms and self-stigma in men."],
     ["ajzen","Ajzen 1991","evidence","The Theory of Planned Behavior."],
     ["paper","Review article","outputs","Study 1 article and gap map, submitted before Chinese New Year 2027."],
-    ["gate","Go / amend / stop","outputs","The Study 2 progression decision, August 2027."],
-    ["thesis","Manuscripts","outputs","Manuscripts for publication from Studies 2 and 3, with final papers by 2029."]
+    ["gate","Go / amend / stop","outputs","The Study 3 progression decision, August 2027."],
+    ["thesis","Manuscripts","outputs","Manuscripts for publication from all four studies, with final papers by 2029."]
   ].map(([id,label,group,desc])=>({id,label,group,desc}));
   const L=[
-    ["q","bridge"],["q","sub"],["q","st1"],["q","st2"],["q","st3"],["st1","st2"],["st2","st3"],
+    ["q","bridge"],["q","sub"],["q","st1"],["q","sr"],["q","st2"],["q","st3"],["st1","sr"],["sr","st2"],["st2","st3"],["pi","sr"],["sr","li"],["sr","thesis"],
     ["pi","st1"],["team","st2"],["team","st3"],["team","sol"],["team","pi"],["pi","st2"],["pi","st3"],["pi","sv"],["ra","st1"],["ra","screening"],["ra","rayyan"],
     ["st2","ora"],["ora","sol"],["sol","st3"],["sol","sc"],["sol","chat"],["chat","screen"],["screen","refer"],["refer","s3"],["screen","s1"],
     ["sc","ss"],["mn","ss"],["lof","ss"],["ss","ahs"],["sc","ahs"],["tpb","ahs"],["ahs","bridge"],["ahs","sub"],["st3","ahs"],
@@ -930,7 +959,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   });
 
   // labels: always for key nodes, others on focus
-  const always=new Set(["q","bridge","sub","st1","st2","st3","pi","sv","sol","ora","sc","ss","ahs","mn","my","li","fang","heath","gate","s1","s3","jbi"]);
+  const always=new Set(["q","bridge","sub","st1","sr","st2","st3","pi","sv","sol","ora","sc","ss","ahs","mn","my","li","fang","heath","gate","s1","s3","jbi"]);
   const label=gLabel.selectAll("text").data(N).join("text").text(d=>d.label)
     .attr("font-size",d=>d.id==="q"?15:12.5).attr("font-weight",d=>d.id==="q"?600:400).attr("dy",d=>d.id==="q"?-30:(d.group==="studies"?-19:-14)).attr("text-anchor","middle");
   const hullLabel=gLabel.selectAll("text.h").data(Object.keys(groups).filter(g=>g!=="question")).join("text").attr("class","h")
