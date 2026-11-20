@@ -462,7 +462,7 @@ footer nav.flinks a{font-size:12.5px}
 /* team roster (photo | rule | info) */
 .roster{display:flex;flex-direction:column;gap:56px}
 .member{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 28px;max-width:860px;margin:0 auto;width:100%}
-.photo{width:200px;height:220px;display:flex;align-items:center;justify-content:center;background:var(--surface);border-radius:14px 14px 18px 18px;filter:grayscale(1)}
+.photo{width:200px;height:220px;display:flex;align-items:center;justify-content:center;background:var(--surface);border-radius:14px 14px 18px 18px}
 .photo span{font-size:44px;font-weight:600;letter-spacing:-.03em;color:var(--faint)}
 .photo.open{background:none;border:1.5px dashed var(--line)}
 .info{border-left:1.5px solid var(--line);padding-left:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
