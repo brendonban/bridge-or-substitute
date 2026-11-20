@@ -161,10 +161,11 @@
       "hidden": true
     },
     {
+      "id": "p6",
       "y": 2026,
       "type": "Protocol",
-      "status": "In preparation",
-      "title": "Artificial intelligence and mental health help-seeking in Asia: A scoping review protocol",
+      "status": "Published",
+      "title": "Bridge or Substitute? Artificial Intelligence and Mental Health Help-Seeking in Asia: A Scoping Review Protocol",
       "au": "Ban, B. R. J., & Lau, P. L.",
       "venue": "Open Science Framework registration",
       "tags": [
@@ -174,8 +175,8 @@
         "AI",
         "Asia"
       ],
-      "id": "p6",
-      "hidden": true
+      "doi": "10.17605/OSF.IO/MY79X",
+      "url": "https://osf.io/q6fjs"
     },
     {
       "y": 2026,
