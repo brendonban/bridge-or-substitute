@@ -268,6 +268,12 @@ table.narrow{min-width:480px}
 .bp h2 a{text-decoration:none}
 .bp h2 a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px}
 .bp p{color:var(--muted);font-size:16px;max-width:65ch}
+.bcover{display:block;width:100%;max-width:320px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line);margin-bottom:4px}
+.pcover{display:block;width:100%;max-height:420px;object-fit:cover;border-radius:10px;border:1px solid var(--line);margin:8px 0 24px}
+.post figure{margin:24px 0}.post figure img{display:block;width:100%;border-radius:8px;border:1px solid var(--line)}
+.post figcaption{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:8px}
+.hidden-note{font-family:var(--mono);font-size:12.5px;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:6px 10px;display:inline-block;margin:0 0 12px}
+.cover-edit{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}.cover-edit .cv{width:200px;aspect-ratio:16/9;border-radius:8px;border:1px dashed var(--line);background:var(--soft,transparent);overflow:hidden;display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}.cover-edit .cv img{width:100%;height:100%;object-fit:cover}
 .bmeta{font-size:14px;color:var(--faint)}
 .post{display:flex;flex-direction:column;gap:22px;max-width:68ch}
 .back{align-self:flex-start;font-size:15px;color:var(--muted);text-decoration:none}
@@ -381,6 +387,79 @@ body.editing main{padding-bottom:160px}
 .badge{font-family:var(--mono);font-size:14px}
 footer{font-family:var(--mono);font-size:12.5px}
 footer nav.flinks a{font-size:12.5px}
+/* alumni + collaborators */
+#alumni-block,#collab-block{gap:16px}
+.alumni{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;max-width:90ch}
+.alumni li{font-size:15px;color:var(--muted);padding-left:16px;position:relative}
+.alumni li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--fg)}
+.alumni b,.alumni a.an{color:var(--fg);font-weight:600}
+.alumni a.an{color:var(--violet);text-decoration:none}
+.alumni a.an:hover{text-decoration:underline}
+.collab-box{max-width:760px;width:100%}
+#collab{max-height:620px}
+#collab{display:block;width:100%;height:auto}
+#collab text{font-family:var(--sans);font-size:11px;fill:var(--fg);paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+#collab text.center{font-size:13px;font-weight:600}
+.collab-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted)}
+.collab-legend span{display:inline-flex;align-items:center;gap:6px}
+.collab-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+
+/* studies list */
+.slist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line);max-width:860px}
+.sitem{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:6px 24px;align-items:start;padding:24px 0;border-bottom:1px solid var(--line)}
+.sitem .sn{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--violet);padding-top:6px}
+.sitem h2{font-size:22px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.sitem p{color:var(--muted);font-size:16px;margin-top:6px;max-width:62ch}
+.sitem .stat{margin-top:2px;white-space:nowrap}
+.stat.later{background:var(--surface)}
+@media (max-width:640px){.sitem{grid-template-columns:1fr}.sitem .sn{padding-top:0}.sitem .stat{justify-self:start;white-space:normal}}
+
+/* homepage interactives */
+.sec-head{display:flex;flex-direction:column;gap:6px}
+.sec-head h2{font-size:clamp(24px,3.2vw,32px);font-weight:600;letter-spacing:-.02em}
+.tug,.home-studies{display:flex;flex-direction:column;gap:16px;max-width:820px}
+.tug-poles{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+#tug{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0;cursor:grab}
+#tug:active{cursor:grabbing}
+#tug::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-line),var(--fg))}
+#tug::-moz-range-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-line),var(--fg))}
+#tug::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-12px;border-radius:50%;background:var(--accent);border:2px solid var(--fg);box-shadow:0 0 0 6px var(--accent-soft);transition:transform .15s}
+#tug::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);border:2px solid var(--fg);box-shadow:0 0 0 6px var(--accent-soft)}
+#tug:hover::-webkit-slider-thumb{transform:scale(1.08)}
+#tug:focus-visible{outline:none}
+#tug:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--violet)}
+.tug-ticks{display:flex;justify-content:space-between;padding:0 12px;margin-top:-10px}
+.tug-ticks i{width:2px;height:8px;background:var(--line)}
+.tug-card{border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-height:104px;display:flex;flex-direction:column;gap:6px;transition:background .2s,border-color .2s}
+.tug-card b{font-size:18px;font-weight:600}
+.tug-card p{color:var(--muted);font-size:16px;max-width:62ch}
+.tug-card.b{background:var(--accent-soft);border-color:var(--accent)}
+.tug-card.s{background:var(--surface);border-color:var(--faint)}
+.hint{font-size:13px;color:var(--faint)}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hs-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.hs-list a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px;border:1px solid var(--line);border-radius:14px;text-decoration:none;transition:border-color .15s,transform .15s}
+.hs-list a:hover{border-color:var(--fg);transform:translateY(-2px)}
+.hs-list .sn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--violet)}
+.hs-list b{font-size:16.5px;font-weight:600;line-height:1.3;flex:1}
+.hs-list .stat{align-self:flex-start;margin-top:4px}
+@media (max-width:900px){.hs-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.hs-list{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.hs-list a,.tug-card,#tug::-webkit-slider-thumb{transition:none}}
+
+/* get involved */
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:900px}
+.role{border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.role h2{font-size:22px;font-weight:600}
+.rstat{align-self:flex-start;font-size:13px;border-radius:999px;padding:3px 11px;background:var(--green-soft);border:1px solid var(--green);color:var(--fg)}
+.role.closed .rstat{background:var(--surface);border-color:var(--line);color:var(--muted)}
+.role .list{gap:6px}
+.role .list li{font-size:15.5px}
+.rsend{font-size:14.5px;color:var(--muted)}
+.rsend b{display:inline-block;min-width:64px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);font-weight:500}
+.apply{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-weight:600}
+@media (max-width:700px){.roles{grid-template-columns:1fr}}
+
 /* team roster (photo | rule | info) */
 .roster{display:flex;flex-direction:column;gap:56px}
 .member{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 28px;max-width:860px;margin:0 auto;width:100%}
@@ -493,25 +572,30 @@ footer nav.flinks a:hover{color:var(--fg)}
 
   <div class="graph-block">
     <div class="graph-box">
-      <span class="g-hint">drag · tap a node</span>
+      <span class="g-hint">hover to pause · drag · tap a node</span>
       <svg id="graph" role="img" aria-label="Network of the program: four studies, people, the AI companion, mechanism, evidence and outputs"></svg>
       <div class="legend" id="legend"></div>
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
   </div>
 
-  <div class="choice">
-    <div class="choice-row">
-      <div class="pole" data-k="k247"><b>Bridge</b>The AI companion helps men take the first step toward people.</div>
-      <span class="qmark">unresolved</span>
-      <div class="pole right" data-k="k248"><b>Substitute</b>It becomes the only place they go, and no one else hears.</div>
-    </div>
-    <div class="bar" aria-hidden="true"></div>
-  </div>
+  <section class="tug" aria-labelledby="tug-h">
+    <div class="sec-head"><span class="eyebrow" data-k="hx1">Try it</span><h2 id="tug-h" data-k="hx2">Where does the conversation lead?</h2></div>
+    <div class="tug-poles"><span>Bridge</span><span>Substitute</span></div>
+    <input type="range" id="tug" min="0" max="4" step="1" value="2" aria-label="Move between bridge and substitute" aria-describedby="tug-out">
+    <div class="tug-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="tug-card" id="tug-out" aria-live="polite"><b id="tug-t"></b><p id="tug-p"></p></div>
+    <p class="hint" data-k="hx3">Drag the dot, or use the arrow keys.</p>
+  </section>
+
+  <section class="home-studies" aria-labelledby="hs-h">
+    <div class="sec-head"><span class="eyebrow" data-k="hx7">The program</span><h2 id="hs-h" data-k="hx8">Four studies, one question</h2></div>
+    <ol class="hs-list" id="home-studies"></ol>
+  </section>
 
   <div class="btns">
     <a class="btn" href="#why">Why it matters</a>
-    <a class="btn" href="#studies">See the four studies</a>
+    <a class="btn" href="#studies">See the studies</a>
     <a class="btn solid" href="#get-involved">Get involved</a>
   </div>
 </section>
@@ -607,168 +691,48 @@ footer nav.flinks a:hover{color:var(--fg)}
 <!-- STUDIES -->
 <section class="page" id="p-studies" hidden>
   <div class="pg-head">
-    <span class="eyebrow" data-k="k257">Research design</span>
-    <h1 data-k="s35">Four studies, one question</h1>
-    <p data-k="s36">Two reviews map the evidence, then two trials test an AI companion. Each study feeds the next, and Study 4 goes ahead only if Study 3 meets its progression criteria.</p>
+    <span class="eyebrow" data-k="s0">Research design</span>
+    <h1 data-k="s1">Our studies</h1>
+    <p data-k="s2">Each study answers one question and feeds the next.</p>
   </div>
-
-  <div class="trio">
-    <button class="st" data-go="study-1"><span class="stn">Study 1</span><b>Scoping review</b><span class="stq">What is known about AI and help-seeking in Asia?</span><span class="stat on">Underway · Oct 2026 to Jan 2027</span></button>
-    <button class="st" data-go="study-2"><span class="stn">Study 2</span><b>Systematic review and meta-analysis</b><span class="stq">What effect do AI tools have, pooled across studies?</span><span class="stat next">Planned · dates to be confirmed</span></button>
-    <button class="st" data-go="study-3"><span class="stn">Study 3</span><b>Feasibility RCT</b><span class="stq">Can a trial work with Malaysian men?</span><span class="stat next">Ethics review · Oct 2026 to Aug 2027</span></button>
-    <button class="st" data-go="study-4"><span class="stn">Study 4</span><b>Full trial</b><span class="stq">Does Sol work, and why?</span><span class="stat">From Jan 2028, if Study 3 says go</span></button>
-  </div>
-
-  <div class="block">
-    <h2 data-k="k37">Program timeline</h2>
-    <div class="gantt"><div class="gantt-in" id="gantt-prog">
-      <div></div><div class="gm prog"><span>2026</span><span>2027</span><span>2028</span><span>2029</span></div>
-    </div></div>
-    <p data-k="k38" class="note">Purple marks the decision gate in August 2027 and final publications in 2029.</p>
-  </div>
-
-  <div class="block">
-    <h2 data-k="k39">Ora and Sol</h2>
-    <div class="prose"><p data-k="k40">Ora is the study app. Sol is the AI companion inside it. Both already exist as a working prototype, with a safety escalation protocol and a researcher console, so the trials can begin as soon as ethics approval is granted. Every safety flag is followed up by a person within 24 hours.</p></div>
-  </div>
-
-  <hr class="rule">
-
-  <article class="study" id="study-1">
-    <div class="pg-head">
-      <span class="eyebrow" data-k="k950">Study 1 · Scoping review</span>
-      <h2 class="stitle" data-k="k951">What is already known?</h2>
-      <p data-k="s952">We are mapping published research on AI and mental health help-seeking in Asia, with particular attention to men. The gaps we find will shape the design of Sol and the outcomes we measure in Studies 3 and 4.</p>
-    </div>
-    <div class="facts">
-      <div class="fact" data-k="k953"><span class="k">Design</span><span class="v">Scoping review following JBI and PRISMA-ScR</span></div>
-      <div class="fact" data-k="k954"><span class="k">When</span><span class="v">October 2026 to January 2027</span></div>
-      <div class="fact" data-k="k955"><span class="k">Status</span><span class="v">Underway</span></div>
-    </div>
-  </article>
-
-  <hr class="rule">
-
-  <article class="study" id="study-2">
-    <div class="pg-head">
-      <span class="eyebrow" data-k="s970">Study 2 · Systematic review and meta-analysis</span>
-      <h2 class="stitle" data-k="s971">How large are the effects?</h2>
-      <p data-k="s972">Where Study 1 maps what has been studied, Study 2 pools comparable results to estimate how AI tools relate to mental health help-seeking, and how confident we can be in that estimate. Its findings feed into the design and outcomes of the two trials.</p>
-    </div>
-    <div class="facts">
-      <div class="fact" data-k="s973"><span class="k">Design</span><span class="v">Systematic review and meta-analysis</span></div>
-      <div class="fact" data-k="s974"><span class="k">When</span><span class="v">Dates to be confirmed</span></div>
-      <div class="fact" data-k="s975"><span class="k">Status</span><span class="v">Planned</span></div>
-    </div>
-  </article>
-
-  <hr class="rule">
-
-  <article class="study" id="study-3">
-    <div class="pg-head">
-      <span class="eyebrow" data-k="s956">Study 3 · Feasibility trial</span>
-      <h2 class="stitle" data-k="s957">Can a trial work with Malaysian men?</h2>
-      <p data-k="s958">A small randomized trial of Ora and Sol with young Malaysian men. It tests whether a full trial is workable and safe, and gives a first look at whether Sol works as a bridge or a substitute. Findings will be written up as manuscripts for publication.</p>
-    </div>
-    <div class="facts">
-      <div class="fact" data-k="s959"><span class="k">Design</span><span class="v">Feasibility randomized controlled trial with interviews</span></div>
-      <div class="fact" data-k="s960"><span class="k">Who</span><span class="v">Men aged 18 to 35 in Malaysia</span></div>
-      <div class="fact" data-k="s961"><span class="k">When</span><span class="v">Recruitment from January 2027, after ethics approval</span></div>
-    </div>
-  </article>
-
-  <hr class="rule">
-
-  <article class="study" id="study-4">
-    <div class="pg-head">
-      <span class="eyebrow" data-k="s962">Study 4 · Full trial</span>
-      <h2 class="stitle" data-k="s963">Does Sol work, and why?</h2>
-      <p data-k="s964">A larger trial across several Malaysian settings to give a clear answer on whether Sol helps men reach people, and whether self-compassion explains the effect. It goes ahead only if Study 3 shows a full trial is workable.</p>
-    </div>
-    <div class="facts">
-      <div class="fact" data-k="s965"><span class="k">Design</span><span class="v">Multi-site randomized controlled trial</span></div>
-      <div class="fact" data-k="s966"><span class="k">Where</span><span class="v">Malaysian universities and community settings</span></div>
-      <div class="fact" data-k="s967"><span class="k">When</span><span class="v">From 2028, if Study 3 says go</span></div>
-    </div>
-  </article>
+  <ol class="slist" id="study-list"></ol>
 </section>
 
 <!-- JOIN -->
 <section class="page" id="p-get-involved" hidden>
   <div class="pg-head">
-    <h1 data-k="g1">Get involved</h1>
-    <p data-k="g2">We're recruiting volunteers for two teams: research assistants and an AI and tech team. All positions are unpaid.</p>
+    <h1 data-k="j1">Get involved</h1>
+    <p data-k="j2">Two volunteer teams. Remote and unpaid.</p>
   </div>
 
-  <div class="opps two">
-    <div class="opp open" id="opp-ra"><div class="oh" data-k="g3">Research assistants</div><div class="ob"><span id="opp-ra-body">We're recruiting research assistants. Remote, about 10 hours a week.</span></div></div>
-    <div class="opp open"><div class="oh" data-k="g4">AI and tech team</div><div class="ob" data-k="g5">Open now, rolling applications. Remote, hours agreed with you.</div></div>
-  </div>
-
-  <hr class="rule">
-
-  <div class="pg-head">
-    <span class="eyebrow" data-k="g6">Research assistants</span>
-    <h2 data-k="g7" style="font-size:30px;font-weight:600">Help screen and chart the evidence</h2>
-  </div>
-  <div class="two">
-    <div class="block">
-      <h3 class="sh" data-k="g8">What you'll do</h3>
+  <div class="roles" id="roles">
+    <article class="role" id="opp-ra">
+      <h2 data-k="j3">Research assistants</h2>
+      <p class="rstat" id="opp-ra-body">Open</p>
       <ul class="list">
-        <li data-k="g9">Screen titles, abstracts and full texts against set criteria</li>
-        <li data-k="g10">Chart key details from included studies in a shared spreadsheet</li>
-        <li data-k="g11">Keep a short work log and meet the principal investigator weekly</li>
+        <li data-k="j4">Screen and chart studies for our reviews</li>
+        <li data-k="j5">About 10 hours a week, with a weekly check-in</li>
+        <li data-k="j6">Psychology, counseling or related students and graduates</li>
       </ul>
-    </div>
-    <div class="block">
-      <h3 class="sh" data-k="g12">Who we're looking for</h3>
+      <p class="rsend" data-k="j7"><b>Send</b> CV and transcript</p>
+      <p class="rsend" data-k="j8"><b>Subject</b> RA application—[Your Name]</p>
+    </article>
+    <article class="role">
+      <h2 data-k="j9">AI and tech team</h2>
+      <p class="rstat open" data-k="j10">Open · rolling</p>
       <ul class="list">
-        <li data-k="g13">Students or recent graduates in psychology, counseling or a related field</li>
-        <li data-k="g14">Careful readers of academic papers in English</li>
-        <li data-k="g15">Comfortable with Excel or Google Sheets; Rayyan, Covidence or Zotero is a plus</li>
+        <li data-k="j11">Help build the Ora app and Sol, its AI companion</li>
+        <li data-k="j12">Work with large language models, safety and privacy</li>
+        <li data-k="j13">Comfortable coding in JavaScript, TypeScript or Python</li>
       </ul>
-    </div>
-  </div>
-  <p class="note" data-k="g16">You'll be trained in review methods, named in the published article, and offered co-authorship if you meet the authorship criteria.</p>
-
-  <hr class="rule">
-
-  <div class="pg-head">
-    <span class="eyebrow" data-k="g17">AI and tech team</span>
-    <h2 data-k="g18" style="font-size:30px;font-weight:600">Help build Ora and Sol</h2>
-  </div>
-  <div class="two">
-    <div class="block">
-      <h3 class="sh" data-k="g19">What you'll work on</h3>
-      <ul class="list">
-        <li data-k="g20">The Ora app: features, accessibility and reliability</li>
-        <li data-k="g21">Sol's conversations and behavior with large language models</li>
-        <li data-k="g22">Safety escalation, the researcher console and privacy safeguards</li>
-      </ul>
-    </div>
-    <div class="block">
-      <h3 class="sh" data-k="g23">Who we're looking for</h3>
-      <ul class="list">
-        <li data-k="g24">Comfortable programming, for example in JavaScript, TypeScript or Python</li>
-        <li data-k="g25">Interested in AI, large language models or mental health technology</li>
-        <li data-k="g26">Students, recent graduates and self-taught developers are all welcome</li>
-      </ul>
-    </div>
+      <p class="rsend" data-k="j14"><b>Send</b> CV and GitHub or portfolio link</p>
+      <p class="rsend" data-k="j15"><b>Subject</b> AI and tech team—[Your Name]</p>
+    </article>
   </div>
 
-  <hr class="rule">
-
-  <div class="block">
-    <h2 data-k="g27">How to apply</h2>
+  <div class="apply">
+    <span data-k="j16">Apply by email</span>
     <div class="contact"><code id="em1">22059169@siswa.um.edu.my</code><button class="copy" data-copy="em1" id="cp1">Copy email</button></div>
-    <div class="tbl"><table class="narrow">
-      <thead><tr><th data-k="g28">Role</th><th data-k="g29">Send</th><th data-k="g30">Subject line</th></tr></thead>
-      <tbody>
-        <tr><td data-k="g31">Research assistant</td><td data-k="g32">CV and latest transcript</td><td data-k="g33">RA application—[Your Name]</td></tr>
-        <tr><td data-k="g34">AI and tech team</td><td data-k="g35">CV and a GitHub or portfolio link</td><td data-k="g36">AI and tech team—[Your Name]</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note" data-k="g37">In the email, tell us in a few lines why you're interested and what you'd bring.</p>
   </div>
 </section>
 
@@ -822,11 +786,12 @@ footer nav.flinks a:hover{color:var(--fg)}
     <div class="adm-tabs" role="tablist">
       <button role="tab" data-tab="recruit" aria-selected="true">Recruitment</button>
       <button role="tab" data-tab="home" aria-selected="false">Home</button>
+      <button role="tab" data-tab="studies" aria-selected="false">Studies</button>
       <button role="tab" data-tab="team" aria-selected="false">Team</button>
+      <button role="tab" data-tab="alumni" aria-selected="false">Alumni</button>
       <button role="tab" data-tab="posts" aria-selected="false">Blog posts</button>
       <button role="tab" data-tab="pubs" aria-selected="false">Publications</button>
       <button role="tab" data-tab="menu" aria-selected="false">Menu</button>
-      <button role="tab" data-tab="timelines" aria-selected="false">Timelines</button>
       <button role="tab" data-tab="resources" aria-selected="false">Research resources</button>
     </div>
     <div id="adm-body"></div>
@@ -882,6 +847,21 @@ footer nav.flinks a:hover{color:var(--fg)}
         <div class="links"><a class="lchip" href="#get-involved"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M5 12h11.2l-4.6-4.6L13 6l7 7-7 7-1.4-1.4 4.6-4.6H5z"/></svg><span>get involved</span></a></div>
       </div>
     </article>
+  </div>
+
+  <div class="block" id="alumni-block" hidden>
+    <hr class="rule">
+    <h2 data-k="al1">Alumni</h2>
+    <ul class="alumni" id="alumni-list"></ul>
+  </div>
+
+  <div class="block" id="collab-block" hidden>
+    <hr class="rule">
+    <h2 data-k="co1">Collaborators</h2>
+    <p class="prose" style="color:var(--muted)" data-k="co2">Everyone who has written a paper or given a talk with the program.</p>
+    <div class="collab-box"><svg id="collab" role="img" aria-label="Co-author network of the program"></svg></div>
+    <div class="collab-legend" id="collab-legend"></div>
+    <p class="note" id="collab-note"></p>
   </div>
 
 </section>
@@ -1056,6 +1036,8 @@ function md(src){
   String(src||"").split(/\r?\n/).forEach(l=>{
     const t=l.trim();
     if(!t){flush();return;}
+    const im=t.match(/^!\[([^\]]*)\]\(([^\s)]+)\)$/);
+    if(im){flush();const u=safeUrl(im[2]);if(u)out.push(`<figure><img src="${esc(u)}" alt="${esc(im[1])}" loading="lazy">${im[1]?`<figcaption>${esc(im[1])}</figcaption>`:""}</figure>`);return;}
     if(t.startsWith("## ")){flush();out.push("<h2>"+inline(t.slice(3))+"</h2>");return;}
     if(t.startsWith("> ")){flush();out.push("<blockquote>"+inline(t.slice(2))+"</blockquote>");return;}
     if(/^[-*] /.test(t)){if(para.length){out.push("<p>"+inline(para.join(" "))+"</p>");para=[];} (list=list||[]).push(t.slice(2));return;}
@@ -1072,9 +1054,10 @@ function md(src){
   const mins=b=>Math.max(1,Math.round(String(b).split(/\s+/).length/200));
   const $=id=>document.getElementById(id);
   function tagBtn(t,onClick){const b=document.createElement("button");b.className="ht";b.textContent="#"+t;b.setAttribute("aria-pressed",String(tag===t));b.onclick=onClick;return b;}
-  function sorted(){return POSTS.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));}
+  function sorted(){return POSTS.filter(p=>!p.hidden).sort((a,b)=>String(b.date).localeCompare(String(a.date)));}
+  function cover(p,cls){const u=safeUrl(p.cover);if(!u)return null;const i=document.createElement("img");i.className=cls;i.src=u;i.alt="";i.loading="lazy";return i;}
   function renderIndex(){
-    const counts={};POSTS.forEach(p=>(p.tags||[]).forEach(t=>counts[t]=(counts[t]||0)+1));
+    const counts={};POSTS.filter(p=>!p.hidden).forEach(p=>(p.tags||[]).forEach(t=>counts[t]=(counts[t]||0)+1));
     if(tag&&!counts[tag])tag=null;
     const bt=$("blog-tags");bt.innerHTML="";
     Object.keys(counts).sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b)).forEach(t=>bt.appendChild(tagBtn(t,()=>{tag=tag===t?null:t;renderIndex();})));
@@ -1088,17 +1071,20 @@ function md(src){
       el.querySelector("p").textContent=p.dek||"";
       el.querySelector(".bmeta").textContent=`Brendon Ban · ${mins(p.body)} min read`;
       const tg=el.querySelector(".ptags");(p.tags||[]).forEach(t=>tg.appendChild(tagBtn(t,()=>{tag=tag===t?null:t;renderIndex();})));
+      const c=cover(p,"bcover");if(c){const ca=document.createElement("a");ca.href="#blog-"+p.slug;ca.tabIndex=-1;ca.setAttribute("aria-hidden","true");ca.appendChild(c);el.querySelector(".bb").prepend(ca);}
       list.appendChild(el);
     });
   }
   window.__blogShow=function(slug){
     current=slug||null;
-    const p=current&&POSTS.find(x=>x.slug===current);
+    const p=current&&POSTS.find(x=>x.slug===current&&(!x.hidden||window.__isEditor));
     $("blog-index").hidden=!!p;$("blog-post").hidden=!p;
     if(!p){renderIndex();return;}
     const a=$("blog-post");
     a.innerHTML=`<a class="back" href="#blog">← All posts</a><h1></h1><div class="pm"><span class="dot"></span><span>Brendon Ban</span><span>·</span><time></time><span>·</span><span class="rt"></span></div><div class="body">${md(p.body)}</div><div class="ptags"></div>`;
-    a.querySelector("h1").textContent=p.title;a.querySelector("time").textContent=fmt(p.date);a.querySelector(".rt").textContent=mins(p.body)+" min read";
+    a.querySelector("h1").textContent=p.title;a.querySelector("time").textContent=fmt(p.date);
+    const c=cover(p,"pcover");if(c)a.querySelector(".pm").after(c);
+    if(p.hidden){const n=document.createElement("p");n.className="hidden-note";n.textContent="Hidden post · only admins can see this";a.querySelector(".back").after(n);}a.querySelector(".rt").textContent=mins(p.body)+" min read";
     const tg=a.querySelector(".ptags");(p.tags||[]).forEach(t=>tg.appendChild(tagBtn(t,()=>{tag=t;location.hash="#blog";})));
   };
   window.initBlog=function(posts){POSTS=posts||[];window.__blogShow(current);};
@@ -1106,20 +1092,44 @@ function md(src){
 })();
 
 /* ---------- recruitment ---------- */
+function defaultRoles(r){
+  r=r||{};
+  return [
+    {title:"Research assistants",open:r.open!==false,status:r.open===false?(r.closedNote||"Closed for now"):`Open · closes ${r.deadline||"soon"}`,
+     points:["Screen and chart studies for our reviews","About 10 hours a week, with a weekly check-in","Psychology, counseling or related students and graduates"],
+     send:"CV and transcript",subject:"RA application—[Your Name]"},
+    {title:"AI and tech team",open:true,status:"Open · rolling",
+     points:["Help build the Ora app and Sol, its AI companion","Work with large language models, safety and privacy","Comfortable coding in JavaScript, TypeScript or Python"],
+     send:"CV and GitHub or portfolio link",subject:"AI and tech team—[Your Name]"}
+  ];
+}
+function renderRoles(roles){
+  const box=document.getElementById("roles");if(!box)return;
+  box.innerHTML="";
+  const shown=roles.filter(x=>!x.hidden);
+  if(!shown.length){box.innerHTML='<p class="empty">No open positions right now. You can still email us about collaborating.</p>';return;}
+  shown.forEach(x=>{
+    const a=document.createElement("article");a.className="role"+(x.open?"":" closed");
+    const h=document.createElement("h2");h.textContent=x.title;a.appendChild(h);
+    const st=document.createElement("p");st.className="rstat";st.textContent=x.status||(x.open?"Open":"Closed for now");a.appendChild(st);
+    const pts=(x.points||[]).filter(Boolean);
+    if(pts.length){const ul=document.createElement("ul");ul.className="list";pts.forEach(t=>{const li=document.createElement("li");li.textContent=t;ul.appendChild(li);});a.appendChild(ul);}
+    [["Send",x.send],["Subject",x.subject]].forEach(([k,v])=>{if(!v)return;const q=document.createElement("p");q.className="rsend";const b=document.createElement("b");b.textContent=k;q.append(b," "+v);a.appendChild(q);});
+    box.appendChild(a);
+  });
+}
 window.applyRecruit=function(r){
+  r=r||{};const roles=r.roles||defaultRoles(r);
+  renderRoles(roles);
   document.querySelectorAll('[data-s="deadline"]').forEach(e=>e.textContent=r.deadline);
   const ft=document.getElementById("float-text");if(ft)ft.textContent=r.pill;
   const h=(location.hash||"#home").slice(1);
-  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin"||navHidden("get-involved");
-  const card=document.getElementById("opp-ra"),body=document.getElementById("opp-ra-body");
-  if(card&&body){card.className="opp "+(r.open?"open":"wait");
-    body.innerHTML=r.open?`We're <b>recruiting</b> research assistants. Remote, about 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
-  const rs=document.getElementById("ra-state");if(rs)rs.textContent=r.open?"recruiting":"applications closed";
+  document.getElementById("float").hidden=!r.open||!r.pill||h==="get-involved"||h==="admin"||navHidden("get-involved");
+  const ra=roles.find(x=>/research assistant/i.test(x.title||""));
+  const rs=document.getElementById("ra-state");if(rs)rs.textContent=ra&&ra.open&&!ra.hidden?"recruiting":"applications closed";
 };
 
 /* ---------- site data ---------- */
-buildGantt("study1",[{"label": "Protocol and OSF registration", "start": "2026-10-01", "end": "2026-10-22", "key": false}, {"label": "Database search", "start": "2026-10-13", "end": "2026-11-09", "key": false}, {"label": "Title and abstract screening", "start": "2026-11-01", "end": "2026-11-27", "key": false}, {"label": "Full-text screening", "start": "2026-11-19", "end": "2026-12-15", "key": false}, {"label": "Data charting", "start": "2026-12-07", "end": "2027-01-02", "key": false}, {"label": "Synthesis · UKM conference", "start": "2026-12-25", "end": "2027-01-13", "key": true}, {"label": "Write-up · article submitted", "start": "2027-01-10", "end": "2027-02-06", "key": true}]);
-buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 3 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 3 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 4 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 4 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
 window.SITE=null;
 const ICONS={megaphone:'<path fill="currentColor" d="M3 10v4h3l5 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/>',cap:'<path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/>',person:'<path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>',group:'<path fill="currentColor" d="M8 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 14c-2.7 0-6 1.3-6 4v2h12v-2c0-2.7-3.3-4-6-4zm8 0c-.6 0-1.3.1-2 .2 1.2.9 2 2.1 2 3.8v2h6v-2c0-2.6-3.3-4-6-4z"/>'};
 const MAIL='<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 7 8-5H4l8 5zm0 2L4 8v10h16V8l-8 5z"/></svg>';
@@ -1190,11 +1200,118 @@ textEls().forEach(el=>ORIG[el.dataset.k]=el.innerHTML);
 function applyTexts(texts){
   textEls().forEach(el=>{const k=el.dataset.k;const v=texts&&texts[k];el.innerHTML=(v!=null)?cleanHTML(v):ORIG[k];});
 }
+/* ---------- alumni + collaborator network ---------- */
+const AUTH_RE=/([A-Z][A-Za-z'’\-]+(?:\s[A-Z][A-Za-z'’\-]+)*),\s*((?:[A-Z]\.\s?(?:-\s?)?)+)/g;
+function parseAuthors(str){
+  const out=[],seen=new Set();String(str||"").replace(/et al\.?/g,"").replace(/&/g,",").replace(AUTH_RE,(m,sur,ini)=>{
+    const i=ini.replace(/\s|-/g,"");const key=sur.toLowerCase()+"|"+i[0];
+    if(!seen.has(key)){seen.add(key);out.push({sur,ini:i.replace(/\./g,". ").trim(),key});}return m;});
+  return out;
+}
+const NAME_TITLES=/\b(Assoc|Asst|Prof|Dr|Mr|Ms|Mrs|Ir|Ts)\.?\s*/g;
+function personMatches(person,tok){
+  if(person.cite){if(parseAuthors(person.cite).some(t=>t.key===tok.key))return true;}
+  const w=String(person.name||"").replace(NAME_TITLES,"").split(/\s+/).filter(Boolean);
+  const si=w.findIndex(x=>x.toLowerCase()===tok.sur.toLowerCase());
+  return si>=0&&w.some((x,i)=>i!==si&&x[0]&&x[0].toUpperCase()===tok.key.split("|")[1]);
+}
+function renderAlumni(list){
+  const blk=document.getElementById("alumni-block"),ul=document.getElementById("alumni-list");if(!blk)return;
+  const items=(list||[]).filter(a=>a&&a.name);blk.hidden=!items.length;ul.innerHTML="";
+  items.forEach(a=>{const li=document.createElement("li");
+    const u=safeUrl(a.link);const n=document.createElement(u?"a":"b");n.textContent=a.name;if(u){n.className="an";n.href=u;if(u[0]!=="#"){n.target="_blank";n.rel="noopener";}}
+    li.appendChild(n);
+    let t=a.role||"";if(a.period)t+=(t?" ":"")+"("+a.period+")";if(a.now)t+=(t?", ":"")+a.now;
+    if(t)li.appendChild(document.createTextNode(" – "+t));ul.appendChild(li);});
+}
+function renderCollab(d){
+  const blk=document.getElementById("collab-block");if(!blk||!window.d3)return;
+  const pubs=(d.pubs||[]).filter(p=>!p.hidden);
+  const team=(d.team||[]).filter(m=>m&&m.name&&!m.open),alumni=(d.alumni||[]).filter(a=>a&&a.name);
+  const nodes=new Map(),edges=new Map();
+  const resolve=tok=>{
+    const m=team.find(x=>personMatches(x,tok));if(m)return {id:"m:"+m.name,label:m.name.replace(NAME_TITLES,""),kind:"member",badge:m.badge};
+    const a=alumni.find(x=>personMatches(x,tok));if(a)return {id:"a:"+a.name,label:a.name,kind:"alum"};
+    return {id:"c:"+tok.key,label:tok.ini+" "+tok.sur,kind:"collab"};
+  };
+  pubs.forEach(p=>{
+    const ppl=[...new Map(parseAuthors(p.au).map(t=>{const r=resolve(t);return [r.id,r];})).values()];
+    ppl.forEach(r=>{const n=nodes.get(r.id)||Object.assign(r,{papers:0,ids:new Set()});n.papers++;n.ids.add(p.id||p.title);nodes.set(r.id,n);});
+    for(let i=0;i<ppl.length;i++)for(let j=i+1;j<ppl.length;j++){const k=[ppl[i].id,ppl[j].id].sort().join("~");edges.set(k,(edges.get(k)||0)+1);}
+  });
+  const N=[...nodes.values()];blk.hidden=N.length<2;if(N.length<2)return;
+  const center=N.filter(n=>n.kind==="member").sort((a,b)=>b.papers-a.papers||(b.badge==="PI")-(a.badge==="PI"))[0]||N.sort((a,b)=>b.papers-a.papers)[0];
+  N.forEach(n=>{n.withC=n===center?n.papers:[...n.ids].filter(x=>center.ids.has(x)).length;});
+  const maxW=Math.max(1,...N.filter(n=>n!==center).map(n=>n.withC));
+  const L=[...edges.entries()].map(([k,w])=>{const [a,b]=k.split("~");return {source:a,target:b,w};});
+  const W=640,H=Math.max(300,Math.min(600,260+N.length*10)),R=Math.min(W,H)/2-36;
+  const rad=n=>n===center?0:R*(0.28+0.72*(1-n.withC/maxW)*(N.length>3?1:0.6));
+  const size=n=>n===center?11:3.5+3*Math.sqrt(n.papers);
+  N.forEach((n,i)=>{const a=i/N.length*2*Math.PI;n.x=W/2+Math.cos(a)*rad(n);n.y=H/2+Math.sin(a)*rad(n);});
+  center.fx=W/2;center.fy=H/2;
+  const sim=d3.forceSimulation(N).force("link",d3.forceLink(L).id(n=>n.id).strength(.015)).force("charge",d3.forceManyBody().strength(-90)).force("r",d3.forceRadial(rad,W/2,H/2).strength(1)).force("c",d3.forceCollide(n=>size(n)+12)).stop();
+  for(let i=0;i<400;i++)sim.tick();
+  const xs=N.map(n=>n.x),ys=N.map(n=>n.y),pad=90;const minX=Math.min(...xs)-30,maxX=Math.max(...xs)+pad+40,minY=Math.min(...ys)-24,maxY=Math.max(...ys)+24;
+  const vw=Math.max(640,maxX-minX),vh=Math.max(280,maxY-minY),vx=(minX+maxX)/2-vw/2,vy=(minY+maxY)/2-vh/2;
+  const svg=d3.select("#collab").attr("viewBox",`${vx} ${vy} ${vw} ${vh}`);svg.selectAll("*").remove();
+  const col=k=>k==="member"?"var(--violet)":k==="alum"?"var(--rose)":"var(--faint)";
+  svg.append("g").selectAll("line").data(L).join("line").attr("x1",l=>l.source.x).attr("y1",l=>l.source.y).attr("x2",l=>l.target.x).attr("y2",l=>l.target.y)
+    .attr("stroke","var(--faint)").attr("stroke-opacity",.55).attr("stroke-width",l=>Math.min(3,.8+.5*(l.w-1)));
+  const g=svg.append("g").selectAll("g").data(N).join("g").attr("transform",n=>`translate(${n.x},${n.y})`);
+  g.append("circle").attr("r",size).attr("fill",n=>n===center?"var(--fg)":col(n.kind));
+  g.append("title").text(n=>`${n.label} · ${n.papers} paper${n.papers===1?"":"s"}${n===center?"":`, ${n.withC} with ${center.label.split(" ")[0]}`}`);
+  g.filter(n=>N.length<=15||n===center||n.kind!=="collab"||n.papers>=2).append("text").attr("class",n=>n===center?"center":"").attr("x",n=>size(n)+4).attr("y",4).text(n=>n.label);
+  const cnt=k=>N.filter(n=>n.kind===k).length;
+  document.getElementById("collab-legend").innerHTML="";
+  [["member","Team members","var(--violet)"],["alum","Alumni","var(--rose)"],["collab","Collaborators","var(--faint)"]].forEach(([k,lab,c])=>{const n=cnt(k);if(!n&&k!=="member")return;const s=document.createElement("span");s.innerHTML=`<i style="background:${c}"></i>`;s.appendChild(document.createTextNode(`${lab} (${n})`));document.getElementById("collab-legend").appendChild(s);});
+  document.getElementById("collab-note").textContent=`Built from the Publications list. The closer to the middle and the larger the circle, the more papers with ${center.label.split(" ")[0]}; a line joins two people who wrote one together. ${N.length>15?"Names are shown for the team, alumni and anyone on two or more papers; point at a circle to see the rest.":"Point at a circle to see the number of papers."}`;
+}
+/* ---------- homepage: bridge/substitute slider ---------- */
+(function(){
+  const STOPS=[
+    ["Bridge","He tells the AI what's wrong, and it nudges him to talk to a friend. That week, he books a counseling session.","b"],
+    ["Leaning bridge","He vents to the AI most nights, and it keeps pointing him to people. He starts replying to his brother again.","b"],
+    ["Could go either way","Talking to the AI is a relief. Whether it leads anywhere depends on what it says next. This is what our studies test.",""],
+    ["Leaning substitute","Talking to the AI feels easier than talking to friends. He cancels dinner plans to stay in and chat.","s"],
+    ["Substitute","The AI becomes the only place he goes. Months later, no one in his life knows he's been struggling.","s"]];
+  const r=document.getElementById("tug");if(!r)return;
+  const card=document.getElementById("tug-out");
+  function upd(){const [t,p,c]=STOPS[+r.value];document.getElementById("tug-t").textContent=t;document.getElementById("tug-p").textContent=p;card.className="tug-card"+(c?" "+c:"");r.setAttribute("aria-valuetext",t);}
+  r.addEventListener("input",upd);upd();
+})();
+
+/* ---------- studies ---------- */
+const DEFAULT_STUDIES=[
+  {title:"Scoping review",desc:"Mapping what is already known about AI and mental health help-seeking in Asia, with particular attention to men.",status:"Underway · Oct 2026 to Jan 2027",tone:"on"},
+  {title:"Systematic review and meta-analysis",desc:"Pooling comparable results to estimate how AI tools relate to mental health help-seeking.",status:"Planned",tone:"next"},
+  {title:"Feasibility trial",desc:"A small randomized trial of Ora and Sol with young Malaysian men, testing whether a full trial is workable and safe.",status:"Ethics review",tone:"next"},
+  {title:"Full trial",desc:"A multi-site trial testing whether Sol helps men reach people, and why. It goes ahead only if the feasibility trial says go.",status:"From 2028",tone:"later"}
+];
+function renderStudies(list){
+  const ol=document.getElementById("study-list");if(!ol)return;ol.innerHTML="";
+  (list||DEFAULT_STUDIES).filter(x=>x&&x.title&&!x.hidden).forEach((x,i)=>{
+    const li=document.createElement("li");li.className="sitem";
+    li.innerHTML=`<span class="sn"></span><div><h2></h2><p></p></div><span class="stat"></span>`;
+    li.querySelector(".sn").textContent="Study "+(i+1);li.querySelector("h2").textContent=x.title;
+    const p=li.querySelector("p");if(x.desc)p.textContent=x.desc;else p.remove();
+    const st=li.querySelector(".stat");if(x.status){st.textContent=x.status;st.classList.add(x.tone==="on"?"on":x.tone==="later"?"later":"next");}else st.remove();
+    ol.appendChild(li);
+  });
+  const hs=document.getElementById("home-studies");
+  if(hs){hs.innerHTML="";(list||DEFAULT_STUDIES).filter(x=>x&&x.title&&!x.hidden).forEach((x,i)=>{
+    const li=document.createElement("li");const a=document.createElement("a");a.href="#studies";
+    a.innerHTML='<span class="sn"></span><b></b>'+(x.status?'<span class="stat"></span>':"");
+    a.querySelector(".sn").textContent="Study "+(i+1);a.querySelector("b").textContent=x.title;
+    if(x.status){const st=a.querySelector(".stat");st.textContent=x.status;st.classList.add(x.tone==="on"?"on":x.tone==="later"?"later":"next");}
+    li.appendChild(a);hs.appendChild(li);});}
+}
+renderStudies();
 function applySite(d){
   d.texts=d.texts||{};
   window.SITE=d;applyNav(d.nav);window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
   if(d.team)renderTeam(d.team);
-  if(d.timelines){buildGantt("study1",d.timelines.study1);buildGantt("program",d.timelines.program);}
+  renderAlumni(d.alumni);try{renderCollab(d);}catch(e){}
+  renderStudies(d.studies);
   if(!document.body.classList.contains("editing"))applyTexts(d.texts);
 }
 fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(applySite).catch(()=>{
@@ -1279,16 +1396,27 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     const B=$("adm-body");B.innerHTML="";
     if(tab==="recruit")return recruitTab(B);
     if(tab==="home")return homeTab(B);
-    if(tab==="timelines")return timelinesTab(B);
+    if(tab==="studies"){
+      if(!draft.studies)draft.studies=clone(DEFAULT_STUDIES);
+      if(editing!==null)return studyForm(B,draft.studies);
+      return listView(B,draft.studies,{newLabel:"Add study",order:true,toggle:true,title:x=>x.title,meta:x=>[x.status,x.hidden?"Hidden from site":""].filter(Boolean).join(" · "),
+        extraTop:top=>{const s=document.createElement("span");s.className="aq";s.textContent="Numbered on the site in this order.";top.appendChild(s);}});
+    }
     if(tab==="menu")return menuTab(B);
     if(tab==="resources")return resTab(B);
+    if(tab==="alumni"){
+      draft.alumni=draft.alumni||[];
+      if(editing!==null)return alumForm(B,draft.alumni);
+      return listView(B,draft.alumni,{newLabel:"Add alum",order:true,title:x=>x.name,meta:x=>[x.role,x.period,x.now].filter(Boolean).join(" · "),
+        extraTop:top=>{const s=document.createElement("span");s.className="aq";s.textContent="Listed on About in this order. The section appears once there is at least one.";top.appendChild(s);}});
+    }
     if(tab==="team"){
       if(editing!==null)return teamForm(B,draft.team);
       return listView(B,draft.team,{newLabel:"Add person",order:true,title:x=>x.name,meta:x=>[x.badge,x.sub].filter(Boolean).join(" · ")});
     }
     if(tab==="posts"){
       if(editing!==null)return postForm(B,draft.posts);
-      return listView(B,draft.posts,{newLabel:"New post",sort:(a,b)=>String(b.x.date).localeCompare(String(a.x.date)),title:x=>x.title,meta:x=>x.date+" · "+(x.tags||[]).map(t=>"#"+t).join(" "),view:x=>"#blog-"+x.slug});
+      return listView(B,draft.posts,{newLabel:"New post",sort:(a,b)=>String(b.x.date).localeCompare(String(a.x.date)),title:x=>x.title,meta:x=>x.date+" · "+(x.tags||[]).map(t=>"#"+t).join(" "),view:x=>"#blog-"+x.slug,toggle:true});
     }
     if(tab==="pubs"){
       if(editing!==null)return pubForm(B,draft.pubs);
@@ -1297,14 +1425,34 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }
   }
   function recruitTab(B){
-    const r=draft.recruit;
-    B.innerHTML=`<div class="aform"><h3>Study 1 research assistant recruitment</h3>
-      <label class="chk"><input type="checkbox" id="r-open" ${r.open?"checked":""}> Applications are open</label>
-      <div class="fgrid">${fld("Deadline",'<input id="r-deadline">',"Shown on Get involved, e.g. October 30, 2026")}${fld("Floating button text",'<input id="r-pill">',"The pill in the corner of every page")}</div>
-      ${fld("Message when closed",'<input id="r-closed">')}</div>`;
-    $("r-deadline").value=r.deadline;$("r-pill").value=r.pill;$("r-closed").value=r.closedNote;
+    const r=draft.recruit=draft.recruit||{};
+    if(!r.roles)r.roles=clone(defaultRoles(r));
+    if(editing!==null)return roleForm(B,r.roles);
+    const top=document.createElement("div");top.className="aform";
+    top.innerHTML=`<h3>Recruitment</h3><p class="note">The positions below appear as cards on Get involved, in this order. Switch one off to hide it, or edit its status to show it as closed.</p>
+      <label class="chk"><input type="checkbox" id="r-open"> Show the floating button on every page</label>
+      ${fld("Floating button text",'<input id="r-pill" placeholder="Apply by Oct 30">',"Links to Get involved")}`;
+    B.appendChild(top);
+    $("r-open").checked=!!r.open;$("r-pill").value=r.pill||"";
     $("r-open").onchange=e=>{r.open=e.target.checked;bar();};
-    [["r-deadline","deadline"],["r-pill","pill"],["r-closed","closedNote"]].forEach(([id,k])=>$(id).oninput=e=>{r[k]=e.target.value;bar();});
+    $("r-pill").oninput=e=>{r.pill=e.target.value;bar();};
+    listView(B,r.roles,{newLabel:"Add position",order:true,toggle:true,title:x=>x.title,meta:x=>[x.status||(x.open?"Open":"Closed"),x.hidden?"Hidden from site":""].filter(Boolean).join(" · ")});
+  }
+  function roleForm(B,arr){
+    const p=editing==="new"?{title:"",open:true,status:"Open · rolling",points:[],send:"CV",subject:"Application—[Your Name]"}:clone(arr[editing]);
+    formShell(B,editing==="new"?"Add position":"Edit position",
+      fld("Position",'<input id="ro-title" required placeholder="Research assistants">')+
+      `<div class="fgrid">${fld("Status",'<input id="ro-status" placeholder="Open · closes October 30, 2026">',"Shown in the badge, e.g. Open · rolling")}<label class="chk" style="align-self:end"><input type="checkbox" id="ro-open"> Open (green badge)</label></div>`+
+      fld("Points",'<textarea id="ro-points" class="short"></textarea>',"One per line: what they do, time, who should apply")+
+      `<div class="fgrid">${fld("Send",'<input id="ro-send">',"What to email, e.g. CV and transcript")}${fld("Email subject",'<input id="ro-subject">')}</div>`+
+      `<label class="chk"><input type="checkbox" id="ro-show"> Show on the public site</label>`,
+      ()=>{
+        const title=$("ro-title").value.trim();if(!title){$("ro-title").focus();return false;}
+        const o={title,open:$("ro-open").checked,status:$("ro-status").value.trim(),points:$("ro-points").value.split("\n").map(t=>t.trim()).filter(Boolean),send:$("ro-send").value.trim(),subject:$("ro-subject").value.trim()};
+        if(!$("ro-show").checked)o.hidden=true;
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+      });
+    $("ro-title").value=p.title;$("ro-status").value=p.status||"";$("ro-open").checked=!!p.open;$("ro-points").value=(p.points||[]).join("\n");$("ro-send").value=p.send||"";$("ro-subject").value=p.subject||"";$("ro-show").checked=!p.hidden;
   }
   function homeTab(B){
     draft.home=draft.home||{typed:[]};
@@ -1363,6 +1511,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       fld("Subtitle",'<input id="t-sub">',"Shown in italics under the name")+
       fld("Bio",'<textarea id="t-bio" class="short"></textarea>',"Blank line between paragraphs · **bold** · [link](https://…)")+
       fld("Selected work",'<textarea id="t-works" class="short"></textarea>',"One item per line (optional)")+
+      fld("Name in citations",'<input id="t-cite" placeholder="Ban, B. R. J.; Ban, R. J.">',"Optional. How their name appears in author lists, so the collaborator network links them. Usually matched automatically.")+
       `<div class="fgrid">${fld("Email",'<input id="t-email" type="email">')}<label class="chk"><input type="checkbox" id="t-open"> Open position (dashed outline)</label></div>`+
       `<h4 class="fsub">Links</h4><p class="note">Fill in any that apply. Empty ones are hidden. Each shows as a chip under the bio.</p>`+
       `<div class="fgrid">${LINK_TYPES.map(([k,l,,ph])=>fld(l,`<input id="t-l-${k}" placeholder="${ph}">`)).join("")}</div>`+
@@ -1372,10 +1521,10 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
         const links=[];LINK_TYPES.forEach(([k])=>{const u=normUrl(k,$("t-l-"+k).value);if(u)links.push({type:k,url:u});});
         const xu=normUrl("link",$("t-xurl").value);if(xu)links.push({type:"link",url:xu,label:$("t-xlabel").value.trim()||"link"});
         const bad=LINK_TYPES.find(([k])=>$("t-l-"+k).value.trim()&&!normUrl(k,$("t-l-"+k).value));if(bad){const el=$("t-l-"+bad[0]);el.setCustomValidity("Enter a full web address starting with https://");el.reportValidity();el.oninput=()=>el.setCustomValidity("");return false;}
-        const o={name,badge:$("t-badge").value.trim(),icon:$("t-icon").value,sub:$("t-sub").value.trim(),bio:$("t-bio").value,works:$("t-works").value,email:$("t-email").value.trim(),links,open:$("t-open").checked,photo:p.photo||""};
+        const o={name,badge:$("t-badge").value.trim(),icon:$("t-icon").value,sub:$("t-sub").value.trim(),bio:$("t-bio").value,works:$("t-works").value,email:$("t-email").value.trim(),links,open:$("t-open").checked,photo:p.photo||"",cite:$("t-cite").value.trim()};
         if(editing==="new")arr.push(o);else arr[editing]=o;
       });
-    $("t-name").value=p.name;$("t-badge").value=p.badge;$("t-sub").value=p.sub;$("t-bio").value=p.bio;$("t-works").value=p.works;$("t-email").value=p.email;$("t-open").checked=!!p.open;
+    $("t-name").value=p.name;$("t-badge").value=p.badge;$("t-sub").value=p.sub;$("t-bio").value=p.bio;$("t-works").value=p.works;$("t-email").value=p.email;$("t-open").checked=!!p.open;$("t-cite").value=p.cite||"";
     memberLinks(p).forEach(lk=>{if(lk.type!=="link"&&$("t-l-"+lk.type)&&!$("t-l-"+lk.type).value)$("t-l-"+lk.type).value=lk.url;else{$("t-xlabel").value=lk.label||"";$("t-xurl").value=lk.url;}});
     const showPh=()=>{const ph=$("t-ph");ph.innerHTML="";ph.className="photo"+(p.photo?"":" open");if(p.photo){const i=document.createElement("img");i.src=p.photo;i.alt="";ph.appendChild(i);}else{const sp=document.createElement("span");sp.textContent=initials($("t-name").value||p.name);ph.appendChild(sp);}$("t-rmph").disabled=!p.photo;};
     showPh();
@@ -1391,19 +1540,75 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       e.target.value="";
     };
   }
+  function studyForm(B,arr){
+    const p=editing==="new"?{title:"",desc:"",status:"",tone:"next"}:clone(arr[editing]);
+    const tones=[["on","Green · underway"],["next","Purple · planned or in preparation"],["later","Gray · later"]];
+    formShell(B,editing==="new"?"Add study":"Edit study",
+      fld("Title",'<input id="st-title" required placeholder="Systematic review and meta-analysis">')+
+      fld("Description",'<textarea id="st-desc" class="short"></textarea>',"One or two sentences")+
+      `<div class="fgrid">${fld("Status",'<input id="st-status" placeholder="Underway · Oct 2026 to Jan 2027">',"Shown as a small label")}${fld("Label color",'<select id="st-tone">'+tones.map(([v,l])=>`<option value="${v}"${v===(p.tone||"next")?" selected":""}>${l}</option>`).join("")+'</select>')}</div>`+
+      `<label class="chk"><input type="checkbox" id="st-show"> Show on the public site</label>`,
+      ()=>{
+        const title=$("st-title").value.trim();if(!title){$("st-title").focus();return false;}
+        const o={title,desc:$("st-desc").value.trim(),status:$("st-status").value.trim(),tone:$("st-tone").value};
+        if(!$("st-show").checked)o.hidden=true;
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+        renderStudies(arr);
+      });
+    $("st-title").value=p.title;$("st-desc").value=p.desc||"";$("st-status").value=p.status||"";$("st-show").checked=!p.hidden;
+  }
+  function alumForm(B,arr){
+    const p=editing==="new"?{name:"",role:"",period:"",now:"",link:"",cite:""}:clone(arr[editing]);
+    formShell(B,editing==="new"?"Add alum":"Edit alum",
+      fld("Name",'<input id="al-name" required>')+
+      fld("Role on the program",'<input id="al-role" placeholder="Research assistant, scoping review">')+
+      `<div class="fgrid">${fld("Period",'<input id="al-period" placeholder="2026–2027">')}${fld("Where they are now",'<input id="al-now" placeholder="now Master\'s student at …">',"Optional")}</div>`+
+      `<div class="fgrid">${fld("Link",'<input id="al-link" placeholder="https://…">',"Optional, e.g. LinkedIn or personal site")}${fld("Name in citations",'<input id="al-cite" placeholder="Tan, A. B.">',"Optional. Links them to their papers in the network; separate variants with ;")}</div>`,
+      ()=>{
+        const name=$("al-name").value.trim();if(!name){$("al-name").focus();return false;}
+        const li=$("al-link"),link=li.value.trim()?normUrl("link",li.value):"";
+        if(li.value.trim()&&!/^https?:\/\//.test(link)){li.setCustomValidity("Enter a full web address starting with https://");li.reportValidity();li.oninput=()=>li.setCustomValidity("");return false;}
+        const o={name,role:$("al-role").value.trim(),period:$("al-period").value.trim(),now:$("al-now").value.trim(),link,cite:$("al-cite").value.trim()};
+        if(editing==="new")arr.push(o);else arr[editing]=o;
+      });
+    $("al-name").value=p.name;$("al-role").value=p.role||"";$("al-period").value=p.period||"";$("al-now").value=p.now||"";$("al-link").value=p.link||"";$("al-cite").value=p.cite||"";
+  }
   function postForm(B,arr){
-    const p=editing==="new"?{slug:"",date:new Date().toISOString().slice(0,10),title:"",dek:"",tags:[],body:""}:arr[editing];
+    const p=editing==="new"?{slug:"",date:new Date().toISOString().slice(0,10),title:"",dek:"",tags:[],body:""}:clone(arr[editing]);
     formShell(B,editing==="new"?"New post":"Edit post",
       fld("Title",'<input id="p-title" required>')+
       `<div class="fgrid">${fld("Date",'<input id="p-date" type="date" required>')}${fld("Tags",'<input id="p-tags">',"Comma separated, e.g. study-1, methods")}</div>`+
       fld("Summary",'<input id="p-dek">',"One sentence shown in the post list")+
-      fld("Post",'<textarea id="p-body"></textarea>',"Blank line between paragraphs · ## Heading · - list item · > quote · **bold** · [link](https://…)"),
+      `<div class="fld"><span class="fl">Cover image</span><div class="cover-edit"><div class="cv" id="p-cv"></div><div class="adm-act col"><label class="abtn ghost filebtn">Upload cover<input type="file" id="p-cfile" accept="image/*" hidden></label><button type="button" class="abtn ghost" id="p-crm">Remove</button><em class="hint" id="p-cnote">Optional. Wide images work best.</em></div></div></div>`+
+      fld("Post",'<textarea id="p-body"></textarea>',"Blank line between paragraphs · ## Heading · - list item · > quote · **bold** · [link](https://…) · ![caption](image link) on its own line")+
+      `<div class="adm-act"><label class="abtn ghost filebtn">Insert image in post<input type="file" id="p-ifile" accept="image/*" hidden></label><em class="hint" id="p-inote">Goes where the cursor is</em></div>`+
+      `<label class="chk"><input type="checkbox" id="p-show"> Show on the public site</label>`,
       ()=>{
         const title=$("p-title").value.trim();if(!title){$("p-title").focus();return false;}
         const o={slug:p.slug||slugify(title),date:$("p-date").value,title,dek:$("p-dek").value.trim(),tags:tagsOf($("p-tags").value),body:$("p-body").value};
+        if(p.cover)o.cover=p.cover;if(!$("p-show").checked)o.hidden=true;
         if(editing==="new"){const base=o.slug;let n=2;while(arr.some(x=>x.slug===o.slug))o.slug=base+"-"+n++;arr.push(o);}else arr[editing]=o;
       });
-    $("p-title").value=p.title;$("p-date").value=p.date;$("p-tags").value=(p.tags||[]).join(", ");$("p-dek").value=p.dek||"";$("p-body").value=p.body||"";
+    $("p-title").value=p.title;$("p-date").value=p.date;$("p-tags").value=(p.tags||[]).join(", ");$("p-dek").value=p.dek||"";$("p-body").value=p.body||"";$("p-show").checked=!p.hidden;
+    const showCv=()=>{const cv=$("p-cv");cv.innerHTML="";if(p.cover&&safeUrl(p.cover)){const i=document.createElement("img");i.src=p.cover;i.alt="";cv.appendChild(i);}else cv.textContent="No cover";$("p-crm").disabled=!p.cover;};
+    showCv();$("p-crm").onclick=()=>{delete p.cover;showCv();};
+    const upload=async(input,note,done)=>{
+      const file=input.files&&input.files[0];if(!file)return;note.textContent="Uploading…";
+      try{
+        const assets=window.claude&&await window.claude.use("assets");
+        if(!assets){note.textContent="Image upload isn't available in this view.";return;}
+        const up=await assets.upload(file);done(up.url,file);
+      }catch(err){note.textContent=err&&err.code==="too_large"?"That image is too large. Try one under 4 MB.":"Upload failed. Try another image.";}
+      input.value="";
+    };
+    $("p-cfile").onchange=e=>upload(e.target,$("p-cnote"),u=>{p.cover=u;showCv();$("p-cnote").textContent="Uploaded. Save to draft, then publish.";});
+    $("p-ifile").onchange=e=>upload(e.target,$("p-inote"),(u,f)=>{
+      const ta=$("p-body"),cap=f.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ").replace(/[\[\]()]/g,"");
+      const pos=ta.selectionStart??ta.value.length,before=ta.value.slice(0,pos),after=ta.value.slice(pos);
+      const snip=(before&&!before.endsWith("\n\n")?(before.endsWith("\n")?"\n":"\n\n"):"")+`![${cap}](${u})`+"\n\n";
+      ta.value=before+snip+after;ta.focus();ta.selectionStart=ta.selectionEnd=pos+snip.length;
+      $("p-inote").textContent="Image added. Edit the caption inside ![ ] if you like.";
+    });
   }
   function pubForm(B,arr){
     const p=editing==="new"?{id:"p"+Date.now().toString(36),y:new Date().getFullYear(),type:"Article",status:"In preparation",title:"",au:"Ban, B. R. J., & Lau, P. L.",venue:"",note:"",tags:[]}:arr[editing];
@@ -1617,7 +1822,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }finally{bs.forEach(b=>b.textContent="Publish to site");bar();}
   }
   $("adm-publish").onclick=publish;$("eb-publish").onclick=publish;
-  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
+  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);renderStudies(draft.studies);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
   $("adm-edittext").onclick=()=>setEditMode(true);
   document.querySelectorAll(".adm-tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;editing=null;confirmDel=null;render();});
 
@@ -1737,9 +1942,10 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
 
   // anchors: clusters arranged around the question
   const order=["studies","people","method","sources","outputs","context","stages","evidence","mechanism","ai"];
+  let rot=0,hovering=false,dragging=false;
   function anchor(g){
     if(g==="question") return [W/2,H/2];
-    const k=order.indexOf(g),a=-Math.PI/2+k*2*Math.PI/order.length;
+    const k=order.indexOf(g),a=-Math.PI/2+k*2*Math.PI/order.length+rot;
     const r=Math.min(W,H)*0.38;
     return [W/2+Math.cos(a)*r*(W>H?1.35:1),H/2+Math.sin(a)*r];
   }
@@ -1806,9 +2012,9 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   function select(id){selected=id;update();renderPanel();}
   node.on("click",(e,d)=>select(d.id)).on("keydown",(e,d)=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(d.id);}});
   node.call(d3.drag()
-    .on("start",(e,d)=>{if(!e.active)sim.alphaTarget(.25).restart();d.fx=d.x;d.fy=d.y;svg.style("cursor","grabbing")})
+    .on("start",(e,d)=>{dragging=true;if(!e.active)sim.alphaTarget(.25).restart();d.fx=d.x;d.fy=d.y;svg.style("cursor","grabbing")})
     .on("drag",(e,d)=>{d.fx=e.x;d.fy=e.y})
-    .on("end",(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;svg.style("cursor",null)}));
+    .on("end",(e,d)=>{dragging=false;if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;svg.style("cursor",null)}));
 
   function renderPanel(){
     const d=byId[selected],p=document.getElementById("panel");
@@ -1845,5 +2051,16 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   // settle quickly so the first frame is readable
   for(let i=0;i<180;i++) sim.tick();
   sim.alpha(.05).restart();
+  // gentle self-motion: the clusters slowly orbit the question
+  const box=document.querySelector(".graph-box");
+  box.addEventListener("pointerenter",()=>hovering=true);box.addEventListener("pointerleave",()=>hovering=false);
+  box.addEventListener("focusin",()=>hovering=true);box.addEventListener("focusout",()=>hovering=false);
+  const still=matchMedia("(prefers-reduced-motion: reduce)");
+  setInterval(()=>{
+    if(still.matches||hovering||dragging||document.hidden||document.getElementById("p-home").hidden)return;
+    rot+=0.003;
+    sim.force("x").x(d=>anchor(d.group)[0]);sim.force("y").y(d=>anchor(d.group)[1]);
+    if(sim.alpha()<0.035)sim.alpha(0.035).restart();
+  },60);
 })();
 </script>
