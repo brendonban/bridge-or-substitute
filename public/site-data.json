@@ -3,7 +3,33 @@
     "open": true,
     "deadline": "October 30, 2026",
     "pill": "Apply by Oct 30",
-    "closedNote": "Applications for this round have closed. Thank you to everyone who applied."
+    "closedNote": "Applications for this round have closed. Thank you to everyone who applied.",
+    "roles": [
+      {
+        "title": "Research assistants",
+        "open": true,
+        "status": "Open · closes October 30, 2026",
+        "points": [
+          "Screen and chart studies for our reviews",
+          "About 10 hours a week, with a weekly check-in",
+          "Psychology, counseling or related students and graduates"
+        ],
+        "send": "CV and transcript",
+        "subject": "RA application—[Your Name]"
+      },
+      {
+        "title": "AI and tech team",
+        "open": true,
+        "status": "Open · rolling",
+        "points": [
+          "Help build the Ora app and Sol, its AI companion",
+          "Work with large language models, safety and privacy",
+          "Comfortable coding in JavaScript, TypeScript or Python"
+        ],
+        "send": "CV and GitHub or portfolio link",
+        "subject": "AI and tech team—[Your Name]"
+      }
+    ]
   },
   "posts": [
     {
@@ -17,7 +43,8 @@
         "study-3"
       ],
       "dek": "Why the AI companion in our trials was built with a person in the loop from day one.",
-      "body": "Studies 3 and 4 test Sol, an AI companion inside a study app called Ora. Men in the trial can talk to Sol whenever they like, write in a private diary, complete a one-minute weekly check-in, and open a get-help page that points to real services.\n\nBuilding an AI that men will confide in carries responsibility. So Sol was never designed to work alone.\n\n## A person in the loop\n\n- A safety escalation protocol flags messages and check-ins that suggest risk.\n- Every flag is followed up by a person within 24 hours.\n- Distress is monitored with the PHQ-9 at baseline and the PHQ-4 plus item 9 after that.\n- A researcher console lets the team see engagement and safety events.\n\nSafety is also one of the progression criteria for Study 3. If every flag is followed up within 24 hours, that criterion is green. Any delay is amber. Any serious harm related to Sol stops the program before Study 4.\n\n> The aim is a companion that hands men over to people, not one that keeps them talking to an app."
+      "body": "Studies 3 and 4 test Sol, an AI companion inside a study app called Ora. Men in the trial can talk to Sol whenever they like, write in a private diary, complete a one-minute weekly check-in, and open a get-help page that points to real services.\n\nBuilding an AI that men will confide in carries responsibility. So Sol was never designed to work alone.\n\n## A person in the loop\n\n- A safety escalation protocol flags messages and check-ins that suggest risk.\n- Every flag is followed up by a person within 24 hours.\n- Distress is monitored with the PHQ-9 at baseline and the PHQ-4 plus item 9 after that.\n- A researcher console lets the team see engagement and safety events.\n\nSafety is also one of the progression criteria for Study 3. If every flag is followed up within 24 hours, that criterion is green. Any delay is amber. Any serious harm related to Sol stops the program before Study 4.\n\n> The aim is a companion that hands men over to people, not one that keeps them talking to an app.",
+      "hidden": true
     },
     {
       "slug": "why-scoping-review",
@@ -29,7 +56,8 @@
         "methods"
       ],
       "dek": "Before testing an AI companion, we need a map of what is already known in Asia.",
-      "body": "Research on AI and mental health help-seeking is spread across psychology, psychiatry, public health, education and computer science. Each field defines AI and help-seeking differently, and most of the samples come from Western countries.\n\nA systematic review asks a narrow question and estimates an effect. A scoping review does something earlier and broader: it maps the extent, range and nature of the evidence and shows where the gaps are (Munn et al., 2018). That is what this field needs first.\n\n## What we will map\n\n- The types of AI studied, the populations and the countries.\n- Which stages of help-seeking each study addresses, and how help-seeking is measured.\n- Whether AI is positioned as a bridge to human support, or a substitute for it.\n\nWe follow JBI guidance (Peters et al., 2020) and will report with PRISMA-ScR (Tricco et al., 2018). The protocol is registered on OSF before we search. The gaps we find will shape Sol's design and the outcomes we measure in Studies 3 and 4."
+      "body": "Research on AI and mental health help-seeking is spread across psychology, psychiatry, public health, education and computer science. Each field defines AI and help-seeking differently, and most of the samples come from Western countries.\n\nA systematic review asks a narrow question and estimates an effect. A scoping review does something earlier and broader: it maps the extent, range and nature of the evidence and shows where the gaps are (Munn et al., 2018). That is what this field needs first.\n\n## What we will map\n\n- The types of AI studied, the populations and the countries.\n- Which stages of help-seeking each study addresses, and how help-seeking is measured.\n- Whether AI is positioned as a bridge to human support, or a substitute for it.\n\nWe follow JBI guidance (Peters et al., 2020) and will report with PRISMA-ScR (Tricco et al., 2018). The protocol is registered on OSF before we search. The gaps we find will shape Sol's design and the outcomes we measure in Studies 3 and 4.",
+      "hidden": true
     },
     {
       "slug": "ra-recruiting",
@@ -41,7 +69,8 @@
         "scoping-review"
       ],
       "dek": "Unpaid and remote, 10 hours a week, October 2026 to January 2027. Applications close October 30.",
-      "body": "We are looking for two unpaid, volunteer Research Assistant Interns to work as second reviewers on Study 1, our scoping review of AI and mental health help-seeking in Asia.\n\nYou will screen titles, abstracts and full texts against set criteria, record reasons for exclusion, chart key details from included studies in a shared Excel form, and meet the principal investigator once a week.\n\n## Who we are looking for\n\n- Students or recent graduates in Psychology, Counseling or a related program.\n- Comfortable reading academic papers in English, with excellent attention to detail.\n- Able to work independently and meet weekly targets.\n\nYou will be trained in JBI and PRISMA-ScR methods, named in the published article, and offered co-authorship if you meet the authorship criteria. Full details and how to apply are on the [Get involved](#get-involved) page."
+      "body": "We are looking for two unpaid, volunteer Research Assistant Interns to work as second reviewers on Study 1, our scoping review of AI and mental health help-seeking in Asia.\n\nYou will screen titles, abstracts and full texts against set criteria, record reasons for exclusion, chart key details from included studies in a shared Excel form, and meet the principal investigator once a week.\n\n## Who we are looking for\n\n- Students or recent graduates in Psychology, Counseling or a related program.\n- Comfortable reading academic papers in English, with excellent attention to detail.\n- Able to work independently and meet weekly targets.\n\nYou will be trained in JBI and PRISMA-ScR methods, named in the published article, and offered co-authorship if you meet the authorship criteria. Full details and how to apply are on the [Get involved](#get-involved) page.",
+      "hidden": true
     },
     {
       "slug": "bridge-or-substitute",
@@ -55,7 +84,8 @@
         "self-compassion"
       ],
       "dek": "Many young Malaysian men now talk to a chatbot before anyone else. We want to know where that leads.",
-      "body": "Malaysian men are less likely than women to seek help for psychological distress, and many wait until they reach a crisis. Conformity to masculine norms, especially self-reliance, is consistently linked to poorer mental health and more negative attitudes toward seeking help. In Malaysia, concern for face adds to the pressure. For many men, admitting they are struggling feels like failing.\n\nAI chatbots now offer these men something they have rarely had: a private, judgment-free place to talk at any hour. The evidence on whether that helps points both ways. Chatbots can reduce depressive symptoms and increase self-compassion, but heavier use has also been linked to loneliness and less contact with other people.\n\n> Does an AI companion help men take the first step toward friends, family and counselors, or does it become the only place they go?\n\n## Our hunch: self-compassion\n\nWe think self-compassion is the key. By buffering the shame that masculine norms attach to asking for help, it may make men more willing to reach out to people. Earlier research found exactly this buffering effect among men.\n\nOver the next three years we will test that idea in four linked studies: a scoping review, a systematic review and meta-analysis, a feasibility trial with 80 men, and, if the feasibility trial says go, a full multi-site trial. You can read about each one on the [Studies](#studies) page."
+      "body": "Malaysian men are less likely than women to seek help for psychological distress, and many wait until they reach a crisis. Conformity to masculine norms, especially self-reliance, is consistently linked to poorer mental health and more negative attitudes toward seeking help. In Malaysia, concern for face adds to the pressure. For many men, admitting they are struggling feels like failing.\n\nAI chatbots now offer these men something they have rarely had: a private, judgment-free place to talk at any hour. The evidence on whether that helps points both ways. Chatbots can reduce depressive symptoms and increase self-compassion, but heavier use has also been linked to loneliness and less contact with other people.\n\n> Does an AI companion help men take the first step toward friends, family and counselors, or does it become the only place they go?\n\n## Our hunch: self-compassion\n\nWe think self-compassion is the key. By buffering the shame that masculine norms attach to asking for help, it may make men more willing to reach out to people. Earlier research found exactly this buffering effect among men.\n\nOver the next three years we will test that idea in four linked studies: a scoping review, a systematic review and meta-analysis, a feasibility trial with 80 men, and, if the feasibility trial says go, a full multi-site trial. You can read about each one on the [Studies](#studies) page.",
+      "hidden": true
     }
   ],
   "pubs": [
