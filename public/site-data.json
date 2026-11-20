@@ -257,18 +257,6 @@
       "photo": "/uploads/1793286962871-brendon.webp"
     },
     {
-      "name": "Vincent Yuan",
-      "badge": "Lab Manager",
-      "icon": "group",
-      "sub": "",
-      "bio": "",
-      "works": "",
-      "email": "",
-      "links": [],
-      "open": false,
-      "photo": ""
-    },
-    {
       "name": "Adrina Ghasemi",
       "badge": "RA",
       "icon": "person",
@@ -286,18 +274,6 @@
       "photo": "/uploads/1793806114178-screenshot-2026-11-04-at-11.28.26-pm.png"
     },
     {
-      "name": "John Lim",
-      "badge": "RA",
-      "icon": "person",
-      "sub": "",
-      "bio": "",
-      "works": "",
-      "email": "",
-      "links": [],
-      "open": false,
-      "photo": ""
-    },
-    {
       "name": "Veronika",
       "badge": "RA",
       "icon": "person",
@@ -313,31 +289,6 @@
       ],
       "open": false,
       "photo": ""
-    },
-    {
-      "name": "Celia",
-      "badge": "Intern",
-      "icon": "person",
-      "sub": "",
-      "bio": "",
-      "works": "",
-      "email": "",
-      "links": [],
-      "open": false,
-      "photo": ""
-    },
-    {
-      "name": "Trial, tech and AI team",
-      "badge": "Team",
-      "sub": "Studies 2 and 3 · unpaid · rolling applications",
-      "bio": "Research assistants for the two trials, and people who code and work with AI to build and improve Ora and Sol. If you are interested in programming, AI or running a trial, we would like to hear from you. We are also open to collaboration.",
-      "works": "",
-      "email": "",
-      "link": "#get-involved",
-      "linkLabel": "get involved",
-      "open": true,
-      "photo": "",
-      "icon": "group"
     }
   ],
   "timelines": {
