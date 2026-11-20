@@ -190,7 +190,8 @@ td:last-child{color:var(--muted)}
 .person h3{font-size:19px;font-weight:600}
 .person p{color:var(--muted);font-size:15px;overflow-wrap:anywhere}
 /* studies */
-.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.trio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1060px){.trio{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .st{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--line);border-radius:14px;min-width:0}
 .st:hover{border-color:var(--fg)}
 .st:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
@@ -329,6 +330,7 @@ table.narrow{min-width:480px}
 @media (prefers-reduced-motion:reduce){.vis .knob,.vis .knob::after{transition:none}}
 
 /* admin extras */
+.navlist{display:flex;flex-direction:column}
 .res-note{padding:12px 16px;border-radius:10px;background:var(--accent-soft);border:1px solid var(--accent);font-size:14.5px}
 .res-filter{display:flex;flex-direction:column;gap:10px}
 .reslist{display:flex;flex-direction:column}
@@ -399,7 +401,7 @@ footer nav.flinks a{font-size:12.5px}
 
 /* get involved */
 .opps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-.opps.four{grid-template-columns:repeat(2,1fr)}
+.opps.four,.opps.two{grid-template-columns:repeat(2,1fr)}
 .opps.four>.opp:last-child:nth-child(odd){grid-column:1/-1}
 .opp{min-width:0;border-radius:4px;overflow:hidden}
 .oh{padding:14px 18px;font-weight:600;font-size:15.5px}
@@ -485,14 +487,14 @@ footer nav.flinks a:hover{color:var(--fg)}
   <div class="hero">
     <p data-k="k1" class="typed"><span id="typed">“I talk to the chatbot more than I talk to anyone.”</span><span class="caret"></span></p>
     <h1 data-k="k2">Bridge <span class="or">or</span> Substitute</h1>
-    <p data-k="k3" class="byline">A three-study program at <b>Universiti Malaya</b>, Department of Educational Psychology and Counseling.</p>
+    <p data-k="h3" class="byline">A four-study program at <b>Universiti Malaya</b>, Department of Educational Psychology and Counseling.</p>
     <p data-k="k4" class="lede">Does talking to an AI companion lead Malaysian men toward help from friends, family and counselors, or away from it? We think self-compassion is the key.</p>
   </div>
 
   <div class="graph-block">
     <div class="graph-box">
       <span class="g-hint">drag · tap a node</span>
-      <svg id="graph" role="img" aria-label="Network of the program: three studies, people, the AI companion, mechanism, evidence and outputs"></svg>
+      <svg id="graph" role="img" aria-label="Network of the program: four studies, people, the AI companion, mechanism, evidence and outputs"></svg>
       <div class="legend" id="legend"></div>
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
@@ -509,7 +511,7 @@ footer nav.flinks a:hover{color:var(--fg)}
 
   <div class="btns">
     <a class="btn" href="#why">Why it matters</a>
-    <a class="btn" href="#studies">See the three studies</a>
+    <a class="btn" href="#studies">See the four studies</a>
     <a class="btn solid" href="#get-involved">Get involved</a>
   </div>
 </section>
@@ -589,7 +591,7 @@ footer nav.flinks a:hover{color:var(--fg)}
         </g>
       </svg>
     </div>
-    <p data-k="k28" class="note">H1 is tested in Study 2; H2 to H4 are estimated in Study 2 and tested in Study 3.</p>
+    <p data-k="w28" class="note">H1 is tested in Study 3; H2 to H4 are estimated in Study 3 and tested in Study 4.</p>
   </div>
 
   <div class="block">
@@ -606,14 +608,15 @@ footer nav.flinks a:hover{color:var(--fg)}
 <section class="page" id="p-studies" hidden>
   <div class="pg-head">
     <span class="eyebrow" data-k="k257">Research design</span>
-    <h1 data-k="k35">Three studies, one question</h1>
-    <p data-k="k36">Each study answers one question and feeds the next. Study 3 goes ahead only if Study 2 meets its progression criteria.</p>
+    <h1 data-k="s35">Four studies, one question</h1>
+    <p data-k="s36">Two reviews map the evidence, then two trials test an AI companion. Each study feeds the next, and Study 4 goes ahead only if Study 3 meets its progression criteria.</p>
   </div>
 
   <div class="trio">
     <button class="st" data-go="study-1"><span class="stn">Study 1</span><b>Scoping review</b><span class="stq">What is known about AI and help-seeking in Asia?</span><span class="stat on">Underway · Oct 2026 to Jan 2027</span></button>
-    <button class="st" data-go="study-2"><span class="stn">Study 2</span><b>Feasibility RCT</b><span class="stq">Can a trial work with Malaysian men?</span><span class="stat next">Ethics review · Oct 2026 to Aug 2027</span></button>
-    <button class="st" data-go="study-3"><span class="stn">Study 3</span><b>Full trial</b><span class="stq">Does Sol work, and why?</span><span class="stat">From Jan 2028, if Study 2 says go</span></button>
+    <button class="st" data-go="study-2"><span class="stn">Study 2</span><b>Systematic review and meta-analysis</b><span class="stq">What effect do AI tools have, pooled across studies?</span><span class="stat next">Planned · dates to be confirmed</span></button>
+    <button class="st" data-go="study-3"><span class="stn">Study 3</span><b>Feasibility RCT</b><span class="stq">Can a trial work with Malaysian men?</span><span class="stat next">Ethics review · Oct 2026 to Aug 2027</span></button>
+    <button class="st" data-go="study-4"><span class="stn">Study 4</span><b>Full trial</b><span class="stq">Does Sol work, and why?</span><span class="stat">From Jan 2028, if Study 3 says go</span></button>
   </div>
 
   <div class="block">
@@ -635,7 +638,7 @@ footer nav.flinks a:hover{color:var(--fg)}
     <div class="pg-head">
       <span class="eyebrow" data-k="k950">Study 1 · Scoping review</span>
       <h2 class="stitle" data-k="k951">What is already known?</h2>
-      <p data-k="k952">We are mapping published research on AI and mental health help-seeking in Asia, with particular attention to men. The gaps we find will shape the design of Sol and the outcomes we measure in Studies 2 and 3.</p>
+      <p data-k="s952">We are mapping published research on AI and mental health help-seeking in Asia, with particular attention to men. The gaps we find will shape the design of Sol and the outcomes we measure in Studies 3 and 4.</p>
     </div>
     <div class="facts">
       <div class="fact" data-k="k953"><span class="k">Design</span><span class="v">Scoping review following JBI and PRISMA-ScR</span></div>
@@ -648,14 +651,14 @@ footer nav.flinks a:hover{color:var(--fg)}
 
   <article class="study" id="study-2">
     <div class="pg-head">
-      <span class="eyebrow" data-k="k956">Study 2 · Feasibility trial</span>
-      <h2 class="stitle" data-k="k957">Can a trial work with Malaysian men?</h2>
-      <p data-k="k958">A small randomized trial of Ora and Sol with young Malaysian men. It tests whether a full trial is workable and safe, and gives a first look at whether Sol works as a bridge or a substitute. Findings will be written up as manuscripts for publication.</p>
+      <span class="eyebrow" data-k="s970">Study 2 · Systematic review and meta-analysis</span>
+      <h2 class="stitle" data-k="s971">How large are the effects?</h2>
+      <p data-k="s972">Where Study 1 maps what has been studied, Study 2 pools comparable results to estimate how AI tools relate to mental health help-seeking, and how confident we can be in that estimate. Its findings feed into the design and outcomes of the two trials.</p>
     </div>
     <div class="facts">
-      <div class="fact" data-k="k959"><span class="k">Design</span><span class="v">Feasibility randomized controlled trial with interviews</span></div>
-      <div class="fact" data-k="k960"><span class="k">Who</span><span class="v">Men aged 18 to 35 in Malaysia</span></div>
-      <div class="fact" data-k="k961"><span class="k">When</span><span class="v">Recruitment from January 2027, after ethics approval</span></div>
+      <div class="fact" data-k="s973"><span class="k">Design</span><span class="v">Systematic review and meta-analysis</span></div>
+      <div class="fact" data-k="s974"><span class="k">When</span><span class="v">Dates to be confirmed</span></div>
+      <div class="fact" data-k="s975"><span class="k">Status</span><span class="v">Planned</span></div>
     </div>
   </article>
 
@@ -663,14 +666,29 @@ footer nav.flinks a:hover{color:var(--fg)}
 
   <article class="study" id="study-3">
     <div class="pg-head">
-      <span class="eyebrow" data-k="k962">Study 3 · Full trial</span>
-      <h2 class="stitle" data-k="k963">Does Sol work, and why?</h2>
-      <p data-k="k964">A larger trial across several Malaysian settings to give a clear answer on whether Sol helps men reach people, and whether self-compassion explains the effect. It goes ahead only if Study 2 shows a full trial is workable.</p>
+      <span class="eyebrow" data-k="s956">Study 3 · Feasibility trial</span>
+      <h2 class="stitle" data-k="s957">Can a trial work with Malaysian men?</h2>
+      <p data-k="s958">A small randomized trial of Ora and Sol with young Malaysian men. It tests whether a full trial is workable and safe, and gives a first look at whether Sol works as a bridge or a substitute. Findings will be written up as manuscripts for publication.</p>
     </div>
     <div class="facts">
-      <div class="fact" data-k="k965"><span class="k">Design</span><span class="v">Multi-site randomized controlled trial</span></div>
-      <div class="fact" data-k="k966"><span class="k">Where</span><span class="v">Malaysian universities and community settings</span></div>
-      <div class="fact" data-k="k967"><span class="k">When</span><span class="v">From 2028, if Study 2 says go</span></div>
+      <div class="fact" data-k="s959"><span class="k">Design</span><span class="v">Feasibility randomized controlled trial with interviews</span></div>
+      <div class="fact" data-k="s960"><span class="k">Who</span><span class="v">Men aged 18 to 35 in Malaysia</span></div>
+      <div class="fact" data-k="s961"><span class="k">When</span><span class="v">Recruitment from January 2027, after ethics approval</span></div>
+    </div>
+  </article>
+
+  <hr class="rule">
+
+  <article class="study" id="study-4">
+    <div class="pg-head">
+      <span class="eyebrow" data-k="s962">Study 4 · Full trial</span>
+      <h2 class="stitle" data-k="s963">Does Sol work, and why?</h2>
+      <p data-k="s964">A larger trial across several Malaysian settings to give a clear answer on whether Sol helps men reach people, and whether self-compassion explains the effect. It goes ahead only if Study 3 shows a full trial is workable.</p>
+    </div>
+    <div class="facts">
+      <div class="fact" data-k="s965"><span class="k">Design</span><span class="v">Multi-site randomized controlled trial</span></div>
+      <div class="fact" data-k="s966"><span class="k">Where</span><span class="v">Malaysian universities and community settings</span></div>
+      <div class="fact" data-k="s967"><span class="k">When</span><span class="v">From 2028, if Study 3 says go</span></div>
     </div>
   </article>
 </section>
@@ -678,178 +696,79 @@ footer nav.flinks a:hover{color:var(--fg)}
 <!-- JOIN -->
 <section class="page" id="p-get-involved" hidden>
   <div class="pg-head">
-    <h1 data-k="k158">Getting involved</h1>
-    <p data-k="k159">Want to get involved in Bridge or Substitute? Great. We are building a small team across all three studies: research assistants for the scoping review and the two trials, and people who can code and work with AI to build Ora and Sol. <b>All positions are unpaid and voluntary</b>, and we are open to collaboration. This page explains what is open right now and what each role involves.</p>
+    <h1 data-k="g1">Get involved</h1>
+    <p data-k="g2">We're recruiting volunteers for two teams: research assistants and an AI and tech team. All positions are unpaid.</p>
   </div>
 
-  <div class="block">
-    <h2 data-k="k160">Bottom line: what opportunities currently exist?</h2>
-    <p data-k="k161" style="color:var(--muted)">The summary as of today. Read below for the details.</p>
-    <div class="opps four">
-      <div class="opp open" id="opp-ra"><div class="oh" data-k="k270">Research Assistant Intern</div><div class="ob" data-k="k271"><span id="opp-ra-body">Unpaid. We are <b>recruiting</b> two RAs for Study 1, October 2026 to January 2027. Remote, 10 hours a week. <b>Applications close October 30, 2026.</b></span></div></div>
-      <div class="opp open"><div class="oh" data-k="k272">Studies 2 and 3 · Trial team</div><div class="ob" data-k="k273">Unpaid. We are <b>open</b> to research assistants for the feasibility trial and the full trial: recruitment, surveys, data, interviews and analysis. Rolling applications.</div></div>
-      <div class="opp open"><div class="oh" data-k="k274">Tech and AI team</div><div class="ob" data-k="k275">Unpaid. We are <b>open</b> to people interested in coding, programming and AI to help build and improve Ora and Sol. Rolling applications.</div></div>
-      <div class="opp open"><div class="oh" data-k="k901">Collaborators</div><div class="ob" data-k="k902">We are <b>open to collaboration</b> with researchers, clinicians, developers and organizations working on AI, help-seeking or men's mental health in Asia. Get in touch any time.</div></div>
-      <div class="opp wait"><div class="oh" data-k="k276">Study 2 participants</div><div class="ob" data-k="k277">We will recruit 80 men aged 18 to 35 in Malaysia to try Ora and Sol for 12 weeks. Recruitment is <b>not open yet</b>; it starts in January 2027, after ethics approval.</div></div>
-    </div>
-  </div>
-
-  <div class="prose">
-    <p data-k="k162">Before you apply, ask yourself what you want from the experience. For some people it is a step toward a Master's or PhD; for others it is a way to find out whether research, or building technology for mental health, suits them at all. The scoping review is a structured place to learn how evidence is gathered. The trials show how a study runs with real participants. The tech work puts an AI companion in front of the men it is meant to help. It helps to come with a clear idea of why this project, and why now.</p>
-  </div>
-
-  <div class="callout">
-    <p data-k="k164">If after reading this <b>entire page</b> you'd like to be considered, email <span class="addr">22059169@siswa.um.edu.my</span> with the role in the subject line. The Study 1 position closes <span data-s="deadline">October 30, 2026</span>; the trial and tech roles are open on a rolling basis.</p>
-    <button class="cbtn copy-email" data-email="22059169@siswa.um.edu.my">Copy email</button>
+  <div class="opps two">
+    <div class="opp open" id="opp-ra"><div class="oh" data-k="g3">Research assistants</div><div class="ob"><span id="opp-ra-body">We're recruiting research assistants. Remote, about 10 hours a week.</span></div></div>
+    <div class="opp open"><div class="oh" data-k="g4">AI and tech team</div><div class="ob" data-k="g5">Open now, rolling applications. Remote, hours agreed with you.</div></div>
   </div>
 
   <hr class="rule">
 
   <div class="pg-head">
-    <span class="eyebrow" data-k="k278">Study 1 · scoping review</span>
-    <h2 data-k="k165" style="font-size:30px;font-weight:600">Research Assistant Intern</h2>
-    <p data-k="k166">Work as a second reviewer alongside the principal investigator and one other research assistant. Hands-on research experience in digital mental health, for students and recent graduates.</p>
+    <span class="eyebrow" data-k="g6">Research assistants</span>
+    <h2 data-k="g7" style="font-size:30px;font-weight:600">Help screen and chart the evidence</h2>
   </div>
-
-  <div class="facts">
-    <div class="fact" data-k="k279"><span class="k">Organization</span><span class="v">Universiti Malaya</span></div>
-    <div class="fact" data-k="k280"><span class="k">Department</span><span class="v">Educational Psychology and Counseling, Faculty of Education</span></div>
-    <div class="fact" data-k="k281"><span class="k">Location</span><span class="v">Remote, weekly meeting online or at UM</span></div>
-    <div class="fact" data-k="k282"><span class="k">Timeline</span><span class="v">October 2026 to January 2027</span></div>
-    <div class="fact" data-k="k283"><span class="k">Commitment</span><span class="v">10 hours a week, flexible within weekly targets</span></div>
-    <div class="fact" data-k="k284"><span class="k">Pay</span><span class="v">Unpaid, voluntary position</span></div>
-  </div>
-
   <div class="two">
     <div class="block">
-      <h2 data-k="k167">What you'll do</h2>
+      <h3 class="sh" data-k="g8">What you'll do</h3>
       <ul class="list">
-        <li data-k="k168">Screen titles and abstracts against set eligibility criteria</li>
-        <li data-k="k169">Retrieve full-text articles, screen them and record reasons for exclusion</li>
-        <li data-k="k170">Chart key details from included studies in a shared Excel form</li>
-        <li data-k="k171">Keep a short work log and organized project files</li>
-        <li data-k="k172">Attend a weekly meeting with the principal investigator</li>
+        <li data-k="g9">Screen titles, abstracts and full texts against set criteria</li>
+        <li data-k="g10">Chart key details from included studies in a shared spreadsheet</li>
+        <li data-k="g11">Keep a short work log and meet the principal investigator weekly</li>
       </ul>
     </div>
     <div class="block">
-      <h2 data-k="k173">What you'll gain</h2>
+      <h3 class="sh" data-k="g12">Who we're looking for</h3>
       <ul class="list">
-        <li data-k="k174">Hands-on training in JBI and PRISMA-ScR scoping review methods</li>
-        <li data-k="k175">Experience with Rayyan or Covidence, and Zotero</li>
-        <li data-k="k176">Your contribution named in the published article, with co-authorship offered if you meet authorship criteria</li>
-        <li data-k="k177">A letter confirming your role and hours on completion</li>
+        <li data-k="g13">Students or recent graduates in psychology, counseling or a related field</li>
+        <li data-k="g14">Careful readers of academic papers in English</li>
+        <li data-k="g15">Comfortable with Excel or Google Sheets; Rayyan, Covidence or Zotero is a plus</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note" data-k="g16">You'll be trained in review methods, named in the published article, and offered co-authorship if you meet the authorship criteria.</p>
+
+  <hr class="rule">
+
+  <div class="pg-head">
+    <span class="eyebrow" data-k="g17">AI and tech team</span>
+    <h2 data-k="g18" style="font-size:30px;font-weight:600">Help build Ora and Sol</h2>
+  </div>
+  <div class="two">
+    <div class="block">
+      <h3 class="sh" data-k="g19">What you'll work on</h3>
+      <ul class="list">
+        <li data-k="g20">The Ora app: features, accessibility and reliability</li>
+        <li data-k="g21">Sol's conversations and behavior with large language models</li>
+        <li data-k="g22">Safety escalation, the researcher console and privacy safeguards</li>
+      </ul>
+    </div>
+    <div class="block">
+      <h3 class="sh" data-k="g23">Who we're looking for</h3>
+      <ul class="list">
+        <li data-k="g24">Comfortable programming, for example in JavaScript, TypeScript or Python</li>
+        <li data-k="g25">Interested in AI, large language models or mental health technology</li>
+        <li data-k="g26">Students, recent graduates and self-taught developers are all welcome</li>
       </ul>
     </div>
   </div>
 
-  <div class="two">
-    <div class="block">
-      <h2 data-k="k178">Required</h2>
-      <ul class="list">
-        <li data-k="k179">Enrolled in or recently graduated from Psychology, Counseling or a related program</li>
-        <li data-k="k180">Comfortable reading academic papers in English</li>
-        <li data-k="k181">Excellent attention to detail and organization</li>
-        <li data-k="k182">Proficient in Microsoft Office (especially Excel) or Google Workspace</li>
-        <li data-k="k183">Able to work independently and meet weekly targets</li>
-      </ul>
-    </div>
-    <div class="block">
-      <h2 data-k="k184">Preferred</h2>
-      <ul class="list">
-        <li data-k="k185">Prior experience with systematic or scoping reviews</li>
-        <li data-k="k186">Familiarity with Rayyan, Covidence or Zotero</li>
-        <li data-k="k187">Interest in mental health, help-seeking or artificial intelligence</li>
-      </ul>
-    </div>
-  </div>
+  <hr class="rule">
 
   <div class="block">
-    <h2 data-k="k188">How to apply</h2>
-    <div class="prose">
-      <p data-k="k189">Attach your <b>resume or CV</b> (academic background and any research experience) and your <b>most recent academic transcript</b>. In the email body, tell us briefly why you are interested, what relevant experience or skills you have, and what you hope to gain.</p>
-    </div>
+    <h2 data-k="g27">How to apply</h2>
     <div class="contact"><code id="em1">22059169@siswa.um.edu.my</code><button class="copy" data-copy="em1" id="cp1">Copy email</button></div>
-    <span class="eyebrow" data-k="k285">Subject line</span>
-    <div class="subject" data-k="k286" id="subj">Research Assistant Intern Application—[Your Name]</div>
-  </div>
-
-  <hr class="rule">
-
-  <div class="pg-head">
-    <span class="eyebrow" data-k="k287">Studies 2 and 3 · randomized controlled trials</span>
-    <h2 data-k="k190" style="font-size:30px;font-weight:600">Trial research team</h2>
-    <p data-k="k191">Help run the feasibility trial with 80 Malaysian men from January 2027, and the full multi-site trial that may follow from 2028. Good preparation for anyone heading toward clinical or health research.</p>
-  </div>
-  <div class="two">
-    <div class="block">
-      <h2 data-k="k192">What you might do</h2>
-      <ul class="list">
-        <li data-k="k193">Support participant recruitment and enrollment</li>
-        <li data-k="k194">Send survey waves at weeks 0, 4, 8 and 12 and track weekly check-ins</li>
-        <li data-k="k195">Keep trial data clean, organized and secure under Malaysia's Personal Data Protection Act</li>
-        <li data-k="k196">Help with analysis: effect sizes, mixed models and feasibility outcomes</li>
-        <li data-k="k197">Support exit interviews and thematic analysis</li>
-      </ul>
-    </div>
-    <div class="block">
-      <h2 data-k="k198">Who we're looking for</h2>
-      <ul class="list">
-        <li data-k="k199">Students or recent graduates in psychology, counseling, public health, statistics or a related field</li>
-        <li data-k="k200">Careful with data and comfortable following a protocol</li>
-        <li data-k="k201">Interest in men's mental health, help-seeking or digital interventions</li>
-        <li data-k="k202">Experience with R, SPSS or qualitative analysis is a plus</li>
-      </ul>
-    </div>
-  </div>
-
-  <hr class="rule">
-
-  <div class="pg-head">
-    <span class="eyebrow" data-k="k288">Ora and Sol · coding, programming and AI</span>
-    <h2 data-k="k203" style="font-size:30px;font-weight:600">Tech and AI team</h2>
-    <p data-k="k204">Ora is the study app and Sol is the AI companion inside it. Both exist as a working prototype. We need people who enjoy building things to help make them better and safer before and during the trials.</p>
-  </div>
-  <div class="two">
-    <div class="block">
-      <h2 data-k="k205">What you might work on</h2>
-      <ul class="list">
-        <li data-k="k206">App development for Ora: features, accessibility and reliability</li>
-        <li data-k="k207">Sol's conversation design, prompts and behavior with large language models</li>
-        <li data-k="k208">The safety escalation logic that flags risk for a person to follow up</li>
-        <li data-k="k209">The researcher console, data pipelines and privacy safeguards</li>
-        <li data-k="k210">Usage analytics that show how men actually use Sol</li>
-      </ul>
-    </div>
-    <div class="block">
-      <h2 data-k="k211">Who we're looking for</h2>
-      <ul class="list">
-        <li data-k="k212">Comfortable programming, for example in JavaScript, TypeScript or Python</li>
-        <li data-k="k213">Interest in AI, large language models, human-computer interaction or mental health technology</li>
-        <li data-k="k214">Thoughtful about safety and privacy when software meets vulnerable users</li>
-        <li data-k="k215">Students, recent graduates and self-taught developers are all welcome</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="block">
-    <h2 data-k="k216">How to apply for trial and tech roles</h2>
-    <div class="prose">
-      <p data-k="k217">Email your CV and a short note on why you are interested and what you would bring. For tech roles, include a link to your GitHub or portfolio if you have one. These roles are unpaid and voluntary. We will agree hours, recognition and authorship credit with you before you start. Collaborators are welcome to use the same address.</p>
-    </div>
-    <span class="eyebrow" data-k="k289">Subject line</span>
-    <div class="subject" data-k="k290">Bridge or Substitute: [Trial team / Tech and AI team]—[Your Name]</div>
-  </div>
-
-  <hr class="rule">
-
-  <div class="block">
-    <h2 data-k="k218">Learn more about scoping reviews</h2>
-    <ul class="refs">
-      <li data-k="k219"><a href="https://unimelb.libguides.com/c.php?g=677555&p=6910229#s-lg-box-22203699" target="_blank" rel="noopener">Scoping Reviews for STEMM</a>, University of Melbourne Library guide</li>
-      <li data-k="k220"><a href="https://training.cochrane.org/resource/scoping-reviews-what-they-are-and-how-you-can-do-them" target="_blank" rel="noopener">Scoping reviews: what they are and how you can do them</a>, Cochrane Training</li>
-      <li data-k="k221"><a href="https://link.springer.com/article/10.1186/s12874-018-0611-x" target="_blank" rel="noopener">Systematic review or scoping review?</a>, Munn et al., 2018</li>
-      <li data-k="k222"><a href="http://doi.org/10.1080/1364557032000119616" target="_blank" rel="noopener">Scoping studies: toward a methodological framework</a>, Arksey &amp; O'Malley, 2005</li>
-    </ul>
+    <div class="tbl"><table class="narrow">
+      <thead><tr><th data-k="g28">Role</th><th data-k="g29">Send</th><th data-k="g30">Subject line</th></tr></thead>
+      <tbody>
+        <tr><td data-k="g31">Research assistant</td><td data-k="g32">CV and latest transcript</td><td data-k="g33">RA application—[Your Name]</td></tr>
+        <tr><td data-k="g34">AI and tech team</td><td data-k="g35">CV and a GitHub or portfolio link</td><td data-k="g36">AI and tech team—[Your Name]</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" data-k="g37">In the email, tell us in a few lines why you're interested and what you'd bring.</p>
   </div>
 </section>
 
@@ -906,6 +825,7 @@ footer nav.flinks a:hover{color:var(--fg)}
       <button role="tab" data-tab="team" aria-selected="false">Team</button>
       <button role="tab" data-tab="posts" aria-selected="false">Blog posts</button>
       <button role="tab" data-tab="pubs" aria-selected="false">Publications</button>
+      <button role="tab" data-tab="menu" aria-selected="false">Menu</button>
       <button role="tab" data-tab="timelines" aria-selected="false">Timelines</button>
       <button role="tab" data-tab="resources" aria-selected="false">Research resources</button>
     </div>
@@ -918,7 +838,7 @@ footer nav.flinks a:hover{color:var(--fg)}
   <div class="pg-head">
     <span class="eyebrow" data-k="k294">About</span>
     <h1 data-k="k230">Research team</h1>
-    <p data-k="k231">Meet the people behind Bridge or Substitute, a three-study program running from 2026 to 2029 in the Department of Educational Psychology and Counseling, Universiti Malaya.</p>
+    <p data-k="a231">Meet the people behind Bridge or Substitute, a four-study program running from 2026 to 2029 in the Department of Educational Psychology and Counseling, Universiti Malaya.</p>
   </div>
   <div class="roster" id="roster">
     <article class="member">
@@ -926,7 +846,7 @@ footer nav.flinks a:hover{color:var(--fg)}
       <div class="info">
         <div class="mh"><h3 data-k="k232">Brendon Ban Ren Jie</h3><span class="badge">PI <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M3 10v4h3l5 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></span></div>
         <p data-k="k233" class="sub">Master of Professional Counseling, Universiti Malaya</p>
-        <p data-k="k234" class="bio">Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all three studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.</p>
+        <p data-k="k234" class="bio">Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all four studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.</p>
         <p data-k="k235" class="bio">His earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.</p>
         <ul class="work">
           <li data-k="k236">Chong, K. Y. L., Ng, J. H., Ban, R. J., et al. (2022). Paper presented at MAPSA 2022.</li>
@@ -940,7 +860,7 @@ footer nav.flinks a:hover{color:var(--fg)}
       <div class="info">
         <div class="mh"><h3 data-k="k238">Assoc. Prof. Dr. Lau Poh Li</h3><span class="badge">Supervisor <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/></svg></span></div>
         <p data-k="k239" class="sub">Department of Educational Psychology and Counseling</p>
-        <p data-k="k240" class="bio">Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 2 and 3.</p>
+        <p data-k="k240" class="bio">Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 3 and 4.</p>
         <div class="links"><button class="lchip copy-email" data-email="janicepolly@um.edu.my"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 7 8-5H4l8 5zm0 2L4 8v10h16V8l-8 5z"/></svg><span>email</span></button></div>
       </div>
     </article>
@@ -957,7 +877,7 @@ footer nav.flinks a:hover{color:var(--fg)}
       <div class="photo open" aria-hidden="true"><span>+</span></div>
       <div class="info">
         <div class="mh"><h3 data-k="k244">Trial, tech and AI team</h3><span class="badge">Team <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M8 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 14c-2.7 0-6 1.3-6 4v2h12v-2c0-2.7-3.3-4-6-4zm8 0c-.6 0-1.3.1-2 .2 1.2.9 2 2.1 2 3.8v2h6v-2c0-2.6-3.3-4-6-4z"/></svg></span></div>
-        <p data-k="k245" class="sub">Studies 2 and 3 · open · rolling applications</p>
+        <p data-k="a245" class="sub">AI and tech team · open · rolling applications</p>
         <p data-k="k246" class="bio">Research assistants for the two trials, and people who code and work with AI to build and improve Ora and Sol. If you are interested in programming, AI or running a trial, we would like to hear from you.</p>
         <div class="links"><a class="lchip" href="#get-involved"><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M5 12h11.2l-4.6-4.6L13 6l7 7-7 7-1.4-1.4 4.6-4.6H5z"/></svg><span>get involved</span></a></div>
       </div>
@@ -967,7 +887,7 @@ footer nav.flinks a:hover{color:var(--fg)}
 </section>
 </main>
 
-<footer><div class="wrap"><div class="fcol"><span data-k="f1">Bridge or Substitute · A three-study program at Universiti Malaya</span><span data-k="f2">AI companions, self-compassion and help-seeking among Malaysian men</span></div><nav class="flinks" aria-label="Footer"><a href="#why">Why it matters</a><a href="#studies">Studies</a><a href="#get-involved">Get involved</a><a href="#publications">Publications</a><a href="#blog">Blog</a><a href="#about">About</a></nav></div></footer>
+<footer><div class="wrap"><div class="fcol"><span data-k="f1b">Bridge or Substitute · A four-study program at Universiti Malaya</span><span data-k="f2">AI companions, self-compassion and help-seeking among Malaysian men</span></div><nav class="flinks" aria-label="Footer"><a href="#why">Why it matters</a><a href="#studies">Studies</a><a href="#get-involved">Get involved</a><a href="#publications">Publications</a><a href="#blog">Blog</a><a href="#about">About</a></nav></div></footer>
 
 <div class="edit-bar" id="edit-bar" hidden><span class="eb-dot"></span><span class="eb-msg"><b>Editing page text.</b> <span id="eb-count">No unpublished changes</span></span><div class="adm-act"><button class="abtn ghost" id="eb-reset">Reset this text</button><button class="abtn ghost" id="eb-done">Done</button><button class="abtn" id="eb-publish" disabled>Publish to site</button></div></div>
 <a class="float" href="#get-involved" id="float"><span class="sw"></span><span id="float-text">Apply by Oct 30</span></a>
@@ -992,12 +912,22 @@ footer nav.flinks a:hover{color:var(--fg)}
 
 /* ---------- routing ---------- */
 const pages=["home","why","studies","get-involved","publications","blog","about","admin"];
+const NAV_ITEMS=[["studies","Studies"],["publications","Publications"],["blog","Blog"],["about","About"],["get-involved","Get involved"],["why","Why it matters"]];
+const navHidden=k=>!!(window.__nav&&window.__nav.includes(k));
+function applyNav(nav){
+  window.__nav=(nav&&Array.isArray(nav.hidden))?nav.hidden.slice():[];
+  NAV_ITEMS.forEach(([k])=>{const off=navHidden(k);
+    document.querySelectorAll(`#mainnav a[data-p="${k}"],.flinks a[href="#${k}"],#p-home .btns a[href="#${k}"]`).forEach(a=>a.hidden=off);});
+  const f=document.getElementById("float");if(f&&navHidden("get-involved"))f.hidden=true;
+  const h=(location.hash||"#home").slice(1).replace(/^blog-.*/,"blog");
+  if(navHidden(h)&&!window.__isEditor)location.hash="#home";
+}
 function route(){
-  let h=(location.hash||"#home").slice(1); if(h==="method") h="studies"; let post=null; if(h.startsWith("blog-")){post=h.slice(5);h="blog";} if(!pages.includes(h)) h="home"; if(h==="blog"&&window.__blogShow) window.__blogShow(post); if(h==="admin"&&window.__adminShow) window.__adminShow();
+  let h=(location.hash||"#home").slice(1); if(h==="method") h="studies"; let post=null; if(h.startsWith("blog-")){post=h.slice(5);h="blog";} if(!pages.includes(h)) h="home"; if(navHidden(h)&&!window.__isEditor) h="home"; if(h==="blog"&&window.__blogShow) window.__blogShow(post); if(h==="admin"&&window.__adminShow) window.__adminShow();
   pages.forEach(p=>document.getElementById("p-"+p).hidden=(p!==h));
   document.querySelectorAll("#hdr [data-p]").forEach(a=>{ if(a.dataset.p===h) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   const hd=document.getElementById("hdr");if(hd){hd.classList.remove("open");const mb=document.getElementById("menu-btn");if(mb)mb.setAttribute("aria-expanded","false");}
-  document.getElementById("float").hidden=(h==="get-involved"||h==="admin"||(window.SITE&&!window.SITE.recruit.open));
+  document.getElementById("float").hidden=(h==="get-involved"||h==="admin"||navHidden("get-involved")||(window.SITE&&!window.SITE.recruit.open));
   window.scrollTo(0,0);
   if(h==="home" && window.__graphResize) requestAnimationFrame(window.__graphResize);
 }
@@ -1180,16 +1110,16 @@ window.applyRecruit=function(r){
   document.querySelectorAll('[data-s="deadline"]').forEach(e=>e.textContent=r.deadline);
   const ft=document.getElementById("float-text");if(ft)ft.textContent=r.pill;
   const h=(location.hash||"#home").slice(1);
-  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin";
+  document.getElementById("float").hidden=!r.open||h==="get-involved"||h==="admin"||navHidden("get-involved");
   const card=document.getElementById("opp-ra"),body=document.getElementById("opp-ra-body");
   if(card&&body){card.className="opp "+(r.open?"open":"wait");
-    body.innerHTML=r.open?`Unpaid. We are <b>recruiting</b> two RAs for Study 1, October 2026 to January 2027. Remote, 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
+    body.innerHTML=r.open?`We're <b>recruiting</b> research assistants. Remote, about 10 hours a week. <b>Applications close ${esc(r.deadline)}.</b>`:esc(r.closedNote);}
   const rs=document.getElementById("ra-state");if(rs)rs.textContent=r.open?"recruiting":"applications closed";
 };
 
 /* ---------- site data ---------- */
 buildGantt("study1",[{"label": "Protocol and OSF registration", "start": "2026-10-01", "end": "2026-10-22", "key": false}, {"label": "Database search", "start": "2026-10-13", "end": "2026-11-09", "key": false}, {"label": "Title and abstract screening", "start": "2026-11-01", "end": "2026-11-27", "key": false}, {"label": "Full-text screening", "start": "2026-11-19", "end": "2026-12-15", "key": false}, {"label": "Data charting", "start": "2026-12-07", "end": "2027-01-02", "key": false}, {"label": "Synthesis · UKM conference", "start": "2026-12-25", "end": "2027-01-13", "key": true}, {"label": "Write-up · article submitted", "start": "2027-01-10", "end": "2027-02-06", "key": true}]);
-buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 2 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 2 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 3 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 3 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
+buildGantt("program",[{"label": "Study 1 · scoping review", "start": "2026-10-01", "end": "2027-02-01", "key": false}, {"label": "Study 3 · ethics and registration", "start": "2026-10-01", "end": "2027-01-01", "key": false}, {"label": "Study 3 · trial, interviews, analysis", "start": "2027-01-01", "end": "2027-09-01", "key": false}, {"label": "Go, amend or stop", "start": "2027-08-10", "end": "2027-09-01", "key": true}, {"label": "Refine Sol · Study 4 set-up", "start": "2027-09-01", "end": "2028-01-01", "key": false}, {"label": "Study 4 · recruitment and delivery", "start": "2028-01-01", "end": "2029-01-01", "key": false}, {"label": "Follow-up, analysis, publication", "start": "2029-01-01", "end": "2029-10-01", "key": true}]);
 window.SITE=null;
 const ICONS={megaphone:'<path fill="currentColor" d="M3 10v4h3l5 4V6L6 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/>',cap:'<path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/>',person:'<path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/>',group:'<path fill="currentColor" d="M8 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 14c-2.7 0-6 1.3-6 4v2h12v-2c0-2.7-3.3-4-6-4zm8 0c-.6 0-1.3.1-2 .2 1.2.9 2 2.1 2 3.8v2h6v-2c0-2.6-3.3-4-6-4z"/>'};
 const MAIL='<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 7 8-5H4l8 5zm0 2L4 8v10h16V8l-8 5z"/></svg>';
@@ -1262,7 +1192,7 @@ function applyTexts(texts){
 }
 function applySite(d){
   d.texts=d.texts||{};
-  window.SITE=d;window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
+  window.SITE=d;applyNav(d.nav);window.applyRecruit(d.recruit);window.initPubs(d.pubs);window.initBlog(d.posts);
   if(d.team)renderTeam(d.team);
   if(d.timelines){buildGantt("study1",d.timelines.study1);buildGantt("program",d.timelines.program);}
   if(!document.body.classList.contains("editing"))applyTexts(d.texts);
@@ -1350,6 +1280,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     if(tab==="recruit")return recruitTab(B);
     if(tab==="home")return homeTab(B);
     if(tab==="timelines")return timelinesTab(B);
+    if(tab==="menu")return menuTab(B);
     if(tab==="resources")return resTab(B);
     if(tab==="team"){
       if(editing!==null)return teamForm(B,draft.team);
@@ -1382,6 +1313,23 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       <p class="note">To change any other text on the site, including headings, paragraphs and table cells, use <b>Edit page text</b> at the top.</p></div>`;
     $("h-typed").value=(draft.home.typed||[]).join("\n");
     $("h-typed").oninput=e=>{draft.home.typed=e.target.value.split("\n").map(t=>t.trim()).filter(Boolean);bar();};
+  }
+  function menuTab(B){
+    draft.nav=draft.nav||{hidden:[]};
+    const box=document.createElement("div");box.className="aform";
+    box.innerHTML=`<h3>Menu</h3><p class="note">Turn pages off to remove them from the menu, the footer and the home page buttons. Visitors who open a hidden page's link go to the home page. You can still open hidden pages while signed in.</p><div class="navlist"></div>`;
+    const L=box.querySelector(".navlist");
+    NAV_ITEMS.forEach(([k,label])=>{
+      const on=!draft.nav.hidden.includes(k);
+      const row=document.createElement("div");row.className="arow";
+      row.innerHTML=`<div><b></b><small></small></div><div class="adm-act"></div>`;
+      row.querySelector("b").textContent=label;row.querySelector("small").textContent=k==="why"?"Footer and home page button":"Top menu and footer";
+      const t=document.createElement("button");t.type="button";t.className="vis"+(on?" on":"");t.setAttribute("role","switch");t.setAttribute("aria-checked",String(on));t.setAttribute("aria-label",label+(on?" is shown":" is hidden"));
+      t.innerHTML='<span class="knob"></span><span class="vl"></span>';t.querySelector(".vl").textContent=on?"Shown":"Hidden";
+      t.onclick=()=>{const h=draft.nav.hidden;if(on)h.push(k);else h.splice(h.indexOf(k),1);applyNav(draft.nav);bar();render();};
+      row.querySelector(".adm-act").appendChild(t);L.appendChild(row);
+    });
+    B.appendChild(box);
   }
   function timelinesTab(B){
     draft.timelines=draft.timelines||{study1:[],program:[]};
@@ -1669,7 +1617,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     }finally{bs.forEach(b=>b.textContent="Publish to site");bar();}
   }
   $("adm-publish").onclick=publish;$("eb-publish").onclick=publish;
-  $("adm-discard").onclick=()=>{draft=clone(window.SITE);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
+  $("adm-discard").onclick=()=>{draft=clone(window.SITE);applyNav(draft.nav);draft.texts=draft.texts||{};editing=null;confirmDel=null;if(editMode)applyTexts(draft.texts);buildGantt("study1",draft.timelines&&draft.timelines.study1);buildGantt("program",draft.timelines&&draft.timelines.program);bar();render();toast("Changes discarded");};
   $("adm-edittext").onclick=()=>setEditMode(true);
   document.querySelectorAll(".adm-tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;editing=null;confirmDel=null;render();});
 
@@ -1687,7 +1635,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
       if(canEdit)artifact=await window.claude.use("artifact");
     }catch(e){canEdit=false;}
     const host=window.claude&&window.claude.host;
-    if(canEdit&&artifact){$("nav-admin").hidden=false;if(host&&host.signOutUrl){const so=document.createElement("a");so.className="abtn ghost";so.href=host.signOutUrl;so.textContent="Sign out";$("adm-bar").querySelector(".adm-act").prepend(so);}}
+    if(canEdit&&artifact){window.__isEditor=true;$("nav-admin").hidden=false;if(host&&host.signOutUrl){const so=document.createElement("a");so.className="abtn ghost";so.href=host.signOutUrl;so.textContent="Sign out";$("adm-bar").querySelector(".adm-act").prepend(so);}}
     else{canEdit=false;
       if(host&&host.signInUrl){
         gate.innerHTML="";
@@ -1707,7 +1655,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   if(!window.d3){document.getElementById("panel").innerHTML="<p>The network could not load. The rest of the site works as normal.</p>";return;}
   const groups={
     question:{label:"The question",shape:"star"},
-    studies:{label:"Three studies",shape:"big"},
+    studies:{label:"Four studies",shape:"big"},
     people:{label:"People",shape:"circle"},
     ai:{label:"AI and Sol",shape:"square"},
     mechanism:{label:"Mechanism",shape:"tri"},
@@ -1723,12 +1671,13 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["bridge","Bridge","question","The AI companion helps men take the first step toward friends, family and counselors."],
     ["sub","Substitute","question","The AI companion becomes the only place men go."],
     ["st1","Study 1 · Scoping review","studies","Maps what is known about AI and mental health help-seeking in Asia. October 2026 to January 2027."],
-    ["st2","Study 2 · Feasibility RCT","studies","A small randomized trial of Ora and Sol with young Malaysian men. Tests whether a full trial is workable."],
-    ["st3","Study 3 · Full trial","studies","A larger multi-site trial to give a clear answer. From 2028, only if Study 2 says go."],
-    ["pi","Brendon Ban Ren Jie","people","Principal investigator. Counseling trainee who designed and built Ora and Sol, and leads all three studies."],
+    ["st2","Study 3 · Feasibility RCT","studies","A small randomized trial of Ora and Sol with young Malaysian men. Tests whether a full trial is workable."],
+    ["st3","Study 4 · Full trial","studies","A larger multi-site trial to give a clear answer. From 2028, only if Study 3 says go."],
+    ["sr","Study 2 · Systematic review","studies","A systematic review and meta-analysis that pools comparable results to estimate how AI tools relate to help-seeking."],
+    ["pi","Brendon Ban Ren Jie","people","Principal investigator. Counseling trainee who designed and built Ora and Sol, and leads all four studies."],
     ["sv","Assoc. Prof. Dr. Lau Poh Li","people","Supervisor of the program, Universiti Malaya."],
     ["ra","Research assistants","people","Two RAs share second screening and data charting for Study 1."],
-    ["team","Trial and tech team","people","Open now, unpaid: research assistants for Studies 2 and 3, and people who code and work with AI to build Ora and Sol. Collaborators welcome."],
+    ["team","Trial and tech team","people","Open now, unpaid: research assistants, and people who code and work with AI to build Ora and Sol. Collaborators welcome."],
     ["ora","Ora app","ai","The study app: weekly check-ins, diary and a get-help page."],
     ["sol","Sol","ai","The AI companion inside Ora, with a safety escalation protocol and a researcher console."],
     ["chat","Chatbots","ai","Conversational agents that people talk to about how they feel."],
@@ -1744,13 +1693,13 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["s2","Appraise","stages","Stage 2: judging that it warrants support."],
     ["s3","Select a source","stages","Stage 3: choosing who or what to turn to."],
     ["asia","Asia","context","Study 1 covers any Asian country and people of Asian background."],
-    ["my","Malaysian men","context","Rarely included in help-seeking research; the population for Studies 2 and 3."],
+    ["my","Malaysian men","context","Rarely included in help-seeking research; the population for Studies 3 and 4."],
     ["stigma","Stigma · face · family","context","Cultural pressures that shape help-seeking in Asia."],
     ["jbi","JBI · PRISMA-ScR","method","Scoping review methods (Peters et al., 2020; Tricco et al., 2018)."],
     ["screening","Dual screening","method","Independent screening of titles, abstracts and full texts."],
     ["rayyan","Rayyan · Covidence · Zotero","method","Screening and reference tools."],
     ["consort","CONSORT · SPIRIT","method","Reporting standards for the two trials."],
-    ["lights","Progression criteria","method","Pre-set criteria decide whether Study 3 goes ahead."],
+    ["lights","Progression criteria","method","Pre-set criteria decide whether Study 4 goes ahead."],
     ["pubmed","PubMed","sources","Biomedical database."],["psyc","PsycINFO","sources","Psychology database."],["scopus","Scopus","sources","Multidisciplinary database."],["wos","Web of Science","sources","Multidisciplinary database."],["acm","ACM","sources","Computing database."],["ieee","IEEE Xplore","sources","Engineering and computing database."],["mycite","MyCite","sources","Malaysian citation index."],["asean","ASEAN Citation Index","sources","Regional citation index."],
     ["rick","Rickwood 2005","evidence","Help-seeking as a staged process."],
     ["wong","Wong 2017","evidence","Masculine norms linked to poorer mental health and help-seeking attitudes."],
@@ -1762,11 +1711,11 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     ["heath","Heath 2017","evidence","Self-compassion weakened the link between masculine norms and self-stigma in men."],
     ["ajzen","Ajzen 1991","evidence","The Theory of Planned Behavior."],
     ["paper","Review article","outputs","Study 1 article and gap map, submitted before Chinese New Year 2027."],
-    ["gate","Go / amend / stop","outputs","The Study 2 progression decision, August 2027."],
-    ["thesis","Manuscripts","outputs","Manuscripts for publication from Studies 2 and 3, with final papers by 2029."]
+    ["gate","Go / amend / stop","outputs","The Study 3 progression decision, August 2027."],
+    ["thesis","Manuscripts","outputs","Manuscripts for publication from all four studies, with final papers by 2029."]
   ].map(([id,label,group,desc])=>({id,label,group,desc}));
   const L=[
-    ["q","bridge"],["q","sub"],["q","st1"],["q","st2"],["q","st3"],["st1","st2"],["st2","st3"],
+    ["q","bridge"],["q","sub"],["q","st1"],["q","sr"],["q","st2"],["q","st3"],["st1","sr"],["sr","st2"],["st2","st3"],["pi","sr"],["sr","li"],["sr","thesis"],
     ["pi","st1"],["team","st2"],["team","st3"],["team","sol"],["team","pi"],["pi","st2"],["pi","st3"],["pi","sv"],["ra","st1"],["ra","screening"],["ra","rayyan"],
     ["st2","ora"],["ora","sol"],["sol","st3"],["sol","sc"],["sol","chat"],["chat","screen"],["screen","refer"],["refer","s3"],["screen","s1"],
     ["sc","ss"],["mn","ss"],["lof","ss"],["ss","ahs"],["sc","ahs"],["tpb","ahs"],["ahs","bridge"],["ahs","sub"],["st3","ahs"],
@@ -1821,7 +1770,7 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
   });
 
   // labels: always for key nodes, others on focus
-  const always=new Set(["q","bridge","sub","st1","st2","st3","pi","sv","sol","ora","sc","ss","ahs","mn","my","li","fang","heath","gate","s1","s3","jbi"]);
+  const always=new Set(["q","bridge","sub","st1","sr","st2","st3","pi","sv","sol","ora","sc","ss","ahs","mn","my","li","fang","heath","gate","s1","s3","jbi"]);
   const label=gLabel.selectAll("text").data(N).join("text").text(d=>d.label)
     .attr("font-size",d=>d.id==="q"?15:12.5).attr("font-weight",d=>d.id==="q"?600:400).attr("dy",d=>d.id==="q"?-30:(d.group==="studies"?-19:-14)).attr("text-anchor","middle");
   const hullLabel=gLabel.selectAll("text.h").data(Object.keys(groups).filter(g=>g!=="question")).join("text").attr("class","h")
