@@ -1,6 +1,6 @@
 {
   "recruit": {
-    "open": false,
+    "open": true,
     "deadline": "October 30, 2026",
     "pill": "Apply by Oct 30",
     "closedNote": "Applications for this round have closed. Thank you to everyone who applied."
@@ -14,10 +14,10 @@
         "Sol",
         "AI-companion",
         "safety",
-        "study-2"
+        "study-3"
       ],
       "dek": "Why the AI companion in our trials was built with a person in the loop from day one.",
-      "body": "Studies 2 and 3 test Sol, an AI companion inside a study app called Ora. Men in the trial can talk to Sol whenever they like, write in a private diary, complete a one-minute weekly check-in, and open a get-help page that points to real services.\n\nBuilding an AI that men will confide in carries responsibility. So Sol was never designed to work alone.\n\n## A person in the loop\n\n- A safety escalation protocol flags messages and check-ins that suggest risk.\n- Every flag is followed up by a person within 24 hours.\n- Distress is monitored with the PHQ-9 at baseline and the PHQ-4 plus item 9 after that.\n- A researcher console lets the team see engagement and safety events.\n\nSafety is also one of the progression criteria for Study 2. If every flag is followed up within 24 hours, that criterion is green. Any delay is amber. Any serious harm related to Sol stops the program before Study 3.\n\n> The aim is a companion that hands men over to people, not one that keeps them talking to an app."
+      "body": "Studies 3 and 4 test Sol, an AI companion inside a study app called Ora. Men in the trial can talk to Sol whenever they like, write in a private diary, complete a one-minute weekly check-in, and open a get-help page that points to real services.\n\nBuilding an AI that men will confide in carries responsibility. So Sol was never designed to work alone.\n\n## A person in the loop\n\n- A safety escalation protocol flags messages and check-ins that suggest risk.\n- Every flag is followed up by a person within 24 hours.\n- Distress is monitored with the PHQ-9 at baseline and the PHQ-4 plus item 9 after that.\n- A researcher console lets the team see engagement and safety events.\n\nSafety is also one of the progression criteria for Study 3. If every flag is followed up within 24 hours, that criterion is green. Any delay is amber. Any serious harm related to Sol stops the program before Study 4.\n\n> The aim is a companion that hands men over to people, not one that keeps them talking to an app."
     },
     {
       "slug": "why-scoping-review",
@@ -29,7 +29,7 @@
         "methods"
       ],
       "dek": "Before testing an AI companion, we need a map of what is already known in Asia.",
-      "body": "Research on AI and mental health help-seeking is spread across psychology, psychiatry, public health, education and computer science. Each field defines AI and help-seeking differently, and most of the samples come from Western countries.\n\nA systematic review asks a narrow question and estimates an effect. A scoping review does something earlier and broader: it maps the extent, range and nature of the evidence and shows where the gaps are (Munn et al., 2018). That is what this field needs first.\n\n## What we will map\n\n- The types of AI studied, the populations and the countries.\n- Which stages of help-seeking each study addresses, and how help-seeking is measured.\n- Whether AI is positioned as a bridge to human support, or a substitute for it.\n\nWe follow JBI guidance (Peters et al., 2020) and will report with PRISMA-ScR (Tricco et al., 2018). The protocol is registered on OSF before we search. The gaps we find will shape Sol's design and the outcomes we measure in Studies 2 and 3."
+      "body": "Research on AI and mental health help-seeking is spread across psychology, psychiatry, public health, education and computer science. Each field defines AI and help-seeking differently, and most of the samples come from Western countries.\n\nA systematic review asks a narrow question and estimates an effect. A scoping review does something earlier and broader: it maps the extent, range and nature of the evidence and shows where the gaps are (Munn et al., 2018). That is what this field needs first.\n\n## What we will map\n\n- The types of AI studied, the populations and the countries.\n- Which stages of help-seeking each study addresses, and how help-seeking is measured.\n- Whether AI is positioned as a bridge to human support, or a substitute for it.\n\nWe follow JBI guidance (Peters et al., 2020) and will report with PRISMA-ScR (Tricco et al., 2018). The protocol is registered on OSF before we search. The gaps we find will shape Sol's design and the outcomes we measure in Studies 3 and 4."
     },
     {
       "slug": "ra-recruiting",
@@ -55,7 +55,7 @@
         "self-compassion"
       ],
       "dek": "Many young Malaysian men now talk to a chatbot before anyone else. We want to know where that leads.",
-      "body": "Malaysian men are less likely than women to seek help for psychological distress, and many wait until they reach a crisis. Conformity to masculine norms, especially self-reliance, is consistently linked to poorer mental health and more negative attitudes toward seeking help. In Malaysia, concern for face adds to the pressure. For many men, admitting they are struggling feels like failing.\n\nAI chatbots now offer these men something they have rarely had: a private, judgment-free place to talk at any hour. The evidence on whether that helps points both ways. Chatbots can reduce depressive symptoms and increase self-compassion, but heavier use has also been linked to loneliness and less contact with other people.\n\n> Does an AI companion help men take the first step toward friends, family and counselors, or does it become the only place they go?\n\n## Our hunch: self-compassion\n\nWe think self-compassion is the key. By buffering the shame that masculine norms attach to asking for help, it may make men more willing to reach out to people. Earlier research found exactly this buffering effect among men.\n\nOver the next three years we will test that idea in three linked studies: a scoping review, a feasibility trial with 80 men, and, if the feasibility trial says go, a full multi-site trial. You can read about each one on the [Studies](#studies) page."
+      "body": "Malaysian men are less likely than women to seek help for psychological distress, and many wait until they reach a crisis. Conformity to masculine norms, especially self-reliance, is consistently linked to poorer mental health and more negative attitudes toward seeking help. In Malaysia, concern for face adds to the pressure. For many men, admitting they are struggling feels like failing.\n\nAI chatbots now offer these men something they have rarely had: a private, judgment-free place to talk at any hour. The evidence on whether that helps points both ways. Chatbots can reduce depressive symptoms and increase self-compassion, but heavier use has also been linked to loneliness and less contact with other people.\n\n> Does an AI companion help men take the first step toward friends, family and counselors, or does it become the only place they go?\n\n## Our hunch: self-compassion\n\nWe think self-compassion is the key. By buffering the shame that masculine norms attach to asking for help, it may make men more willing to reach out to people. Earlier research found exactly this buffering effect among men.\n\nOver the next three years we will test that idea in four linked studies: a scoping review, a systematic review and meta-analysis, a feasibility trial with 80 men, and, if the feasibility trial says go, a full multi-site trial. You can read about each one on the [Studies](#studies) page."
     }
   ],
   "pubs": [
@@ -74,8 +74,7 @@
         "Asia",
         "men"
       ],
-      "id": "p1",
-      "hidden": true
+      "id": "p1"
     },
     {
       "y": 2027,
@@ -91,8 +90,7 @@
         "help-seeking",
         "Asia"
       ],
-      "id": "p2",
-      "hidden": true
+      "id": "p2"
     },
     {
       "y": 2027,
@@ -103,15 +101,14 @@
       "venue": "Journal article, July to August 2027",
       "tags": [
         "feasibility-trial",
-        "study-2",
+        "study-3",
         "AI-companion",
         "self-compassion",
         "help-seeking",
         "men",
         "Malaysia"
       ],
-      "id": "p3",
-      "hidden": true
+      "id": "p3"
     },
     {
       "y": 2027,
@@ -122,20 +119,18 @@
       "venue": "Conference talk, May to July 2027",
       "tags": [
         "feasibility-trial",
-        "study-2",
+        "study-3",
         "AI-companion",
         "men",
         "Malaysia"
       ],
-      "id": "p4",
-      "hidden": true
+      "id": "p4"
     },
     {
-      "id": "p6",
       "y": 2026,
       "type": "Protocol",
-      "status": "Published",
-      "title": "Bridge or Substitute? Artificial Intelligence and Mental Health Help-Seeking in Asia: A Scoping Review Protocol",
+      "status": "In preparation",
+      "title": "Artificial intelligence and mental health help-seeking in Asia: A scoping review protocol",
       "au": "Ban, B. R. J., & Lau, P. L.",
       "venue": "Open Science Framework registration",
       "tags": [
@@ -145,8 +140,7 @@
         "AI",
         "Asia"
       ],
-      "doi": "10.17605/OSF.IO/MY79X",
-      "url": "https://osf.io/my79x"
+      "id": "p6"
     },
     {
       "y": 2026,
@@ -158,14 +152,13 @@
       "tags": [
         "protocol",
         "feasibility-trial",
-        "study-2",
+        "study-3",
         "AI-companion",
         "self-compassion",
         "men",
         "Malaysia"
       ],
-      "id": "p7",
-      "hidden": true
+      "id": "p7"
     },
     {
       "y": 2026,
@@ -177,11 +170,10 @@
       "tags": [
         "protocol",
         "feasibility-trial",
-        "study-2",
+        "study-3",
         "AI-companion"
       ],
-      "id": "p8",
-      "hidden": true
+      "id": "p8"
     },
     {
       "y": 2022,
@@ -197,8 +189,7 @@
         "Malaysia",
         "students"
       ],
-      "id": "p9",
-      "hidden": true
+      "id": "p9"
     }
   ],
   "home": {
@@ -211,84 +202,56 @@
   },
   "team": [
     {
-      "name": "Dr. Lau Poh Li",
+      "name": "Brendon Ban Ren Jie",
+      "badge": "PI",
+      "sub": "Master of Professional Counseling, Universiti Malaya",
+      "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all four studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
+      "works": "Chong, K. Y. L., Ng, J. H., Ban, R. J., et al. (2022). Paper presented at MAPSA 2022.\nBan, B. R. J., & Lau, P. L. (in preparation). Bridge or substitute? Protocol for a feasibility randomized controlled trial of an AI companion for Malaysian men.",
+      "email": "22059169@siswa.um.edu.my",
+      "link": "",
+      "linkLabel": "",
+      "open": false,
+      "photo": "",
+      "icon": "megaphone"
+    },
+    {
+      "name": "Assoc. Prof. Dr. Lau Poh Li",
       "badge": "Supervisor",
-      "icon": "cap",
-      "sub": "Associate Professor, Universiti Malaya",
-      "bio": "Dr. Lau Poh Li is an Associate Professor in the Department of Educational Psychology and Counseling, Universiti Malaya, Malaysia, and a Registered Counsellor with the Board of Counselors (Malaysia). She completed a two-year doctoral scholarship in counseling at Indiana University Bloomington, United States (2016–2018). Her research interests include career counseling, positive psychology, resilience, cross-cultural and well-being. She is also President elected for APCDA.",
+      "sub": "Department of Educational Psychology and Counseling",
+      "bio": "Dr. Lau supervises the program. She reviews the Study 1 search strategy and settles screening disagreements the team cannot resolve by discussion. She also oversees ethics approval with the Universiti Malaya Research Ethics Committee and the conduct of the trials in Studies 3 and 4.",
       "works": "",
       "email": "janicepolly@um.edu.my",
-      "links": [
-        {
-          "type": "linkedin",
-          "url": "https://linkedin.com/in/poh-li-lau-a1064a374"
-        },
-        {
-          "type": "scholar",
-          "url": "https://scholar.google.com/citations?user=beili20AAAAJ&hl=en"
-        },
-        {
-          "type": "cv",
-          "url": "https://umexpert.um.edu.my/janicepolly.html"
-        }
-      ],
+      "link": "",
+      "linkLabel": "",
       "open": false,
-      "photo": ""
+      "photo": "",
+      "icon": "cap"
     },
     {
-      "name": "Brendon Ban",
-      "badge": "PI",
-      "icon": "megaphone",
-      "sub": "Master student, Counseling",
-      "bio": "Brendon is a counseling trainee who understands both the clinical side and the technology. He designed and built Ora and Sol, including the safety escalation protocol and the researcher console, so the trials can start as soon as ethics approval is granted. He leads all three studies: he runs the Study 1 search and screening, and he is writing up each study as a manuscript for publication.\n\nHis earlier work, a survey of 210 Malaysian undergraduates presented at MAPSA 2022, found that social connection and empathy were linked to willingness to seek help. The program builds on that finding.",
-      "works": "",
-      "email": "22059169@siswa.um.edu.my",
-      "links": [
-        {
-          "type": "website",
-          "url": "https://brendonban.me"
-        },
-        {
-          "type": "linkedin",
-          "url": "https://my.linkedin.com/in/brendonban"
-        }
-      ],
-      "open": false,
-      "photo": "/uploads/1793286962871-brendon.webp"
-    },
-    {
-      "name": "Adrina Ghasemi",
+      "name": "Research assistants",
       "badge": "RA",
-      "icon": "person",
-      "sub": "Bachelor of Psychology (Hons) Student",
-      "bio": "Adrina is a final-year Bachelor of Psychology student at Taylor’s University, Malaysia. Her research interests centre on topics that are often stigmatised or under-discussed in certain societies, and on building the evidence needed to open those conversations in culturally sensitive ways. She is also passionate about ethical, transparent and rigorous research. She has been working with the EPI Lab at the University of Southampton on evidence synthesis of non-pharmacological interventions for ADHD, collaborating with a multicultural team across the UK and Malaysia. She is particularly interested in how AI can complement, rather than replace, human support in mental health care. ",
+      "sub": "Unpaid · remote",
+      "bio": "Research assistants work as second reviewers on our evidence reviews. They screen titles, abstracts and full texts, and chart the included studies in a shared spreadsheet. They are trained in review methods and named in the published article. This could be you.",
       "works": "",
-      "email": "adrina.ghasemi0@gmail.com",
-      "links": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/adrinaghasemi"
-        }
-      ],
-      "open": false,
-      "photo": "/uploads/1793806114178-screenshot-2026-11-04-at-11.28.26-pm.png"
+      "email": "",
+      "link": "#get-involved",
+      "linkLabel": "get involved",
+      "open": true,
+      "photo": "",
+      "icon": "person"
     },
     {
-      "name": "Veronika",
-      "badge": "RA",
-      "icon": "person",
-      "sub": "",
-      "bio": "Second year psychology student at Sunway University. Interested in research, participant-facing roles, cognitive psychology and neuropsychology. ",
+      "name": "AI and tech team",
+      "badge": "Team",
+      "sub": "Unpaid · rolling applications",
+      "bio": "People who code and work with AI to build and improve Ora and Sol. If you are interested in programming, AI or mental health technology, we would like to hear from you.",
       "works": "",
-      "email": "maruginaveronikamvm@gmail.com",
-      "links": [
-        {
-          "type": "linkedin",
-          "url": "https://www.linkedin.com/in/veronika-marugina/"
-        }
-      ],
-      "open": false,
-      "photo": ""
+      "email": "",
+      "link": "#get-involved",
+      "linkLabel": "get involved",
+      "open": true,
+      "photo": "",
+      "icon": "group"
     }
   ],
   "timelines": {
@@ -344,13 +307,13 @@
         "key": false
       },
       {
-        "label": "Study 2 · ethics and registration",
+        "label": "Study 3 · ethics and registration",
         "start": "2026-10-01",
         "end": "2027-01-01",
         "key": false
       },
       {
-        "label": "Study 2 · trial, interviews, analysis",
+        "label": "Study 3 · trial, interviews, analysis",
         "start": "2027-01-01",
         "end": "2027-09-01",
         "key": false
@@ -362,13 +325,13 @@
         "key": true
       },
       {
-        "label": "Refine Sol · Study 3 set-up",
+        "label": "Refine Sol · Study 4 set-up",
         "start": "2027-09-01",
         "end": "2028-01-01",
         "key": false
       },
       {
-        "label": "Study 3 · recruitment and delivery",
+        "label": "Study 4 · recruitment and delivery",
         "start": "2028-01-01",
         "end": "2029-01-01",
         "key": false
@@ -381,10 +344,8 @@
       }
     ]
   },
-  "texts": {
-    "k3": "A four-study program at <b>Universiti Malaya</b>, Department of Educational Psychology and Counseling.",
-    "f1": "Bridge or Substitute · A four-study program at Universiti Malaya",
-    "k231": "Meet the people behind Bridge or Substitute, a four-study program running from 2026 to 2029 in the Department of Educational Psychology and Counseling, Universiti Malaya.",
-    "k35": "Four studies, one question"
+  "texts": {},
+  "nav": {
+    "hidden": []
   }
 }
