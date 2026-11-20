@@ -346,6 +346,12 @@
   },
   "texts": {},
   "nav": {
-    "hidden": []
+    "hidden": [
+      "studies",
+      "publications",
+      "blog",
+      "get-involved",
+      "why"
+    ]
   }
 }
