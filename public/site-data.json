@@ -104,7 +104,8 @@
         "Asia",
         "men"
       ],
-      "id": "p1"
+      "id": "p1",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -120,7 +121,8 @@
         "help-seeking",
         "Asia"
       ],
-      "id": "p2"
+      "id": "p2",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -138,7 +140,8 @@
         "men",
         "Malaysia"
       ],
-      "id": "p3"
+      "id": "p3",
+      "hidden": true
     },
     {
       "y": 2027,
@@ -154,7 +157,8 @@
         "men",
         "Malaysia"
       ],
-      "id": "p4"
+      "id": "p4",
+      "hidden": true
     },
     {
       "y": 2026,
@@ -170,7 +174,8 @@
         "AI",
         "Asia"
       ],
-      "id": "p6"
+      "id": "p6",
+      "hidden": true
     },
     {
       "y": 2026,
@@ -188,7 +193,8 @@
         "men",
         "Malaysia"
       ],
-      "id": "p7"
+      "id": "p7",
+      "hidden": true
     },
     {
       "y": 2026,
@@ -203,7 +209,8 @@
         "study-3",
         "AI-companion"
       ],
-      "id": "p8"
+      "id": "p8",
+      "hidden": true
     },
     {
       "y": 2022,
@@ -219,7 +226,8 @@
         "Malaysia",
         "students"
       ],
-      "id": "p9"
+      "id": "p9",
+      "hidden": true
     }
   ],
   "home": {
@@ -383,5 +391,31 @@
       "get-involved",
       "why"
     ]
-  }
+  },
+  "studies": [
+    {
+      "title": "Scoping review",
+      "desc": "Mapping what is already known about AI and mental health help-seeking in Asia, with particular attention to men.",
+      "status": "Underway · Oct 2026 to Jan 2027",
+      "tone": "on"
+    },
+    {
+      "title": "Systematic review and meta-analysis",
+      "desc": "Pooling comparable results to estimate how AI tools relate to mental health help-seeking.",
+      "status": "Planned",
+      "tone": "next"
+    },
+    {
+      "title": "Feasibility trial",
+      "desc": "A small randomized trial of Ora and Sol with young Malaysian men, testing whether a full trial is workable and safe.",
+      "status": "Ethics review",
+      "tone": "next"
+    },
+    {
+      "title": "Full trial",
+      "desc": "A multi-site trial testing whether Sol helps men reach people, and why. It goes ahead only if the feasibility trial says go.",
+      "status": "From 2028",
+      "tone": "later"
+    }
+  ]
 }
