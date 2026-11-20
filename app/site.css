@@ -189,7 +189,8 @@ td:last-child{color:var(--muted)}
 .person h3{font-size:19px;font-weight:600}
 .person p{color:var(--muted);font-size:15px;overflow-wrap:anywhere}
 /* studies */
-.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.trio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1060px){.trio{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .st{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--line);border-radius:14px;min-width:0}
 .st:hover{border-color:var(--fg)}
 .st:focus-visible{outline:2px solid var(--violet);outline-offset:3px}
@@ -328,6 +329,7 @@ table.narrow{min-width:480px}
 @media (prefers-reduced-motion:reduce){.vis .knob,.vis .knob::after{transition:none}}
 
 /* admin extras */
+.navlist{display:flex;flex-direction:column}
 .res-note{padding:12px 16px;border-radius:10px;background:var(--accent-soft);border:1px solid var(--accent);font-size:14.5px}
 .res-filter{display:flex;flex-direction:column;gap:10px}
 .reslist{display:flex;flex-direction:column}
@@ -398,7 +400,7 @@ footer nav.flinks a{font-size:12.5px}
 
 /* get involved */
 .opps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-.opps.four{grid-template-columns:repeat(2,1fr)}
+.opps.four,.opps.two{grid-template-columns:repeat(2,1fr)}
 .opps.four>.opp:last-child:nth-child(odd){grid-column:1/-1}
 .opp{min-width:0;border-radius:4px;overflow:hidden}
 .oh{padding:14px 18px;font-weight:600;font-size:15.5px}
