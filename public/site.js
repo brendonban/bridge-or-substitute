@@ -172,13 +172,16 @@ document.querySelectorAll(".st[data-go]").forEach(b=>b.addEventListener("click",
 
 /* ---------- publications ---------- */
 const DOI_RE=/^10\.\d{4,9}\/\S+$/;
+const PUB_TYPES=["Article","Review","Protocol","Preprint","Conference paper","Poster","Talk","Workshop","Book chapter","Report","Dataset","Software","Media"];
+const PUB_STATUSES=["Published","Accepted","Under review","Submitted","Presented","In preparation","Planned"];
+const withExtra=(list,vals)=>[...list,...[...new Set(vals)].filter(v=>v&&!list.includes(v))];
 function normDoi(v){v=String(v||"").trim().replace(/^(https?:\/\/)?(dx\.)?doi\.org\//i,"").replace(/^doi:\s*/i,"");return v;}
 window.initPubs=function(ALL){
   if(!window.__pubState) window.__pubState={type:"All",status:"All",tag:null,q:""};
   const P=(ALL||[]).filter(p=>!p.hidden);
 
   const has=(k,v)=>P.some(p=>p[k]===v);
-  const types=["All",...["Article","Protocol","Talk"].filter(v=>has("type",v))], stats=["All",...["Published","Presented","In preparation","Planned"].filter(v=>has("status",v))];
+  const types=["All",...withExtra(PUB_TYPES,P.map(p=>p.type)).filter(v=>has("type",v))], stats=["All",...withExtra(PUB_STATUSES,P.map(p=>p.status)).filter(v=>has("status",v))];
   if(!types.includes(window.__pubState.type))window.__pubState.type="All";if(!stats.includes(window.__pubState.status))window.__pubState.status="All";
   const st=window.__pubState;
   const $=id=>document.getElementById(id);
@@ -206,7 +209,7 @@ window.initPubs=function(ALL){
       const h=document.createElement("h2");h.textContent=y;const ol=document.createElement("ol");
       list.filter(p=>+p.y===y).forEach(p=>{
         const li=document.createElement("li");li.className="pub";
-        const cls=p.status==="Presented"||p.status==="Published"?"presented":p.status==="In preparation"?"prep":"";
+        const cls=["Presented","Published","Accepted"].includes(p.status)?"presented":["In preparation","Submitted","Under review"].includes(p.status)?"prep":"";
         li.innerHTML=`<div class="ptop"><span class="ptype"></span><span class="pst ${cls}"></span></div><h3></h3><p class="pau"></p><p class="pven"></p>${p.note?'<p class="pau pnote"></p>':""}<div class="plinks"></div><div class="ptags"></div>`;
         li.querySelector(".ptype").textContent=p.type;li.querySelector(".pst").textContent=p.status;
         li.querySelector("h3").textContent=p.title;li.querySelector(".pven").textContent=p.venue;
@@ -824,8 +827,8 @@ fetch("site-data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.js
     const opt=(v,list)=>list.map(x=>`<option${x===v?" selected":""}>${x}</option>`).join("");
     formShell(B,editing==="new"?"New publication":"Edit publication",
       fld("Title",'<input id="u-title" required>')+
-      `<div class="fgrid">${fld("Year",'<input id="u-y" type="number" min="1990" max="2100" required>')}${fld("Type",'<select id="u-type">'+opt(p.type,["Article","Protocol","Talk"])+'</select>')}</div>`+
-      `<div class="fgrid">${fld("Status",'<select id="u-status">'+opt(p.status,["Published","Presented","In preparation","Planned"])+'</select>')}${fld("Tags",'<input id="u-tags">',"Comma separated")}</div>`+
+      `<div class="fgrid">${fld("Year",'<input id="u-y" type="number" min="1990" max="2100" required>')}${fld("Type",'<select id="u-type">'+opt(p.type,withExtra(PUB_TYPES,[p.type]))+'</select>')}</div>`+
+      `<div class="fgrid">${fld("Status",'<select id="u-status">'+opt(p.status,withExtra(PUB_STATUSES,[p.status]))+'</select>')}${fld("Tags",'<input id="u-tags">',"Comma separated")}</div>`+
       fld("Authors",'<input id="u-au">',"Your name is bolded automatically")+
       fld("Venue",'<input id="u-venue">',"Journal, conference or registry")+
       `<div class="fgrid">${fld("DOI",'<input id="u-doi" placeholder="10.1038/s41746-023-00979-5">',"Optional. Paste the DOI or its doi.org link")}${fld("Link",'<input id="u-url" placeholder="https://…">',"Optional, e.g. slides, preprint or OSF page")}</div>`+
